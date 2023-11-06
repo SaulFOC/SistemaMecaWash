@@ -1,0 +1,43 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.7.34024.191
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MecaWash.Proyecto.Presentacion", "MecaWash.Proyecto.Presentacion\MecaWash.Proyecto.Presentacion.csproj", "{21D7576C-20AC-4C14-AD5E-909667021612}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MecaWash.Libreria.Entidad", "MecaWash.Libreria.Entidad\MecaWash.Libreria.Entidad.csproj", "{12903AC4-EE75-4F5C-ACF0-6F477F7426FD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MecaWash.Libreria.Datos", "MecaWash.Libreria.Datos\MecaWash.Libreria.Datos.csproj", "{F44B930D-5C20-485E-9301-275942B12339}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MecaWash.Libreria.Negocio", "MecaWash.Libreria.Negocio\MecaWash.Libreria.Negocio.csproj", "{C4F08293-EE29-4746-B641-3887273FC409}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{21D7576C-20AC-4C14-AD5E-909667021612}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{21D7576C-20AC-4C14-AD5E-909667021612}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{21D7576C-20AC-4C14-AD5E-909667021612}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{21D7576C-20AC-4C14-AD5E-909667021612}.Release|Any CPU.Build.0 = Release|Any CPU
+		{12903AC4-EE75-4F5C-ACF0-6F477F7426FD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{12903AC4-EE75-4F5C-ACF0-6F477F7426FD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{12903AC4-EE75-4F5C-ACF0-6F477F7426FD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{12903AC4-EE75-4F5C-ACF0-6F477F7426FD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F44B930D-5C20-485E-9301-275942B12339}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F44B930D-5C20-485E-9301-275942B12339}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F44B930D-5C20-485E-9301-275942B12339}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F44B930D-5C20-485E-9301-275942B12339}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C4F08293-EE29-4746-B641-3887273FC409}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C4F08293-EE29-4746-B641-3887273FC409}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C4F08293-EE29-4746-B641-3887273FC409}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C4F08293-EE29-4746-B641-3887273FC409}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B62C3A25-8AC9-4041-B37B-0FD0A54CAAC8}
+	EndGlobalSection
+EndGlobal
