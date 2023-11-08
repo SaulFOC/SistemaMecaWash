@@ -14,7 +14,7 @@
 <body>
     <form id="form1" runat="server">
         <div class="d-lg-flex half">
-            <div class="bg order-1 order-md-2 imagen" background-image: url('images/bg_1.jpg');></div>
+            <div class="bg order-1 order-md-2 imagen" style="background-image: url('../assets/img/mecanico.jpg');"></div>
             <div class="contents order-2 order-md-1">
 
                 <div class="container">
@@ -25,7 +25,7 @@
                             <form id="frmLoginColaborador" method="post">
                                 <div class="form-group first">
                                     <label for="username">Correo</label>
-                                    <input type="email" class="form-control" placeholder="your-email@gmail.com" id="username">
+                                    <input type="email" class="form-control" placeholder="correo@gmail.com" id="username">
                                 </div>
                                 <div class="form-group last mb-3">
                                     <label for="password">Contraseña</label>
