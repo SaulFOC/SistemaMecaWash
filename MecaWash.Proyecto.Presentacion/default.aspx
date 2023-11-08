@@ -44,7 +44,7 @@
         .cabecera .swiper-button-prev,
         .cabecera .swiper-button-next {
             --swiper-navigation-size: 20px;
-            background: #F97777;
+            background: #383838;
             color: #fff;
             font-weight: bold;
             height: 70px;
@@ -98,7 +98,7 @@
         #oferta .swiper-button-prev,
         #oferta .swiper-button-next {
             --swiper-navigation-size: 20px;
-            background: #F97777;
+            background: #383838;
             color: #fff;
             font-weight: bold;
             height: 70px;
@@ -150,7 +150,7 @@
         }
 
         .text-success {
-            color: #F97777 !important;
+            color: #383838 !important;
         }
 
         .bg-black {
@@ -165,6 +165,11 @@
         .btn-transparente{
             background-color:transparent;
             border:none;
+            color:#383838;
+        }
+        .btn-login{
+            background:#383838 !important;
+            color:#fff !important;
         }
 
         @media (min-width: 1024px) {
@@ -194,16 +199,22 @@
         <nav class="navbar sticky-top navbar-expand-lg bg-secundario">
             <div class="container-fluid">
                 <a class="navbar-brand text-oscuro" href="#">
-                    <img src="assets/img/delivery.png" width="45" height="45" class="d-inline-block align-text-top" alt="">
+                    <img src="assets/img/logo.png" width="45" height="45" class="d-inline-block align-text-top" alt="">
                 </a>
-                <label class="text-center fw-bold" for="">Delivery</label>
+                <label class="text-center fw-bold" for="">MecWash</label>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <i class='bx bx-grid-alt text-rosa fs-1'></i>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link text-rosa" aria-current="page" href="">Inicio</a>
+                            <a class="nav-link text-rosa" aria-current="page" href="#contenedorgeneral">Inicio</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-rosa" aria-current="page" href="#oferta">Servicios</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-rosa" aria-current="page" href="#ofertas1">Ofertas</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-rosa" aria-current="page" href="" data-bs-toggle="modal" data-bs-target="#frmLogin">Iniciar Sesion</a>
@@ -216,25 +227,22 @@
             </div>
         </nav>
 
-        <div class="mb-4">
-            <section class="cabecera mt-2">
+        <div id="contenedorgeneral" class="mb-4">
+            <section class="cabecera">
                 <div class="swiper" id="banner">
                     <div class="swiper-wrapper">
                         <!-- para colocar elementos del slider -->
                         <div class="swiper-slide">
-                            <img class="imagen2" src="assets/img/banner-hamburgesa.png" alt="">
+                            <img class="imagen2" src="assets/img/banner1.jpg" alt="">
                         </div>
                         <div class="swiper-slide">
-                            <img class="imagen2" src="assets/img/banner-hamburgesa.png" alt="">
+                            <img class="imagen2" src="assets/img/banner1.jpg" alt="">
                         </div>
                         <div class="swiper-slide">
-                            <img class="imagen2" src="assets/img/banner-hamburgesa.png" alt="">
+                            <img class="imagen2" src="assets/img/banner1.jpg" alt="">
                         </div>
                         <div class="swiper-slide">
-                            <img class="imagen2" src="assets/img/banner-hamburgesa.png" alt="">
-                        </div>
-                        <div class="swiper-slide">
-                            <img class="imagen2" src="assets/img/banner-hamburgesa.png" alt="">
+                            <img class="imagen2" src="assets/img/banner1.jpg" alt="">
                         </div>
                     </div>
                     <!-- para la paginacion del slider (los puntitos) -->
@@ -252,118 +260,21 @@
                 <div class="swiper" id="ofertas">
                     <div class="swiper-wrapper mb-3">
                         <!-- para elementos del slider que mostraran algunos productos -->
+                        <% for (int i = 1; i <= 8; i++)
+                            { %>
                         <div class="swiper-slide tarjeta redondear bg-b">
                             <div class="container">
-                                <img class="img-card" src="assets/img/hamburguesa.webp" alt="">
+                                <img class="img-card mt-3" src="assets/img/cambioaceite.jpg" alt="">
                                 <hr>
                                 <div>
-                                    <label class="fw-bold" for="">S./ 20.00</label>
-                                    <label class="text-success fs-8" for="">22% OFF</label>
+                                    <label class="fw-bold text-uppercase" for="">Cambio de aceite</label>
                                 </div>
                                 <div>
-                                    <label class="text-success" for="">ENVIO GRATIS</label>
-                                </div>
-                                <div>
-                                    <p>Rica hamburguesa de carne hecha en plancha bañada en aceite de oliva</p>
+                                    <p>Se realiza el respectivo cambio de aceite al vehiculo</p>
                                 </div>
                             </div>
                         </div>
-                        <div class="swiper-slide tarjeta redondear bg-b">
-                            <div class="container">
-                                <img class="img-card" src="assets/img/hamburguesa.webp" alt="">
-                                <hr>
-                                <div>
-                                    <label class="fw-bold" for="">S./ 20.00</label>
-                                    <label class="text-success fs-8" for="">22% OFF</label>
-                                </div>
-                                <div>
-                                    <label class="text-success" for="">ENVIO GRATIS</label>
-                                </div>
-                                <div>
-                                    <p>Rica hamburguesa de carne hecha en plancha bañada en aceite de oliva</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="swiper-slide tarjeta redondear bg-b">
-                            <div class="container">
-                                <img class="img-card" src="assets/img/hamburguesa.webp" alt="">
-                                <hr>
-                                <div>
-                                    <label class="fw-bold" for="">S./ 20.00</label>
-                                    <label class="text-success fs-8" for="">22% OFF</label>
-                                </div>
-                                <div>
-                                    <label class="text-success" for="">ENVIO GRATIS</label>
-                                </div>
-                                <div>
-                                    <p>Rica hamburguesa de carne hecha en plancha bañada en aceite de oliva</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="swiper-slide tarjeta redondear bg-b">
-                            <div class="container">
-                                <img class="img-card" src="assets/img/hamburguesa.webp" alt="">
-                                <hr>
-                                <div>
-                                    <label class="fw-bold" for="">S./ 20.00</label>
-                                    <label class="text-success fs-8" for="">22% OFF</label>
-                                </div>
-                                <div>
-                                    <label class="text-success" for="">ENVIO GRATIS</label>
-                                </div>
-                                <div>
-                                    <p>Rica hamburguesa de carne hecha en plancha bañada en aceite de oliva</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="swiper-slide tarjeta redondear bg-b">
-                            <div class="container">
-                                <img class="img-card" src="assets/img/hamburguesa.webp" alt="">
-                                <hr>
-                                <div>
-                                    <label class="fw-bold" for="">S./ 20.00</label>
-                                    <label class="text-success fs-8" for="">22% OFF</label>
-                                </div>
-                                <div>
-                                    <label class="text-success" for="">ENVIO GRATIS</label>
-                                </div>
-                                <div>
-                                    <p>Rica hamburguesa de carne hecha en plancha bañada en aceite de oliva</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="swiper-slide tarjeta redondear bg-b">
-                            <div class="container">
-                                <img class="img-card" src="assets/img/hamburguesa.webp" alt="">
-                                <hr>
-                                <div>
-                                    <label class="fw-bold" for="">S./ 20.00</label>
-                                    <label class="text-success fs-8" for="">22% OFF</label>
-                                </div>
-                                <div>
-                                    <label class="text-success" for="">ENVIO GRATIS</label>
-                                </div>
-                                <div>
-                                    <p>Rica hamburguesa de carne hecha en plancha bañada en aceite de oliva</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="swiper-slide tarjeta redondear bg-b">
-                            <div class="container">
-                                <img class="img-card" src="assets/img/hamburguesa.webp" alt="">
-                                <hr>
-                                <div>
-                                    <label class="fw-bold" for="">S./ 20.00</label>
-                                    <label class="text-success fs-8" for="">22% OFF</label>
-                                </div>
-                                <div>
-                                    <label class="text-success" for="">ENVIO GRATIS</label>
-                                </div>
-                                <div>
-                                    <p>Rica hamburguesa de carne hecha en plancha bañada en aceite de oliva</p>
-                                </div>
-                            </div>
-                        </div>
+                        <%} %>
 
                     </div>
                     <!-- para las flechistas que permiten avanzar y retroceder el slider -->
@@ -374,10 +285,13 @@
             </section>
 
             <!-- para la seccion de ofertas del dia -->
+            <section id="ofertas1">
+            <% for (int i = 1; i <= 4; i++)
+                { %>
             <div class="container mb-3">
                 <div class="row">
                     <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6">
-                        <img src="assets/img/anticucho.jpg" class="img-card" alt="">
+                        <img src="assets/img/pastilas.jpg" class="img-card" alt="">
                     </div>
                     <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6 bg-black text-container">
                         <div class="p-3">
@@ -388,63 +302,38 @@
                     </div>
                 </div>
             </div>
-            <div class="container mb-3">
-                <div class="row">
-                    <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6">
-                        <img src="assets/img/anticucho.jpg" class="img-card" alt="">
-                    </div>
-                    <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6 bg-black text-container">
-                        <div class="p-3">
-                            <p>OFERTAS DEL DIA</p>
-                            <h3 class="text-wrap w-75">APROVECHA LAS MEJORES OFERTAS</h3>
-                            <p>Ver Más ...</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="container mb-3">
-                <div class="row">
-                    <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6">
-                        <img src="assets/img/anticucho.jpg" class="img-card" alt="">
-                    </div>
-                    <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6 bg-black text-container">
-                        <div class="p-3">
-                            <p>OFERTAS DEL DIA</p>
-                            <h3 class="text-wrap w-75">APROVECHA LAS MEJORES OFERTAS</h3>
-                            <p>Ver Más ...</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <%} %>
+                </section>
+
             <!-- para los modales -->
         <!-- Para Login -->
         <div class="modal fade" id="frmLogin" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content bg-secundario">
+                <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title text-success" id="exampleModalLabel">Login</h5>
-                        <button type="button" class="text-rosa btn-transparente" data-bs-dismiss="modal" aria-label="Close"><i class='bx bx-x fs-2'></i></button>
+                        <button type="button" class="btn-transparente" data-bs-dismiss="modal" aria-label="Close"><i class='bx bx-x fs-2'></i></button>
                     </div>
                     <div class="modal-body">
 
                         <!--Aqui va el formulario de login-->
                         <form method="post" id="frmLoginCliente">
                             <div class="mb-3">
-                                <label for="loginUser" class="form-label">Usuario</label>
-                                <input type="text" class="form-control" id="loginUser" name="loginUser" placeholder="Usuario" required>
+                                <label for="loginUser" class="form-label">Correo</label>
+                                <input type="email" class="form-control" id="loginCorreo" name="loginUser" placeholder="Correo" required>
                             </div>
                             <div class="mb-3">
                                 <label for="loginPassword" class="form-label">Contraseña</label>
                                 <input type="password" class="form-control" id="loginPassword" name="loginPassword" placeholder="Contraseña" required>
                             </div>
-                            <button id="btnLogin" class="btn btn-login">Iniciar sesión</button>
+                            <a id="btnLogin" href="Cliente/" class="btn btn-login">Iniciar sesión</a>
                         </form>
 
                     </div>
                     <div class="modal-footer">
-                        <label for="" class="">Click aqui si eres <a href="colaborador/" class="text-success">colaborador</a></label>
+                        <label for="" class="">Click aqui si eres <a href="Colaborador/" class="text-success">colaborador</a></label>
                         <div class="text-center container mt-4">
-                            <a href="recuperar.php" class="text-success fz-100">¿Olvidaste tu contraseña?</a>
+                            <a href="recuperar.aspx" class="text-success fz-100">¿Olvidaste tu contraseña?</a>
                         </div>
                     </div>
                 </div>
@@ -454,10 +343,10 @@
         <!-- Para Registro -->
         <div class="modal fade" id="frmRegistro" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content bg-secundario">
+                <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title text-success" id="exampleModalLabel">Registrarte</h5>
-                        <button type="button" class="text-rosa btn-transparente" data-bs-dismiss="modal" aria-label="Close"><i class='bx bx-x fs-2'></i></button>
+                        <button type="button" class="btn-transparente" data-bs-dismiss="modal" aria-label="Close"><i class='bx bx-x fs-2'></i></button>
                     </div>
                     <div class="modal-body">
 
@@ -465,15 +354,14 @@
                         <form method="post" id="frmRegistrarCliente">
                             <div class="row mb-2">
                                 <div class="col-6">
-                                    <label for="user" class="form-label">Usuario</label>
-                                    <input type="text" class="form-control" name="user" placeholder="Usuario" required>
+                                    <label for="user" class="form-label">DNI</label>
+                                    <input type="text" class="form-control" name="dni" maxlength="8" placeholder="DNI" required>
                                 </div>
                                 <div class="col-6">
-                                    <label for="password" class="form-label">Contraseña</label>
-                                    <input type="password" class="form-control" name="password" placeholder="Contraseña" required>
+                                    <label for="password" class="form-label">Celular</label>
+                                    <input type="password" class="form-control" name="text" maxlength="9" placeholder="999999999" required>
                                 </div>
                             </div>
-
 
                             <div class="row mb-2">
                                 <div class="col-6">
@@ -481,24 +369,19 @@
                                     <input type="text" class="form-control" name="nombre" placeholder="Nombre" required>
                                 </div>
                                 <div class="col-6">
-                                    <label for="apellido" class="form-label mb-0 w-100 text-truncate">Apellido</label>
-                                    <input type="text" class="form-control" name="apellido" placeholder="Apellido" required>
+                                    <label for="apellido" class="form-label mb-0 w-100 text-truncate">Apellidos</label>
+                                    <input type="text" class="form-control" name="apellido" placeholder="Apellidos" required>
                                 </div>
-                            </div>
-
-                            <div class="mb-3">
-                                <label for="correo" class="form-label">Correo</label>
-                                <input type="email" class="form-control" name="correo" placeholder="correo@gmail.com" required>
                             </div>
 
                             <div class="row mb-2">
-                                <div class="col-6">
-                                    <label for="fechaNacimiento" class="form-label mb-0 w-100 text-truncate">Fecha de Naacimiento</label>
-                                    <input type="date" class="form-control" name="fechaNacimiento" required>
+                                <div class="col-8">
+                                    <label for="correo" class="form-label">Correo</label>
+                                    <input type="email" class="form-control" name="correo" placeholder="correo@gmail.com" required>
                                 </div>
-                                <div class="col-6">
-                                    <label for="celular" class="form-label w-100 mb-0 text-truncate">Celular</label>
-                                    <input type="number" id="celular" class="form-control" name="celular" placeholder="Celular" required>
+                                <div class="col-4">
+                                    <label for="password" class="form-label">Contraseña</label>
+                                    <input type="password" class="form-control" name="password" placeholder="Contraseña" required>
                                 </div>
                             </div>
 
@@ -511,7 +394,7 @@
 
                     </div>
                     <div class="modal-footer">
-                        <label for="" class="">Click aqui si eres <a href="colaborador/" class="text-success">colaborador</a></label>
+                        <label for="" class="">Click aqui si eres <a href="Colaborador/" class="text-success">colaborador</a></label>
                     </div>
                 </div>
             </div>

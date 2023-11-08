@@ -9,17 +9,17 @@
 
 :root {
     /* ===== Colors ===== */
-    --body-color: #F7F7F7;
+    --body-color: #efefef;
     --sidebar-color: #fff;
-    --primary-color: #F97777;
+    --primary-color: #383838;
     --primary-color-light: #f6f5ff;
     --toggle-color: #ddd;
     --text-color: #707070;
     --color-white: #ffffff;
     --color-imagen: #E4F1F3;
     --color-box: rgba(0, 0, 0, 0.25);
-    --color-precio: #F97777;
-    --color-plato: #F97777;
+    --color-precio: #383838;
+    --color-plato: #383838;
     /* ====== Transition ====== */
     --tran-03: all 0.2s ease;
     --tran-03: all 0.3s ease;
@@ -60,6 +60,7 @@ body.dark {
 
 .bg-principal {
     background: var(--primary-color);
+    color:var(--primary-color-light);
 }
 
 .perfil {

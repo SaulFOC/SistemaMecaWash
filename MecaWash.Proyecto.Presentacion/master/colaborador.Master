@@ -1,0 +1,32 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="colaborador.master.cs" Inherits="MecaWash.Proyecto.Presentacion.master.colaborador" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+    <link rel="stylesheet" href="../Content/bootstrap.min.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="../assets/css/cabecera.css">
+</head>
+<body>
+    <form id="form1" runat="server">
+        <% if (Request.Browser.IsMobileDevice)
+            { %>
+        <nav class="navbar sticky-top bg-principal">
+            <div class="container-fluid">
+                <img class="perfil" src="../../assets/img/logo.png" alt="logo">
+                <div class="container w-50 ms-5 text-center">
+                    <span class="text-center text-azul">Bienvenido a <label class="fw-bold">Administrador</label></span>
+                </div>
+            </div>
+        </nav>
+        <%} %>
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+            </asp:ContentPlaceHolder>
+    </form>
+    <script src="../Scripts/bootstrap.min.js"></script>
+        <script src="../assets/js/menu/activarDarkmode.js"></script>
+</body>
+</html>
