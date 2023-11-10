@@ -17,6 +17,6 @@ namespace MecaWash.Libreria.Entidad
         public string Puesto { get; set; }
         public string Usuario { get; set; }
         public string Contrasena { get; set; }
-        public Boolean Estado { get; set; }
+        public int Estado { get; set; }
     }
 }

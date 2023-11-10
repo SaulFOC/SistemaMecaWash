@@ -78,6 +78,8 @@
     <Content Include="assets\fonts\icomoon\style.css" />
     <Content Include="assets\img\banner1.jpg" />
     <Content Include="assets\img\cambioaceite.jpg" />
+    <Content Include="assets\img\editar.svg" />
+    <Content Include="assets\img\eliminar.svg" />
     <Content Include="assets\img\logo.png" />
     <Content Include="assets\img\mecanico.jpg" />
     <Content Include="assets\img\pastilas.jpg" />

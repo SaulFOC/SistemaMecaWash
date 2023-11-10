@@ -27,6 +27,6 @@
             </asp:ContentPlaceHolder>
     </form>
     <script src="../Scripts/bootstrap.min.js"></script>
-        <script src="../assets/js/menu/activarDarkmode.js"></script>
+        <script src="../../assets/js/activarDarkmode.js"></script>
 </body>
 </html>

@@ -45,10 +45,6 @@ namespace MecaWash.Libreria.Negocio
             {
                 error = 1;
             }
-            else if (string.IsNullOrEmpty(obj.Usuario) || string.IsNullOrWhiteSpace(obj.Usuario))
-            {
-                error = 1;
-            }
             else if (string.IsNullOrEmpty(obj.Contrasena) || string.IsNullOrWhiteSpace(obj.Contrasena))
             {
                 error = 1;

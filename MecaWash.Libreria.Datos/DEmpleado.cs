@@ -50,7 +50,6 @@ namespace MecaWash.Libreria.Datos
                     SqlCommand cmd = new SqlCommand("InsertarEmpleado", cn);
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@DNI", obj.Dni);
-                    cmd.Parameters.AddWithValue("@Usuario", obj.Usuario);
                     cmd.Parameters.AddWithValue("@Contrasena", obj.Contrasena);
                     cmd.Parameters.AddWithValue("@Nombre", obj.Nombre);
                     cmd.Parameters.AddWithValue("@Apellido", obj.Apellido);
