@@ -6,12 +6,13 @@ using System.Threading.Tasks;
 
 namespace MecaWash.Libreria.Entidad
 {
-    public class EServicios
+    public class EInventario
     {
-        public int IDServicio { get; set; }
-        public string TipoServicio { get; set; }
+        public int IDInventario { get; set; }
+        public string NombreProducto { get; set; }
         public string Descripcion { get; set; }
-        public double PrecioServicio { get; set; }
+        public int Cantidad { get; set; }
+        public double PrecioProducto { get; set; }
         public int Estado { get; set; }
     }
 }
