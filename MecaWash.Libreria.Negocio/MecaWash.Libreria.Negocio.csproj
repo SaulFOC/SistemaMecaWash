@@ -43,6 +43,7 @@
   <ItemGroup>
     <Compile Include="NEmpleado.cs" />
     <Compile Include="NEncriptacion.cs" />
+    <Compile Include="NServicio.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
