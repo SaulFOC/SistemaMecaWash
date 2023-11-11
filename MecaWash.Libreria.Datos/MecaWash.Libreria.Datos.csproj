@@ -46,6 +46,7 @@
     <Compile Include="DEmpleado.cs" />
     <Compile Include="DInventario.cs" />
     <Compile Include="DServicio.cs" />
+    <Compile Include="DVehiculo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
