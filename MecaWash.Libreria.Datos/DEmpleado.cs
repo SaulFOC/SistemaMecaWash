@@ -52,7 +52,6 @@ namespace MecaWash.Libreria.Datos
                     cmd.Parameters.AddWithValue("@DNI", obj.Dni);
                     cmd.Parameters.AddWithValue("@Contrasena", obj.Contrasena);
                     cmd.Parameters.AddWithValue("@Nombre", obj.Nombre);
-                    cmd.Parameters.AddWithValue("@Apellido", obj.Apellido);
                     cmd.Parameters.AddWithValue("@Telefono", obj.Telefono);
                     cmd.Parameters.AddWithValue("@CorreoElectronico", obj.CorreoElectronico);
                     cmd.Parameters.AddWithValue("@Puesto", obj.Puesto);
@@ -81,14 +80,11 @@ namespace MecaWash.Libreria.Datos
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@IDEmpleado", obj.IDEmpleado);
                     cmd.Parameters.AddWithValue("@DNI", obj.Dni);
-                    cmd.Parameters.AddWithValue("@Usuario", obj.Usuario);
                     cmd.Parameters.AddWithValue("@Contrasena", obj.Contrasena);
                     cmd.Parameters.AddWithValue("@Nombre", obj.Nombre);
-                    cmd.Parameters.AddWithValue("@Apellido", obj.Apellido);
                     cmd.Parameters.AddWithValue("@Telefono", obj.Telefono);
                     cmd.Parameters.AddWithValue("@CorreoElectronico", obj.CorreoElectronico);
                     cmd.Parameters.AddWithValue("@Puesto", obj.Puesto);
-                    cmd.Parameters.AddWithValue("@Estado", obj.Estado);
                     cn.Open();
                     cmd.ExecuteNonQuery();
                     cn.Close();

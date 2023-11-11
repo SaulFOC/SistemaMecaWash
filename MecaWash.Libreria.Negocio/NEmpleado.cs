@@ -29,9 +29,6 @@ namespace MecaWash.Libreria.Negocio
             }else if (string.IsNullOrEmpty(obj.Nombre) || string.IsNullOrWhiteSpace(obj.Nombre))
             {
                 error = 1; 
-            }else if (string.IsNullOrEmpty(obj.Apellido) || string.IsNullOrWhiteSpace(obj.Apellido))
-            {
-                error = 1;
             }
             else if (string.IsNullOrEmpty(obj.Telefono) || string.IsNullOrWhiteSpace(obj.Telefono))
             {
@@ -72,10 +69,6 @@ namespace MecaWash.Libreria.Negocio
             {
                 error = true;
             }
-            else if (string.IsNullOrEmpty(obj.Apellido) || string.IsNullOrWhiteSpace(obj.Apellido))
-            {
-                error = true;
-            }
             else if (string.IsNullOrEmpty(obj.Telefono) || string.IsNullOrWhiteSpace(obj.Telefono))
             {
                 error = true;
@@ -85,10 +78,6 @@ namespace MecaWash.Libreria.Negocio
                 error = true;
             }
             else if (string.IsNullOrEmpty(obj.Puesto) || string.IsNullOrWhiteSpace(obj.Puesto))
-            {
-                error = true;
-            }
-            else if (string.IsNullOrEmpty(obj.Usuario) || string.IsNullOrWhiteSpace(obj.Usuario))
             {
                 error = true;
             }

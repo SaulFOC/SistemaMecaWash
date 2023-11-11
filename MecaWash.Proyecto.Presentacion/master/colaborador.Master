@@ -9,6 +9,13 @@
     <link rel="stylesheet" href="../Content/bootstrap.min.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="../assets/css/cabecera.css">
+    <style>
+        .contedor1{
+            width:100%;
+            padding-left: 2rem;
+            padding-right:2rem;
+        }
+    </style>
 </head>
 <body>
     <form id="form1" runat="server">
