@@ -16,8 +16,49 @@ namespace MecaWash.Proyecto.Presentacion.Colaborador.Administrador
         NEmpleado objEmpleadoN = new NEmpleado();
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Page.IsPostBack) return;
-            ListarEmpleados();
+            if (!IsPostBack)
+            {
+                ListarEmpleados();
+                VaciarCombo();
+                LlenarCombo();
+            }
+        }
+
+        protected void Eliminar(object sender, EventArgs e)
+        {
+            if (ddlBuscar.SelectedValue == "gg")
+            {
+                ListarEmpleados();
+            }
+
+            if (ddlBuscar.Text != "Buscar...")
+            {
+                BuscarEmpleados();
+            }
+            LinkButton btn = (LinkButton)sender;
+            String idEmpleado = btn.CommandArgument;
+            bool respuesta = objEmpleadoN.EliminarEmpleado(Convert.ToInt32(idEmpleado));
+
+            if (respuesta)
+            {
+                VaciarCombo();
+                LlenarCombo();
+                ddlBuscar.SelectedValue = "gg";
+                ListarEmpleados();
+            }
+        }
+
+        protected void LlenarCombo()
+        {
+            ddlBuscar.DataSource = objEmpleadoN.ListarEmpleados();
+            ddlBuscar.DataTextField = "Nombre";
+            ddlBuscar.DataValueField = "IDEmpleado";
+            ddlBuscar.DataBind();
+        }
+        protected void VaciarCombo()
+        {
+            ddlBuscar.Items.Clear();
+            ddlBuscar.Items.Add(new ListItem("Buscar...", "gg"));
         }
         protected void ListarEmpleados()
         {
@@ -43,7 +84,11 @@ namespace MecaWash.Proyecto.Presentacion.Colaborador.Administrador
                 objEmpleadoE.Puesto = ddlPuesto.SelectedValue;
                 objEmpleadoE.Estado = 1;
                 objEmpleadoN.RegistrarEmpleado(objEmpleadoE);
+                VaciarCombo();
+                LlenarCombo();
+                ddlBuscar.SelectedValue = "gg";
                 ListarEmpleados();
+                ScriptManager.RegisterStartupScript(this, GetType(), "insertAlert", "registroExitoso();", true);
             }
         }
 
@@ -56,7 +101,14 @@ namespace MecaWash.Proyecto.Presentacion.Colaborador.Administrador
         protected void GridView1_RowEditing(object sender, GridViewEditEventArgs e)
         {
             GridView1.EditIndex = e.NewEditIndex;
-            ListarEmpleados();
+            if (ddlBuscar.SelectedValue == "gg")
+            {
+                ListarEmpleados();
+            }
+            
+            if(ddlBuscar.Text != "Buscar..."){
+                BuscarEmpleados();
+            }
         }
 
         protected void GridView1_RowUpdating(object sender, GridViewUpdateEventArgs e)
@@ -89,22 +141,63 @@ namespace MecaWash.Proyecto.Presentacion.Colaborador.Administrador
             objEmpleadoE.Telefono = txtTelefono.Text;
             objEmpleadoE.CorreoElectronico = txtCorreo.Text;
             objEmpleadoE.Puesto = p;
+            GridView1.EditIndex = -1;
             objEmpleadoN.EditarEmpleado(objEmpleadoE);
-            ListarEmpleados();
-        }
 
-        protected void GridView1_RowDeleting(object sender, GridViewDeleteEventArgs e)
-        {
-            int n = e.RowIndex;
-            ListarEmpleados();
-            int xcod = int.Parse(GridView1.DataKeys[n].Value.ToString());
-            objEmpleadoN.EliminarEmpleado(xcod);
-            ListarEmpleados();
+            VaciarCombo();
+            LlenarCombo();
+            ddlBuscar.SelectedValue = "gg";
+            if (ddlBuscar.Text == "Buscar...")
+            {
+                ListarEmpleados();
+            }
+            else
+            {
+                BuscarEmpleados();
+            }
+            ScriptManager.RegisterStartupScript(this, GetType(), "updateAlert", "actualizacionExitosa();", true);
         }
 
         protected void GridView1_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e)
         {
             GridView1.EditIndex = -1;
+            if (ddlBuscar.Text == "Buscar...")
+            {
+                ListarEmpleados();
+            }
+            else
+            {
+                BuscarEmpleados();
+            }
+        }
+
+        protected void ddlBuscar_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (ddlBuscar.Text != "Buscar...")
+            {
+                BuscarEmpleados();
+            }
+        }
+
+        protected void BuscarEmpleados()
+        {
+            try
+            {
+                int id = int.Parse(ddlBuscar.SelectedValue);
+                objEmpleadoE.IDEmpleado = id;
+                GridView1.DataSource = objEmpleadoN.BuscarEmpleado(objEmpleadoE);
+                GridView1.DataBind();
+            }
+            catch
+            {
+                ListarEmpleados();
+            }
+            
+        }
+
+        protected void btnMostrarE_Click(object sender, EventArgs e)
+        {
+            ddlBuscar.SelectedValue = "gg";
             ListarEmpleados();
         }
     }

@@ -86,6 +86,7 @@
     <Content Include="assets\img\mecanico.jpg" />
     <Content Include="assets\img\pastilas.jpg" />
     <Content Include="assets\js\activarDarkmode.js" />
+    <Content Include="assets\js\funcionesCrud.js" />
     <Content Include="assets\js\funcionmenu.js" />
     <Content Include="Cliente\default.aspx" />
     <Content Include="Colaborador\Administrador\default.aspx" />

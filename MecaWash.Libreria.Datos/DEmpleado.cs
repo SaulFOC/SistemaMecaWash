@@ -124,6 +124,20 @@ namespace MecaWash.Libreria.Datos
             return resp;
         }
 
-    
+        public DataTable BuscarEmpleado(EEmpleado obj)
+        {
+            using (SqlConnection cn = new SqlConnection(Conexion.cn))
+            {
+                DataTable dt = new DataTable();
+                SqlCommand cmd = new SqlCommand("BuscarEmpleado", cn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@id", obj.IDEmpleado);
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(dt);
+                return dt;
+            }
+        }
+
+
     }
 }

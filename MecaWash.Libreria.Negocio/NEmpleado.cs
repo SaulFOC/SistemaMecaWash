@@ -101,8 +101,11 @@ namespace MecaWash.Libreria.Negocio
         {
             return datos.EliminarEmpleado(id);
         }
-       
-       
+
+        public DataTable BuscarEmpleado(EEmpleado obj)
+        {
+            return datos.BuscarEmpleado(obj);
+        }
 
     }
 }
