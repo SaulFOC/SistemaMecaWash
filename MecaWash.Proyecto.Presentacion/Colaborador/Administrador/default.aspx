@@ -54,9 +54,9 @@
                 </li>
 
                 <li class="nav-link">
-                    <a href="#" target="myFrame">
-                        <i class='bx bx-bowl-rice icon'></i>
-                        <span class="text nav-text">Ofertas</span>
+                    <a href="servicios.aspx" target="myFrame">
+                        <i class='bx bxs-wrench icon'></i>
+                        <span class="text nav-text">Servicios</span>
                     </a>
                 </li>
 
