@@ -24,5 +24,6 @@ namespace MecaWash.Libreria.Entidad
         public string Telefono { get; set; }
         public string CorreoElectronico { get; set; }
         public Boolean Estado { get; set; }
+        public string clave { get; set; }
     }
 }

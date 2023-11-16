@@ -31,7 +31,8 @@
             .posicion {
                 position: absolute;
                 top: 5rem;
-                left: 3rem;
+                left: 2%;
+                width:96%;
             }
         }
     </style>

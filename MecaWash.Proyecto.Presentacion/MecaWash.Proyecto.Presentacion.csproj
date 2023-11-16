@@ -85,6 +85,7 @@
     <Content Include="assets\img\logo.png" />
     <Content Include="assets\img\mecanico.jpg" />
     <Content Include="assets\img\pastilas.jpg" />
+    <Content Include="assets\img\sinImagen.png" />
     <Content Include="assets\js\activarDarkmode.js" />
     <Content Include="assets\js\carros.js" />
     <Content Include="assets\js\funcionesCrud.js" />

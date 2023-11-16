@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="NCliente.cs" />
     <Compile Include="NEmpleado.cs" />
     <Compile Include="NEncriptacion.cs" />
     <Compile Include="NServicio.cs" />

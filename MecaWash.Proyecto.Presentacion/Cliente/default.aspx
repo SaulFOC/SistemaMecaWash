@@ -20,8 +20,9 @@
             </span>
 
             <div class="text logo-text">
-                <span class="name">Boomerang</span>
-                <span class="profession">Cliente</span>
+                <span class="name">MecWash</span>
+                <span class="profession">
+                    <asp:Label ID="llbNombre" runat="server" CssClass="text-truncate"></asp:Label></span>
             </div>
         </div>
 

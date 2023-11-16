@@ -24,6 +24,40 @@ namespace MecaWash.Libreria.Datos
             }
         }
 
+        public List<EServicios> ListarServicio2()
+        {
+            List<EServicios> servicios = new List<EServicios>();
+
+            using (SqlConnection cn = new SqlConnection(Conexion.cn))
+            {
+                cn.Open();
+
+                using (SqlCommand cmd = new SqlCommand("SP_LISTAR_SERVICIO", cn))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            EServicios servicio = new EServicios
+                            {
+                                IDServicio = Convert.ToInt32(reader["Id"]),
+                                TipoServicio = Convert.ToString(reader["TipoServicio"]),
+                                Descripcion= Convert.ToString(reader["DescripcionServicio"]),
+                                PrecioServicio= Convert.ToDouble(reader["PrecioServicio"]),
+
+                            };
+
+                            servicios.Add(servicio);
+                        }
+                    }
+                }
+            }
+
+            return servicios;
+        }
+
         public int RegistrarServicio(EServicios obj)
         {
             string error = "";

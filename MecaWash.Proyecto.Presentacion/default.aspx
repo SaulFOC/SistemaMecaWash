@@ -193,9 +193,20 @@
             }
         }
     </style>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        function notiError(mensaje) {
+            Swal.fire({
+                title: "Ocurrio un error",
+                text: mensaje,
+                icon: "error"
+            });
+        }
+    </script>
 </head>
 <body>
     <form id="form1" runat="server">
+        <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
         <nav class="navbar sticky-top navbar-expand-lg bg-secundario">
             <div class="container-fluid">
                 <a class="navbar-brand text-oscuro" href="#">
@@ -315,19 +326,17 @@
                         <button type="button" class="btn-transparente" data-bs-dismiss="modal" aria-label="Close"><i class='bx bx-x fs-2'></i></button>
                     </div>
                     <div class="modal-body">
-
+                        
                         <!--Aqui va el formulario de login-->
-                        <form method="post" id="frmLoginCliente">
                             <div class="mb-3">
                                 <label for="loginUser" class="form-label">Correo</label>
-                                <input type="email" class="form-control" id="loginCorreo" name="loginUser" placeholder="Correo" required>
+                                <asp:TextBox ID="txtCorreo" TextMode="Email" CssClass="form-control" placeholder="Correo" runat="server"></asp:TextBox>
                             </div>
                             <div class="mb-3">
                                 <label for="loginPassword" class="form-label">Contraseña</label>
-                                <input type="password" class="form-control" id="loginPassword" name="loginPassword" placeholder="Contraseña" required>
+                                <asp:TextBox ID="txtClave" CssClass="form-control" TextMode="Password" placeholder="********" runat="server"></asp:TextBox>
                             </div>
-                            <a id="btnLogin" href="Cliente/" class="btn btn-login">Iniciar sesión</a>
-                        </form>
+                        <asp:LinkButton ID="LinkButton1" CssClass="btn btn-login" CommandName="Loguear" OnCommand="LoguearCliente2" runat="server">Iniciar sesión</asp:LinkButton>
 
                     </div>
                     <div class="modal-footer">
@@ -351,7 +360,6 @@
                     <div class="modal-body">
 
                         <!--Aqui va el formulario de registro-->
-                        <form method="post" id="frmRegistrarCliente">
                             <div class="row mb-2">
                                 <div class="col-6">
                                     <label for="user" class="form-label">DNI</label>
@@ -390,7 +398,6 @@
                                 <input type="text" class="form-control" name="direccion" placeholder="Dirección" required>
                             </div>
                             <button id="btnRegistrar" class="btn btn-login">Registrarse</button>
-                        </form>
 
                     </div>
                     <div class="modal-footer">
