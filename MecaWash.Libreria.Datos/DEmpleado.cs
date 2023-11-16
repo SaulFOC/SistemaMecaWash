@@ -152,20 +152,5 @@ namespace MecaWash.Libreria.Datos
             }
         }
 
-
-        public DataTable VerificarUsuario(EEmpleado obj)
-        {
-            using (SqlConnection cn = new SqlConnection(Conexion.cn))
-            {
-                DataTable dt = new DataTable();
-                SqlCommand cmd = new SqlCommand("IngresarUsuario", cn);
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@Correo", obj.CorreoElectronico);
-                SqlDataAdapter da = new SqlDataAdapter(cmd);
-                da.Fill(dt);
-                return dt;
-            }
-        }
-
     }
 }
