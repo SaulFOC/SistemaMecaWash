@@ -50,6 +50,14 @@
         });
         }
 
+function notiError(mensaje) {
+    Swal.fire({
+        title: "Ocurrio un error",
+        text: mensaje,
+        icon: "error"
+    });
+}
+
     $(document).ready(function () {
         $('.js-example-basic-single').select2();
         });

@@ -22,6 +22,7 @@ namespace MecaWash.Proyecto.Presentacion.Colaborador.Administrador
                 VaciarCombo();
                 LlenarCombo();
             }
+            ScriptManager.RegisterStartupScript(this, GetType(), "Select2Script", "$('.js-example-basic-single').select2();", true);
         }
 
         protected void Eliminar(object sender, EventArgs e)
@@ -68,27 +69,39 @@ namespace MecaWash.Proyecto.Presentacion.Colaborador.Administrador
 
         protected void GridView1_RowCommand(object sender, GridViewCommandEventArgs e)
         {
-            if (e.CommandName == "Insertar")
+            try
             {
-                TextBox txtDni = (TextBox)GridView1.FooterRow.FindControl("txtDni");
-                TextBox txtClave = (TextBox)GridView1.FooterRow.FindControl("txtClave");
-                TextBox txtNombre = (TextBox)GridView1.FooterRow.FindControl("txtNombre");
-                TextBox txtTelefono = (TextBox)GridView1.FooterRow.FindControl("txtTelefono");
-                TextBox txtCorreo = (TextBox)GridView1.FooterRow.FindControl("txtCorreo");
-                DropDownList ddlPuesto = (DropDownList)GridView1.FooterRow.FindControl("ddlPuesto");
-                objEmpleadoE.Dni = txtDni.Text;
-                objEmpleadoE.Contrasena = txtClave.Text;
-                objEmpleadoE.Nombre = txtNombre.Text;
-                objEmpleadoE.Telefono = txtTelefono.Text;
-                objEmpleadoE.CorreoElectronico = txtCorreo.Text;
-                objEmpleadoE.Puesto = ddlPuesto.SelectedValue;
-                objEmpleadoE.Estado = 1;
-                objEmpleadoN.RegistrarEmpleado(objEmpleadoE);
-                VaciarCombo();
-                LlenarCombo();
-                ddlBuscar.SelectedValue = "gg";
-                ListarEmpleados();
-                ScriptManager.RegisterStartupScript(this, GetType(), "insertAlert", "registroExitoso();", true);
+                if (e.CommandName == "Insertar")
+                {
+                    TextBox txtDni = (TextBox)GridView1.FooterRow.FindControl("txtDni");
+                    TextBox txtClave = (TextBox)GridView1.FooterRow.FindControl("txtClave");
+                    TextBox txtNombre = (TextBox)GridView1.FooterRow.FindControl("txtNombre");
+                    TextBox txtTelefono = (TextBox)GridView1.FooterRow.FindControl("txtTelefono");
+                    TextBox txtCorreo = (TextBox)GridView1.FooterRow.FindControl("txtCorreo");
+                    DropDownList ddlPuesto = (DropDownList)GridView1.FooterRow.FindControl("ddlPuesto");
+                    objEmpleadoE.Dni = txtDni.Text;
+                    objEmpleadoE.Contrasena = txtClave.Text;
+                    objEmpleadoE.Nombre = txtNombre.Text;
+                    objEmpleadoE.Telefono = txtTelefono.Text;
+                    objEmpleadoE.CorreoElectronico = txtCorreo.Text;
+                    objEmpleadoE.Puesto = ddlPuesto.SelectedValue;
+                    objEmpleadoE.Estado = 1;
+                    int respuesta= objEmpleadoN.RegistrarEmpleado(objEmpleadoE);
+                    VaciarCombo();
+                    LlenarCombo();
+                    ddlBuscar.SelectedValue = "gg";
+                    ListarEmpleados();
+                    if (respuesta == 0)
+                    {
+                        ScriptManager.RegisterStartupScript(this, GetType(), "insertAlert", "registroExitoso();", true);
+                    }else{
+                        ScriptManager.RegisterStartupScript(this, GetType(), "Error", "notiError('Llenar todos los campos!');", true);
+                    }
+                }
+            }
+            catch
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "Error", "notiError('Llenar todos los campos!');", true);
             }
         }
 
@@ -143,7 +156,6 @@ namespace MecaWash.Proyecto.Presentacion.Colaborador.Administrador
             objEmpleadoE.Puesto = p;
             GridView1.EditIndex = -1;
             objEmpleadoN.EditarEmpleado(objEmpleadoE);
-
             VaciarCombo();
             LlenarCombo();
             ddlBuscar.SelectedValue = "gg";
@@ -155,7 +167,7 @@ namespace MecaWash.Proyecto.Presentacion.Colaborador.Administrador
             {
                 BuscarEmpleados();
             }
-            ScriptManager.RegisterStartupScript(this, GetType(), "updateAlert", "actualizacionExitosa();", true);
+                ScriptManager.RegisterStartupScript(this, GetType(), "updateAlert", "actualizacionExitosa();", true);
         }
 
         protected void GridView1_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e)

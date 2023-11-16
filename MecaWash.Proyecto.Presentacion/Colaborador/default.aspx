@@ -10,9 +10,20 @@
     <link rel="stylesheet" href="../Content/bootstrap.min.css">
     <link rel="stylesheet" href="../assets/css/loginColaborador.css">
     <link rel="stylesheet" href="../assets/fonts/icomoon/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        function notiError(mensaje) {
+            Swal.fire({
+                title: "Ocurrio un error",
+                text: mensaje,
+                icon: "error"
+            });
+        }
+    </script>
 </head>
 <body>
     <form id="form1" runat="server">
+        <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
         <div class="d-lg-flex half">
             <div class="bg order-1 order-md-2 imagen" style="background-image: url('../assets/img/mecanico.jpg');"></div>
             <div class="contents order-2 order-md-1">
@@ -26,12 +37,12 @@
                                 <div class="form-group first">
                                     <label for="username">Correo</label>
                                     <asp:TextBox ID="txtCorreo" runat="server" class="form-control" placeholder="correo@gmail.com"></asp:TextBox>
-                                   
+
                                 </div>
                                 <div class="form-group last mb-3">
                                     <label for="password">Contraseña</label>
                                     <asp:TextBox ID="txtPassword" class="form-control" placeholder="Su contraseña" runat="server" TextMode="Password"></asp:TextBox>
-                                    
+
                                 </div>
 
                                 <div class="d-flex mb-5 align-items-center">
@@ -42,8 +53,8 @@
                                     </label>
                                     <span class="ml-auto"><a href="#" class="forgot-pass">Soporte</a></span>
                                 </div>
-                            <asp:Button ID="Button1" runat="server" Text="Iniciar Sesion"   class="btn text-decoration-none btn-secundario" OnClick="Button1_Click"/>
-                            <%-- <a href="Administrador/" class="btn text-decoration-none btn-secundario">Iniciar Sesion</a>--%>
+
+                                <asp:Button ID="Button1" runat="server" Text="Iniciar Sesion"   class="btn text-decoration-none btn-secundario" OnClick="Button1_Click"/>
                             
                         </div>
                     </div>

@@ -54,13 +54,13 @@
 
                             <asp:TemplateField HeaderText="Clave" ControlStyle-Width="110px">
                                 <EditItemTemplate>
-                                    <asp:TextBox ID="txtClaveE" CssClass="form-control" runat="server" Text='<%# Bind("Contraseña") %>'></asp:TextBox>
+                                    <asp:TextBox ID="txtClaveE" CssClass="form-control" runat="server" Text='<%# Bind("decifrado") %>'></asp:TextBox>
                                 </EditItemTemplate>
                                 <FooterTemplate>
                                     <asp:TextBox ID="txtClave" TextMode="Password" CssClass="form-control" placeholder="********" runat="server"></asp:TextBox>
                                 </FooterTemplate>
                                 <ItemTemplate>
-                                    <asp:Label ID="Label4" CssClass="text-truncate" runat="server" Text='<%# Bind("Contraseña") %>'></asp:Label>
+                                    <asp:Label ID="Label4" CssClass="text-truncate" runat="server" Text='********'></asp:Label>
                                 </ItemTemplate>
                             </asp:TemplateField>
 

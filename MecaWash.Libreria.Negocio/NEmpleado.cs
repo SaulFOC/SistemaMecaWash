@@ -49,13 +49,14 @@ namespace MecaWash.Libreria.Negocio
             
             if(error== 0)
             {
-                obj.Contrasena = NEncriptacion.Encriptar(obj.Contrasena);
+                //obj.Contrasena = NEncriptacion.Encriptar(obj.Contrasena);
                 return datos.RegistrarEmpleado(obj);
             }
             else
             {
-                return error;
+                error=1;
             }
+            return error;
         }
 
         public bool EditarEmpleado(EEmpleado obj)
@@ -88,7 +89,7 @@ namespace MecaWash.Libreria.Negocio
 
             if (error ==false)
             {
-                obj.Contrasena = NEncriptacion.Encriptar(obj.Contrasena);
+                //obj.Contrasena = NEncriptacion.Encriptar(obj.Contrasena);
                 return datos.EditarEmpleado(obj);
             }
             else
@@ -111,6 +112,5 @@ namespace MecaWash.Libreria.Negocio
         {
             return datos.VerificarUsuario(obj);
         }
-
     }
 }

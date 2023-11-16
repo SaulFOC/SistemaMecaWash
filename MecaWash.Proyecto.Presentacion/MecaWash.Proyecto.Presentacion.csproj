@@ -86,9 +86,42 @@
     <Content Include="assets\img\mecanico.jpg" />
     <Content Include="assets\img\pastilas.jpg" />
     <Content Include="assets\js\activarDarkmode.js" />
+    <Content Include="assets\js\carros.js" />
     <Content Include="assets\js\funcionesCrud.js" />
     <Content Include="assets\js\funcionmenu.js" />
+    <Content Include="assets\modelos\auto\license.txt" />
+    <Content Include="assets\modelos\auto\textures\license_baseColor.png" />
+    <Content Include="assets\modelos\auto\textures\license_normal.png" />
+    <Content Include="assets\modelos\auto\textures\logo_baseColor.png" />
+    <Content Include="assets\modelos\auto\textures\Material_baseColor.png" />
+    <Content Include="assets\modelos\auto\textures\Material_metallicRoughness.png" />
+    <Content Include="assets\modelos\auto\textures\paint_metallicRoughness.png" />
+    <Content Include="assets\modelos\auto\textures\rubber_metallicRoughness.png" />
+    <Content Include="assets\modelos\auto\textures\rubber_normal.png" />
+    <Content Include="assets\modelos\auto\textures\tex_shiny_baseColor.png" />
+    <Content Include="assets\modelos\auto\textures\tex_shiny_emissive.png" />
+    <Content Include="assets\modelos\bus\license.txt" />
+    <Content Include="assets\modelos\bus\textures\mat_0-33REK.jpg_baseColor.jpeg" />
+    <Content Include="assets\modelos\bus\textures\mat_1-33tyre2.jpg_baseColor.jpeg" />
+    <Content Include="assets\modelos\bus\textures\mat_10-33top.jpg_baseColor.jpeg" />
+    <Content Include="assets\modelos\bus\textures\mat_11-33TYRESF.jpg_baseColor.jpeg" />
+    <Content Include="assets\modelos\bus\textures\mat_2-33tyre1.jpg_baseColor.jpeg" />
+    <Content Include="assets\modelos\bus\textures\mat_4-33FABRIC.jpg_baseColor.jpeg" />
+    <Content Include="assets\modelos\bus\textures\mat_5-33side.jpg_baseColor.jpeg" />
+    <Content Include="assets\modelos\bus\textures\mat_6-33top2.jpg_baseColor.jpeg" />
+    <Content Include="assets\modelos\bus\textures\mat_7-33back.jpg_baseColor.jpeg" />
+    <Content Include="assets\modelos\bus\textures\mat_8-33head.jpg_baseColor.jpeg" />
+    <Content Include="assets\modelos\bus\textures\mat_9-33side2.jpg_baseColor.jpeg" />
+    <Content Include="assets\modelos\moto\license.txt" />
+    <Content Include="assets\modelos\moto\textures\decals_baseColor.png" />
+    <Content Include="assets\modelos\moto\textures\leather_black_normal.png" />
+    <Content Include="Cliente\carrito.aspx" />
+    <Content Include="Cliente\cerrar.aspx" />
     <Content Include="Cliente\default.aspx" />
+    <Content Include="Cliente\home.aspx" />
+    <Content Include="Cliente\perfil.aspx" />
+    <Content Include="Cliente\repuestos.aspx" />
+    <Content Include="Cliente\servicios.aspx" />
     <Content Include="Colaborador\Administrador\default.aspx" />
     <Content Include="Colaborador\Administrador\empleados.aspx" />
     <Content Include="Colaborador\Administrador\home.aspx" />
@@ -122,12 +155,54 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Cliente\carrito.aspx.cs">
+      <DependentUpon>carrito.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Cliente\carrito.aspx.designer.cs">
+      <DependentUpon>carrito.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Cliente\cerrar.aspx.cs">
+      <DependentUpon>cerrar.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Cliente\cerrar.aspx.designer.cs">
+      <DependentUpon>cerrar.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Cliente\default.aspx.cs">
       <DependentUpon>default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Cliente\default.aspx.designer.cs">
       <DependentUpon>default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Cliente\home.aspx.cs">
+      <DependentUpon>home.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Cliente\home.aspx.designer.cs">
+      <DependentUpon>home.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Cliente\perfil.aspx.cs">
+      <DependentUpon>perfil.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Cliente\perfil.aspx.designer.cs">
+      <DependentUpon>perfil.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Cliente\repuestos.aspx.cs">
+      <DependentUpon>repuestos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Cliente\repuestos.aspx.designer.cs">
+      <DependentUpon>repuestos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Cliente\servicios.aspx.cs">
+      <DependentUpon>servicios.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Cliente\servicios.aspx.designer.cs">
+      <DependentUpon>servicios.aspx</DependentUpon>
     </Compile>
     <Compile Include="Colaborador\Administrador\default.aspx.cs">
       <DependentUpon>default.aspx</DependentUpon>
@@ -178,6 +253,13 @@
     <Compile Include="default.aspx.designer.cs">
       <DependentUpon>default.aspx</DependentUpon>
     </Compile>
+    <Compile Include="master\cliente.Master.cs">
+      <DependentUpon>cliente.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="master\cliente.Master.designer.cs">
+      <DependentUpon>cliente.Master</DependentUpon>
+    </Compile>
     <Compile Include="master\colaborador.Master.cs">
       <DependentUpon>colaborador.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -216,6 +298,14 @@
     <Content Include="assets\fonts\icomoon\fonts\icomoon.woff" />
     <Content Include="assets\fonts\icomoon\selection.json" />
     <Content Include="master\colaborador.Master" />
+    <Content Include="master\cliente.Master" />
+    <Content Include="assets\modelos\auto\scene.bin" />
+    <Content Include="assets\modelos\auto\scene.gltf" />
+    <Content Include="assets\modelos\bus\scene.bin" />
+    <Content Include="assets\modelos\bus\scene.gltf" />
+    <Content Include="assets\modelos\moto\scene.bin" />
+    <Content Include="assets\modelos\moto\scene.gltf" />
+    <Content Include="assets\js\servicios.json" />
     <None Include="packages.config" />
     <Content Include="Scripts\bootstrap.min.js.map" />
     <Content Include="Scripts\bootstrap.js.map" />

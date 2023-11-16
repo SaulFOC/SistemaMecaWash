@@ -1,0 +1,58 @@
+{
+  "categorias": [
+    {
+      "nombre": "Moto",
+      "accesorios": [
+        {
+          "servicio": "Escape Personalizado",
+          "precio": 1000
+        },
+        {
+          "servicio": "Parabrisas",
+          "precio": 200
+        },
+        {
+          "servicio": "Asiento Personalizado",
+          "precio": 300
+        }
+        // ... Otros accesorios para motos
+      ]
+    },
+    {
+      "nombre": "Auto",
+      "accesorios": [
+        {
+          "servicio": "Sistema de Navegación GPS",
+          "precio": 500
+        },
+        {
+          "servicio": "Asientos de Cuero",
+          "precio": 800
+        },
+        {
+          "servicio": "Sistemas de Sonido Mejorados",
+          "precio": 1000
+        }
+        // ... Otros accesorios para autos
+      ]
+    },
+    {
+      "nombre": "Bus",
+      "accesorios": [
+        {
+          "servicio": "Aire Acondicionado",
+          "precio": 10000
+        },
+        {
+          "servicio": "Sistemas de Entretenimiento para Pasajeros",
+          "precio": 5000
+        },
+        {
+          "servicio": "Sistemas de Seguimiento y Gestión de Flotas",
+          "precio": 1000
+        }
+        // ... Otros accesorios para buses
+      ]
+    }
+  ]
+}
