@@ -1,6 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/master/colaborador.Master" AutoEventWireup="true" CodeBehind="servicios.aspx.cs" Inherits="MecaWash.Proyecto.Presentacion.Colaborador.Administrador.servicios" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    hola desde serivicios
+    
     <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
     <div class="contedor1 pt-3 pb-3">
     <h4>Servicios</h4>
@@ -37,21 +37,22 @@
                             </FooterTemplate>
                         </asp:TemplateField>
 
-                        <asp:TemplateField HeaderText="Tipo de Servicio" ControlStyle-Width="110px">
+                        <asp:TemplateField HeaderText="Tipo de Servicio" ControlStyle-Width="140px">
                             <EditItemTemplate>
-                                <asp:TextBox ID="txtTipoDeServicioE" CssClass="form-control" MaxLength="8" runat="server" Text='<%# Bind("TipoServicio") %>'></asp:TextBox>
+                                <asp:TextBox ID="txtTipoDeServicioE" CssClass="form-control" runat="server" Text='<%# Bind("TipoServicio") %>'></asp:TextBox>
                             </EditItemTemplate>
                             <FooterTemplate>
-                                <asp:TextBox ID="txtTipoDeServicio" CssClass="form-control" MaxLength="8" placeholder="Tipo Servicio" runat="server"></asp:TextBox>
+                                <asp:TextBox ID="txtTipoDeServicio" CssClass="form-control" placeholder="Tipo Servicio" runat="server"></asp:TextBox>
                             </FooterTemplate>
                             <ItemTemplate>
                                 <asp:Label ID="Label2" CssClass="text-truncate" runat="server" Text='<%# Bind("TipoServicio") %>'></asp:Label>
                             </ItemTemplate>
+                            <ControlStyle Width="110px" />
                         </asp:TemplateField>
 
 
 
-                        <asp:TemplateField HeaderText="Descripcion" ControlStyle-Width="110px">
+                        <asp:TemplateField HeaderText="Descripcion" ControlStyle-Width="140px">
                             <EditItemTemplate>
                                 <asp:TextBox ID="txtDescripcionServicioE" CssClass="form-control" runat="server" Text='<%# Bind("DescripcionServicio") %>'></asp:TextBox>
                             </EditItemTemplate>
@@ -61,9 +62,10 @@
                             <ItemTemplate>
                                 <asp:Label ID="Label4" CssClass="text-truncate" runat="server" Text='<%# Bind("DescripcionServicio") %>'></asp:Label>
                             </ItemTemplate>
+                            <ControlStyle Width="110px" />
                         </asp:TemplateField>
 
-                        <asp:TemplateField HeaderText="Precio" ControlStyle-Width="140px">
+                        <asp:TemplateField HeaderText="Precio" ControlStyle-Width="110px">
                             <EditItemTemplate>
                                 <asp:TextBox ID="txtPrecioE" CssClass="form-control" runat="server" Text='<%# Bind("PrecioServicio") %>'></asp:TextBox>
                             </EditItemTemplate>
@@ -73,6 +75,7 @@
                             <ItemTemplate>
                                 <asp:Label ID="Label5" CssClass="text-truncate" runat="server" Text='<%# Bind("PrecioServicio") %>'></asp:Label>
                             </ItemTemplate>
+                            <ControlStyle Width="140px" />
                         </asp:TemplateField>
 
                        

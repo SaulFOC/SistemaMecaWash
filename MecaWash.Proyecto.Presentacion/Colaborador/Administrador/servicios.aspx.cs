@@ -23,6 +23,7 @@ namespace MecaWash.Proyecto.Presentacion.Colaborador.Administrador
                 ListarServicios();
                 
             }
+            ScriptManager.RegisterStartupScript(this, GetType(), "Select2Script", "$('.js-example-basic-single').select2();", true);
         }
         protected void Eliminar(object sender, EventArgs e)
         {

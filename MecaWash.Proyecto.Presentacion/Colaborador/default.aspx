@@ -22,14 +22,16 @@
                         <div class="col-md-7">
                             <h3>Iniciar Sesión <strong>MecWash</strong></h3>
                             <p class="mb-4">Bienvenido nuestro valioso colaborador inicia sesión en el portal, para comenzar a laburar.</p>
-                            <form id="frmLoginColaborador" method="post">
+                            
                                 <div class="form-group first">
                                     <label for="username">Correo</label>
-                                    <input type="email" class="form-control" placeholder="correo@gmail.com" id="username">
+                                    <asp:TextBox ID="txtCorreo" runat="server" class="form-control" placeholder="correo@gmail.com"></asp:TextBox>
+                                   
                                 </div>
                                 <div class="form-group last mb-3">
                                     <label for="password">Contraseña</label>
-                                    <input type="password" class="form-control" placeholder="Su contraseña" id="password">
+                                    <asp:TextBox ID="txtPassword" class="form-control" placeholder="Su contraseña" runat="server" TextMode="Password"></asp:TextBox>
+                                    
                                 </div>
 
                                 <div class="d-flex mb-5 align-items-center">
@@ -40,9 +42,9 @@
                                     </label>
                                     <span class="ml-auto"><a href="#" class="forgot-pass">Soporte</a></span>
                                 </div>
-
-                                <a href="Administrador/" class="btn text-decoration-none btn-secundario">Iniciar Sesion</a>
-                            </form>
+                            <asp:Button ID="Button1" runat="server" Text="Iniciar Sesion"   class="btn text-decoration-none btn-secundario" OnClick="Button1_Click"/>
+                            <%-- <a href="Administrador/" class="btn text-decoration-none btn-secundario">Iniciar Sesion</a>--%>
+                            
                         </div>
                     </div>
                 </div>
