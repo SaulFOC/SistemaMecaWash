@@ -1,0 +1,66 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="cliente.master.cs" Inherits="MecaWash.Proyecto.Presentacion.master.cliente" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+    <link rel="stylesheet" href="../Content/bootstrap.min.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@ttskch/select2-bootstrap4-theme@x.x.x/dist/select2-bootstrap4.min.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <link rel="stylesheet" href="../assets/css/cabecera.css">
+    <script src="../assets/js/funcionesCrud.js"></script>
+    <style>
+        .contedor1 {
+            width: 100%;
+            padding-left: 2rem;
+            padding-right: 2rem;
+        }
+
+        .table {
+            color: var(--color-tabla-text) !important;
+            background-color: var(--body-color) !important;
+        }
+        .table td, .table thead, .table th {
+            color: var(--color-tabla-text) !important;
+            background-color: var(--body-color) !important;
+        }
+        .table tbody tr:hover {
+            background-color: var(--body-color) !important;
+        }
+        .form-control, .form-control:after, .form-control:hover, .form-control:focus,.form-control::placeholder,
+        .form-select, .form-select::after, .form-select:before, .form-select::placeholder, .form-select::file-selector-button, .form-select::selection,
+        .form-select option, .form-select option:active
+        {
+            background: var(--color-caja)!important;
+            color: var(--caja-text) !important;
+        }
+    </style>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <% if (Request.Browser.IsMobileDevice)
+            { %>
+        <nav class="navbar sticky-top bg-principal">
+            <div class="container-fluid">
+                <img class="perfil" src="../assets/img/logo.png" alt="logo">
+                <div class="container w-50 ms-5 text-center">
+                    <span class="text-center text-azul">Bienvenido a
+                        <label class="fw-bold">MecWash</label></span>
+                </div>
+            </div>
+        </nav>
+        <%} %>
+
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+            </asp:ContentPlaceHolder>
+    </form>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="../Scripts/bootstrap.min.js"></script>
+    <script src="../assets/js/activarDarkmode.js"></script>
+</body>
+</html>
