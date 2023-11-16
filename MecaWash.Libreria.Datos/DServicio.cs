@@ -35,7 +35,7 @@ namespace MecaWash.Libreria.Datos
                     SqlCommand cmd = new SqlCommand("InsertarServicios", cn);
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@TipoServicio", obj.TipoServicio);
-                    cmd.Parameters.AddWithValue("@Descripcion", obj.Descripcion);
+                    cmd.Parameters.AddWithValue("@DescripcionServicio", obj.Descripcion);
                     cmd.Parameters.AddWithValue("@PrecioServicio", obj.PrecioServicio);
                     cmd.Parameters.AddWithValue("@Estado", obj.Estado);
                     cn.Open();
@@ -64,9 +64,9 @@ namespace MecaWash.Libreria.Datos
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@IDServicio", obj.IDServicio);
                     cmd.Parameters.AddWithValue("@TipoServicio", obj.TipoServicio);
-                    cmd.Parameters.AddWithValue("@Descripcion", obj.Descripcion);
+                    cmd.Parameters.AddWithValue("@DescripcionServicio", obj.Descripcion);
                     cmd.Parameters.AddWithValue("@PrecioServicio", obj.PrecioServicio);
-                    cmd.Parameters.AddWithValue("@Estado", obj.Estado);
+                   
                     cn.Open();
                     cmd.ExecuteNonQuery();
                     cn.Close();
@@ -103,6 +103,20 @@ namespace MecaWash.Libreria.Datos
                 Console.WriteLine(ex.Message);
             }
             return resp;
+        }
+
+        public DataTable BuscarServicio(EServicios obj)
+        {
+            using (SqlConnection cn = new SqlConnection(Conexion.cn))
+            {
+                DataTable dt = new DataTable();
+                SqlCommand cmd = new SqlCommand("BuscarServicio", cn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@id", obj.IDServicio);
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(dt);
+                return dt;
+            }
         }
     }
 }

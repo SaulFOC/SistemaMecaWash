@@ -125,6 +125,7 @@
     <Content Include="Colaborador\Administrador\default.aspx" />
     <Content Include="Colaborador\Administrador\empleados.aspx" />
     <Content Include="Colaborador\Administrador\home.aspx" />
+    <Content Include="Colaborador\Administrador\servicios.aspx" />
     <Content Include="Colaborador\default.aspx" />
     <Content Include="Colaborador\Tecnico\default.aspx" />
     <Content Include="Content\bootstrap-grid.css" />
@@ -223,6 +224,13 @@
     </Compile>
     <Compile Include="Colaborador\Administrador\home.aspx.designer.cs">
       <DependentUpon>home.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Colaborador\Administrador\servicios.aspx.cs">
+      <DependentUpon>servicios.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Colaborador\Administrador\servicios.aspx.designer.cs">
+      <DependentUpon>servicios.aspx</DependentUpon>
     </Compile>
     <Compile Include="Colaborador\default.aspx.cs">
       <DependentUpon>default.aspx</DependentUpon>

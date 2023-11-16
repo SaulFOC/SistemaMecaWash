@@ -7,6 +7,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title>Administrador</title>
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/intro.js/7.2.0/introjs.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../../assets/css/estilomenu.css">
 </head>
 <body>
@@ -19,8 +20,8 @@
             </span>
 
             <div class="text logo-text">
-                <span class="name">Boomerang</span>
-                <span class="profession">Cliente</span>
+                <span class="name">MecWash</span>
+                <span class="profession">Administrador</span>
             </div>
         </div>
 
@@ -46,36 +47,36 @@
             </li>
 
             <ul class="menu-links">
-                <li class="nav-link">
+                <li class="nav-link first">
                     <a href="default.aspx" target="myFrame">
-                        <i class='bx bx-home-alt icon'></i>
+                        <i class='bx bxs-dashboard icon'></i>
                         <span class="text nav-text">Inicio</span>
                     </a>
                 </li>
 
-                <li class="nav-link">
-                    <a href="#" target="myFrame">
-                        <i class='bx bx-bowl-rice icon'></i>
-                        <span class="text nav-text">Ofertas</span>
+                <li class="nav-link second">
+                    <a href="servicios.aspx" target="myFrame">
+                        <i class='bx bxs-wrench icon'></i>
+                        <span class="text nav-text">Servicios</span>
                     </a>
                 </li>
 
-                <li class="nav-link">
+                <li class="nav-link third">
                     <a href="empleados.aspx" target="myFrame">
                     <i class='bx bxs-user-detail icon'></i>
                         <span class="text nav-text">Empleados</span>
                     </a>
                 </li>
 
-                <li class="nav-link">
-                    <a href="perfil2.php" target="myFrame">
+                <li class="nav-link fourth">
+                    <a href="#" target="myFrame">
                         <i class='bx bx-user icon'></i>
                         <span class="text nav-text">Perfil</span>
                     </a>
                 </li>
 
-                <li class="nav-link">
-                    <a href="chatbot.php" target="myFrame">
+                <li class="nav-link five">
+                    <a href="#" target="myFrame">
                         <i class='bx bx-support icon'></i>
                         <span class="text nav-text">Soporte</span>
                     </a>
@@ -84,15 +85,15 @@
             </ul>
         </div>
 
-        <div class="bottom-content">
-            <li class="">
+        <div class="bottom-content ">
+            <li class="six">
                 <a href="../backend/controller/cerrarSesionCliente.php">
                     <i class='bx bx-log-out icon'></i>
                     <span class="text nav-text">Salir</span>
                 </a>
             </li>
 
-            <li class="mode">
+            <li class="mode seven">
                 <div class="sun-moon">
                     <i class='bx bx-moon icon moon'></i>
                     <i class='bx bx-sun icon sun'></i>
@@ -117,6 +118,65 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="../../assets/js/funcionmenu.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/intro.js/7.2.0/intro.min.js"></script>
+        <script>
+            introJs().setOptions({
+
+                nextLabel: 'siguiente',
+                prevLabel: 'atras',
+                doneLabel: 'hecho',
+                //esditar el texto de no mostrar de nuevo a español
+                skipLabel: 'x',
+
+                steps: [
+                    {
+                        title: 'Bienvenido',
+                        intro: '👋 Bienvenido a la pagina de administrador, aqui podras ver los servicios que se ofrecen, los empleados que trabajan en la empresa, tu perfil y el soporte tecnico'
+                    },
+                    {
+                        title: 'Dashboard  📊',
+                        element: document.querySelector('.first'),
+                        intro: 'Haciendo click aca podras ver las estadisiticas de la empresa'
+                    },
+                    {
+                        title: 'Servicios 🔧',
+                        element: document.querySelector('.second'),
+                        intro: 'Haciendo click aca podras agregar los serivicios que se ofrecemos '
+                    },
+                    {
+                        title: 'Empleados 👨‍🔧',
+                        element: document.querySelector('.third'),
+                        intro: 'En este apartado podras ver los empleados que trabajan en la empresa, agregarlos, editarlos y eliminarlos'
+                    },
+                    {
+                        title: 'Perfil 👤',
+                        element: document.querySelector('.fourth'),
+                        intro: 'En este apartado podras ver tu perfil, editar tu informacion y cambiar tu contraseña'
+                    },
+                    {
+                        title: 'Soporte 📞',
+                        element: document.querySelector('.five'),
+                        intro: 'En este apartado podras hablar con el soporte tecnico de la empresa'
+                    },
+                    {
+                        title: 'Salir 🚪',
+                        element: document.querySelector('.six'),
+                        intro: 'En este apartado podras cerrar sesion'
+                    },
+                    {
+                        title: 'Dark mode y Light mode 🌙',
+                        element: document.querySelector('.seven'),
+                        intro: 'En este apartado podras cambiar el modo de la pagina entre claro y oscuro'
+                    }
+
+
+                ],
+                showBullets: false,
+                showProgress: true,
+                disableInteraction: true,
+                dontShowAgain: true,
+            }).start();
+        </script>
     </form>
 </body>
 </html>
