@@ -69,7 +69,7 @@
                 </li>
 
                 <li class="nav-link fourth">
-                    <a href="#" target="myFrame">
+                    <a href="Perfil.aspx" target="myFrame">
                         <i class='bx bx-user icon'></i>
                         <span class="text nav-text">Perfil</span>
                     </a>
