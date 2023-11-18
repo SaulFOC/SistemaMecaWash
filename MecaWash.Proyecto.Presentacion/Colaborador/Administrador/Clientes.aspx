@@ -5,22 +5,7 @@
      <asp:UpdatePanel ID="UpdatePanel1" runat="server">
          <ContentTemplate>
     <div class="mt-3 mb-3">
-        <div class="row px-3 st">
-            <!--<div class="col-6 p-0">
-                <div class="container p-0 w-100 mt-3 mb-3 text-center">
-                    <button id="btnNueva" class="menu-linea linea fs-5">
-                        Nueva Orden
-                    </button>
-                </div>
-            </div>-->
-            <div class="col-6 p-0">
-                <div class="container p-0 w-100 mt-3 mb-3 text-center">
-                    <button id="btnActivas" class="menu-linea fs-5">
-                        Agregar Clientes
-                    </button>
-                </div>
-            </div>
-        </div>
+       
     <div class="row">
         <div class="col-4">
             Buscar Cliente
@@ -80,7 +65,7 @@
 
                 <asp:TemplateField HeaderText="Clave" ControlStyle-Width="110px">
                     <EditItemTemplate>
-                        <asp:TextBox ID="txtClaveE"  CssClass="form-control" runat="server" Text='<%# Bind("clave") %>' TextMode="Password"></asp:TextBox>
+                        <asp:TextBox ID="txtClaveE"  CssClass="form-control" runat="server" Text='<%# Bind("clave") %>' ></asp:TextBox>
                     </EditItemTemplate>
                     <FooterTemplate>
                         <asp:TextBox ID="txtClave" placeholder="Clave" TextMode="SingleLine" CssClass="form-control" runat="server"></asp:TextBox>
@@ -147,6 +132,5 @@
         </ContentTemplate>
         </asp:UpdatePanel>
 </div>
-
 
 </asp:Content>

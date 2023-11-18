@@ -14,7 +14,7 @@ namespace MecaWash.Proyecto.Presentacion.Colaborador.Administrador
         ECliente objClienteE = new ECliente();
         NCliente objClienteN = new NCliente();
 
-       
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -131,12 +131,12 @@ namespace MecaWash.Proyecto.Presentacion.Colaborador.Administrador
                     objClienteE.Direccion = txtDireccion.Text;
                     objClienteE.clave = txtClave.Text;
                     objClienteE.Estado = 1;
-                    int resp=objClienteN.RegistrarCliente(objClienteE);
+                    int resp = objClienteN.RegistrarCliente(objClienteE);
                     VaciarCombo();
                     LlenarCombo();
                     ddlBuscar.SelectedValue = "gg";
                     ListarCliente();
-                    if (resp==0)
+                    if (resp == 0)
                     {
                         ScriptManager.RegisterStartupScript(this, GetType(), "insertAlert", "registroExitoso();", true);
                     }

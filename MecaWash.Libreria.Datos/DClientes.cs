@@ -123,6 +123,7 @@ namespace MecaWash.Libreria.Datos
                     cmd.Parameters.AddWithValue("@Direccion", obj.Direccion);
                     cmd.Parameters.AddWithValue("@Telefono", obj.Telefono);
                     cmd.Parameters.AddWithValue("@CorreoElectronico", obj.CorreoElectronico);
+                    cmd.Parameters.AddWithValue("@Clave", obj.clave);
                     cn.Open();
                     cmd.ExecuteNonQuery();
                     cn.Close();
