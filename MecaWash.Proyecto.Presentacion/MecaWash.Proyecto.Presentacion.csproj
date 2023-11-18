@@ -123,6 +123,7 @@
     <Content Include="Cliente\perfil.aspx" />
     <Content Include="Cliente\repuestos.aspx" />
     <Content Include="Cliente\servicios.aspx" />
+    <Content Include="Colaborador\Administrador\Clientes.aspx" />
     <Content Include="Colaborador\Administrador\default.aspx" />
     <Content Include="Colaborador\Administrador\empleados.aspx" />
     <Content Include="Colaborador\Administrador\home.aspx" />
@@ -205,6 +206,13 @@
     </Compile>
     <Compile Include="Cliente\servicios.aspx.designer.cs">
       <DependentUpon>servicios.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Colaborador\Administrador\Clientes.aspx.cs">
+      <DependentUpon>Clientes.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Colaborador\Administrador\Clientes.aspx.designer.cs">
+      <DependentUpon>Clientes.aspx</DependentUpon>
     </Compile>
     <Compile Include="Colaborador\Administrador\default.aspx.cs">
       <DependentUpon>default.aspx</DependentUpon>
