@@ -11,14 +11,11 @@ namespace MecaWash.Proyecto.Presentacion.Cliente
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            Session.Clear();
-            Session.Abandon();
-
             // Limpiar las cookies de autenticación si las estás utilizando
-            if (Request.Cookies["UsuarioAutenticado"] != null)
+            if (Request.Cookies["ClienteCookie"] != null)
             {
-                Response.Cookies["UsuarioAutenticado"].Value = "";
-                Response.Cookies["UsuarioAutenticado"].Expires = DateTime.Now.AddDays(-1);
+                Response.Cookies["ClienteCookie"].Value = "";
+                Response.Cookies["ClienteCookie"].Expires = DateTime.Now.AddDays(-1);
             }
 
             // Redirigir a la página de inicio de sesión o a la página principal

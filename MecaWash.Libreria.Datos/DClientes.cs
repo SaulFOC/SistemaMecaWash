@@ -176,5 +176,20 @@ namespace MecaWash.Libreria.Datos
                 return dt;
             }
         }
+
+        public DataTable ExisteCuenta(ECliente obj)
+        {
+            using (SqlConnection cn = new SqlConnection(Conexion.cn))
+            {
+                DataTable dt = new DataTable();
+                SqlCommand cmd = new SqlCommand("verificaSiExisteCuenta", cn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@dni", obj.Dni);
+                cmd.Parameters.AddWithValue("@gmail", obj.CorreoElectronico);
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(dt);
+                return dt;
+            }
+        }
     }
 }

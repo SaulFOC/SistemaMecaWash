@@ -23,6 +23,13 @@
             color: var(--text-color);
         }
 
+        .btnBuscar{
+            position:absolute;
+            right: 0.8rem;
+            top:50%;
+            transform: translateY(-50%);
+        }
+
         .bg-secundario {
             background: var(--body-color);
         }
@@ -164,14 +171,16 @@
             display: flex;
             align-items: center;
         }
-        .btn-transparente{
-            background-color:transparent;
-            border:none;
-            color:#383838;
+
+        .btn-transparente {
+            background-color: transparent;
+            border: none;
+            color: #383838;
         }
-        .btn-login{
-            background:#383838 !important;
-            color:#fff !important;
+
+        .btn-login {
+            background: #383838 !important;
+            color: #fff !important;
         }
 
         @media (min-width: 1024px) {
@@ -202,6 +211,14 @@
                 title: "Ocurrio un error",
                 text: mensaje,
                 icon: "error"
+            });
+        }
+
+        function notiExito(titulo,mensaje) {
+            Swal.fire({
+                title: titulo,
+                text: mensaje,
+                icon: "success"
             });
         }
     </script>
@@ -288,7 +305,6 @@
                             </div>
                         </div>
                         <%} %>
-
                     </div>
                     <!-- para las flechistas que permiten avanzar y retroceder el slider -->
                     <div class="swiper-button-prev"></div>
@@ -299,37 +315,37 @@
 
             <!-- para la seccion de ofertas del dia -->
             <section id="ofertas1">
-            <% for (int i = 1; i <= 4; i++)
-                { %>
-            <div class="container mb-3">
-                <div class="row">
-                    <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6">
-                        <img src="assets/img/pastilas.jpg" class="img-card" alt="">
-                    </div>
-                    <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6 bg-black text-container">
-                        <div class="p-3">
-                            <p>OFERTAS DEL DIA</p>
-                            <h3 class="text-wrap w-75">APROVECHA LAS MEJORES OFERTAS</h3>
-                            <p>Ver Más ...</p>
+                <% for (int i = 1; i <= 4; i++)
+                    { %>
+                <div class="container mb-3">
+                    <div class="row">
+                        <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                            <img src="assets/img/pastilas.jpg" class="img-card" alt="">
+                        </div>
+                        <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6 bg-black text-container">
+                            <div class="p-3">
+                                <p>OFERTAS DEL DIA</p>
+                                <h3 class="text-wrap w-75">APROVECHA LAS MEJORES OFERTAS</h3>
+                                <p>Ver Más ...</p>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <%} %>
-                </section>
+                <%} %>
+            </section>
 
             <!-- para los modales -->
-        <!-- Para Login -->
-        <div class="modal fade" id="frmLogin" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title text-success" id="exampleModalLabel">Login</h5>
-                        <button type="button" class="btn-transparente" data-bs-dismiss="modal" aria-label="Close"><i class='bx bx-x fs-2'></i></button>
-                    </div>
-                    <div class="modal-body">
-                        
-                        <!--Aqui va el formulario de login-->
+            <!-- Para Login -->
+            <div class="modal fade" id="frmLogin" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title text-success" id="exampleModalLabel">Login</h5>
+                            <button type="button" class="btn-transparente" data-bs-dismiss="modal" aria-label="Close"><i class='bx bx-x fs-2'></i></button>
+                        </div>
+                        <div class="modal-body">
+
+                            <!--Aqui va el formulario de login-->
                             <div class="mb-3">
                                 <label for="loginUser" class="form-label">Correo</label>
                                 <asp:TextBox ID="txtCorreo" TextMode="Email" CssClass="form-control" placeholder="Correo" runat="server"></asp:TextBox>
@@ -338,76 +354,75 @@
                                 <label for="loginPassword" class="form-label">Contraseña</label>
                                 <asp:TextBox ID="txtClave" CssClass="form-control" TextMode="Password" placeholder="********" runat="server"></asp:TextBox>
                             </div>
-                        <asp:LinkButton ID="LinkButton1" CssClass="btn btn-login" CommandName="Loguear" OnCommand="LoguearCliente2" runat="server">Iniciar sesión</asp:LinkButton>
+                            <asp:LinkButton ID="LinkButton1" CssClass="btn btn-login" CommandName="Loguear" OnCommand="LoguearCliente2" runat="server">Iniciar sesión</asp:LinkButton>
 
-                    </div>
-                    <div class="modal-footer">
-                        <label for="" class="">Click aqui si eres <a href="Colaborador/" class="text-success">colaborador</a></label>
-                        <div class="text-center container mt-4">
-                            <a href="recuperar.aspx" class="text-success fz-100">¿Olvidaste tu contraseña?</a>
+                        </div>
+                        <div class="modal-footer">
+                            <label for="" class="">Click aqui si eres <a href="Colaborador/" class="text-success">colaborador</a></label>
+                            <div class="text-center container mt-4">
+                                <a href="recuperar.aspx" class="text-success fz-100">¿Olvidaste tu contraseña?</a>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <!-- Para Registro -->
-        <div class="modal fade" id="frmRegistro" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title text-success" id="exampleModalLabel">Registrarte</h5>
-                        <button type="button" class="btn-transparente" data-bs-dismiss="modal" aria-label="Close"><i class='bx bx-x fs-2'></i></button>
-                    </div>
-                    <div class="modal-body">
-
-                        <!--Aqui va el formulario de registro-->
+            <!-- Para Registro -->
+            <div class="modal fade" id="frmRegistro" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title text-success" id="exampleModalLabel">Registrarte</h5>
+                            <button type="button" class="btn-transparente" data-bs-dismiss="modal" aria-label="Close"><i class='bx bx-x fs-2'></i></button>
+                        </div>
+                        <div class="modal-body">
+                            <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+                                <ContentTemplate>
+                            <!--Aqui va el formulario de registro-->
                             <div class="row mb-2">
                                 <div class="col-6">
                                     <label for="user" class="form-label">DNI</label>
-                                    <input type="text" class="form-control" name="dni" maxlength="8" placeholder="DNI" required>
+                                    <div class="position-relative">
+                                        <asp:TextBox ID="txtDNI" CssClass="form-control" MaxLength="8" placeholder="DNI" runat="server"></asp:TextBox>
+                                        <asp:LinkButton CssClass="btnBuscar text-dark" CommandName="BuscarNombre" OnCommand="ConsultaDNI" ID="lnbBuscarDNI" OnClientClick="ocultarLinkButton()" runat="server"><i class='bx bx-search' ></i></asp:LinkButton>
+                                    </div>
                                 </div>
                                 <div class="col-6">
                                     <label for="password" class="form-label">Celular</label>
-                                    <input type="password" class="form-control" name="text" maxlength="9" placeholder="999999999" required>
+                                    <asp:TextBox ID="txtCelularR" CssClass="form-control" MaxLength="9" placeholder="999999999" TextMode="Phone" runat="server"></asp:TextBox>
                                 </div>
                             </div>
 
-                            <div class="row mb-2">
-                                <div class="col-6">
+                            <div class="mb-3">
                                     <label for="nombre" class="form-label mb-0 w-100 text-truncate">Nombre</label>
-                                    <input type="text" class="form-control" name="nombre" placeholder="Nombre" required>
-                                </div>
-                                <div class="col-6">
-                                    <label for="apellido" class="form-label mb-0 w-100 text-truncate">Apellidos</label>
-                                    <input type="text" class="form-control" name="apellido" placeholder="Apellidos" required>
-                                </div>
+                                    <asp:TextBox ID="txtNombreR" ReadOnly="true" CssClass="form-control" placeholder="Nombre" runat="server"></asp:TextBox>
                             </div>
 
                             <div class="row mb-2">
                                 <div class="col-8">
                                     <label for="correo" class="form-label">Correo</label>
-                                    <input type="email" class="form-control" name="correo" placeholder="correo@gmail.com" required>
+                                    <asp:TextBox ID="txtCorreoR" CssClass="form-control" placeholder="correo@gmail.com" TextMode="Email" runat="server"></asp:TextBox>
                                 </div>
                                 <div class="col-4">
                                     <label for="password" class="form-label">Contraseña</label>
-                                    <input type="password" class="form-control" name="password" placeholder="Contraseña" required>
+                                    <asp:TextBox ID="txtClaveR" CssClass="form-control" placeholder="Contraseña" TextMode="Password" runat="server"></asp:TextBox>
                                 </div>
                             </div>
 
                             <div class="mb-3">
                                 <label for="direccion" class="form-label">Dirección</label>
-                                <input type="text" class="form-control" name="direccion" placeholder="Dirección" required>
+                                <asp:TextBox ID="txtDireccionR" CssClass="form-control" placeholder="Ingrese dirección" runat="server"></asp:TextBox>
                             </div>
-                            <button id="btnRegistrar" class="btn btn-login">Registrarse</button>
-
-                    </div>
-                    <div class="modal-footer">
-                        <label for="" class="">Click aqui si eres <a href="Colaborador/" class="text-success">colaborador</a></label>
+                                    <asp:LinkButton CommandName="RegistrarC" OnCommand="RegistraCliente" ID="lbnRegistrar" CssClass="btn btn-login" runat="server">Registrarse</asp:LinkButton>
+                                    </ContentTemplate>
+                                </asp:UpdatePanel>
+                        </div>
+                        <div class="modal-footer">
+                            <label for="" class="">Click aqui si eres <a href="Colaborador/" class="text-success">colaborador</a></label>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
 
 
         </div>
@@ -454,7 +469,6 @@
             });
         </script>
         <script src="Scripts/bootstrap.min.js"></script>
-        <script src="assets/js/menu/activarDarkmode.js"></script>
         <script>
             window.addEventListener('mouseover', initLandbot, { once: true });
             window.addEventListener('touchstart', initLandbot, { once: true });
@@ -470,6 +484,21 @@
                     s.src = 'https://cdn.landbot.io/landbot-3/landbot-3.0.0.js';
                     var x = document.getElementsByTagName('script')[0];
                     x.parentNode.insertBefore(s, x);
+                }
+            }
+        </script>
+        <script>
+            function ocultarLinkButton() {
+                var textBox = document.getElementById('<%= txtNombreR.ClientID %>');
+                var linkButton = document.getElementById('<%= lnbBuscarDNI.ClientID %>');
+
+                // Verificar si el TextBox tiene contenido
+                if (textBox.value.trim() !== '') {
+                    // Mostrar el LinkButton
+                    linkButton.style.display = 'inline'; // Puedes ajustar 'inline' según la propiedad de visualización original
+                } else {
+                    // Ocultar el LinkButton si el TextBox está vacío
+                    linkButton.style.display = 'none';
                 }
             }
         </script>

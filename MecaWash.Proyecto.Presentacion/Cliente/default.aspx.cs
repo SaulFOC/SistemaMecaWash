@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Newtonsoft.Json;
 
 namespace MecaWash.Proyecto.Presentacion.Cliente
 {
@@ -11,27 +12,18 @@ namespace MecaWash.Proyecto.Presentacion.Cliente
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            
-            if (Session["idCliente"] != null &&
-            Session["dni"] != null &&
-            Session["nombre"] != null &&
-            Session["direccion"] != null &&
-            Session["correo"] != null &&
-            Session["clave"] != null)
+            if (Request.Cookies["ClienteCookie"] != null)
             {
-                int idCliente;
-                string dni, nombre, direccion, correo, clave;
-                idCliente = int.Parse(Session["idCliente"].ToString());
-                dni = Session["dni"].ToString();
-                nombre = Session["nombre"].ToString();
-                direccion = Session["direccion"].ToString();
-                correo = Session["correo"].ToString();
-                clave = Session["clave"].ToString();
+                string valoresSerializados = Request.Cookies["ClienteCookie"].Value;
 
+                // Deserializar los valores desde la cookie
+                var valoresDeserializados = JsonConvert.DeserializeObject<dynamic>(valoresSerializados);
+                string nombre = valoresDeserializados.nombre;
                 llbNombre.Text = nombre;
             }
             else
             {
+                // La cookie no existe, redirige al usuario a la página de inicio de sesión
                 Response.Redirect("../");
             }
         }

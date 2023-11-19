@@ -149,5 +149,16 @@ namespace MecaWash.Libreria.Negocio
         {
             return datos.BuscarCliente(obj);
         }
+
+        public bool ExisteCuenta(ECliente obj)
+        {
+            bool rpt= false;
+            DataTable dt2 = datos.ExisteCuenta(obj);
+            if(dt2.Rows.Count == 0)
+            {
+                rpt = true;
+            }
+            return rpt;
+        }
     }
 }
