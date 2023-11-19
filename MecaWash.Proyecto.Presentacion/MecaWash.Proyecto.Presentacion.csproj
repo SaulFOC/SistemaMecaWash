@@ -86,6 +86,9 @@
     <Content Include="assets\img\mecanico.jpg" />
     <Content Include="assets\img\pastilas.jpg" />
     <Content Include="assets\img\sinImagen.png" />
+    <Content Include="assets\jsm\libs\draco\gltf\draco_decoder.js" />
+    <Content Include="assets\jsm\libs\draco\gltf\draco_encoder.js" />
+    <Content Include="assets\jsm\libs\draco\gltf\draco_wasm_wrapper.js" />
     <Content Include="assets\js\activarDarkmode.js" />
     <Content Include="assets\js\carros.js" />
     <Content Include="assets\js\funcionesCrud.js" />
@@ -116,6 +119,7 @@
     <Content Include="assets\modelos\moto\license.txt" />
     <Content Include="assets\modelos\moto\textures\decals_baseColor.png" />
     <Content Include="assets\modelos\moto\textures\leather_black_normal.png" />
+    <Content Include="assets\models\gltf\ferrari_ao.png" />
     <Content Include="Cliente\carrito.aspx" />
     <Content Include="Cliente\cerrar.aspx" />
     <Content Include="Cliente\default.aspx" />
@@ -331,6 +335,9 @@
     <Content Include="assets\modelos\moto\scene.bin" />
     <Content Include="assets\modelos\moto\scene.gltf" />
     <Content Include="assets\js\servicios.json" />
+    <Content Include="assets\jsm\libs\draco\gltf\draco_decoder.wasm" />
+    <Content Include="assets\models\gltf\ferrari.glb" />
+    <Content Include="assets\textures\equirectangular\venice_sunset_1k.hdr" />
     <None Include="packages.config" />
     <Content Include="Scripts\bootstrap.min.js.map" />
     <Content Include="Scripts\bootstrap.js.map" />

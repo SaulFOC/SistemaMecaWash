@@ -190,6 +190,7 @@ function mostrarAccesorios(accesorios) {
 // Mostrar los accesorios iniciales al cargar la página
 filtrarAccesorios();
 
+//para hacer dorp drag
 const posi = document.getElementsByClassName("posicion")[0]; // Agrega [0] para seleccionar el primer elemento con la clase "posicion"
 let offsetx, offsety;
 
