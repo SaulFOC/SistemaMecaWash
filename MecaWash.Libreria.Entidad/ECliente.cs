@@ -23,7 +23,7 @@ namespace MecaWash.Libreria.Entidad
         public string Direccion { get; set; }
         public string Telefono { get; set; }
         public string CorreoElectronico { get; set; }
-        public Boolean Estado { get; set; }
+        public int Estado { get; set; }
         public string clave { get; set; }
     }
 }

@@ -123,10 +123,12 @@
     <Content Include="Cliente\perfil.aspx" />
     <Content Include="Cliente\repuestos.aspx" />
     <Content Include="Cliente\servicios.aspx" />
+    <Content Include="Colaborador\Administrador\Clientes.aspx" />
     <Content Include="Colaborador\Administrador\default.aspx" />
     <Content Include="Colaborador\Administrador\empleados.aspx" />
     <Content Include="Colaborador\Administrador\home.aspx" />
     <Content Include="Colaborador\Administrador\servicios.aspx" />
+    <Content Include="Colaborador\Administrador\Vehiculos.aspx" />
     <Content Include="Colaborador\default.aspx" />
     <Content Include="Colaborador\Administrador\Perfil.aspx" />
     <Content Include="Colaborador\Tecnico\default.aspx" />
@@ -206,6 +208,13 @@
     <Compile Include="Cliente\servicios.aspx.designer.cs">
       <DependentUpon>servicios.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Colaborador\Administrador\Clientes.aspx.cs">
+      <DependentUpon>Clientes.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Colaborador\Administrador\Clientes.aspx.designer.cs">
+      <DependentUpon>Clientes.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Colaborador\Administrador\default.aspx.cs">
       <DependentUpon>default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -233,6 +242,13 @@
     </Compile>
     <Compile Include="Colaborador\Administrador\servicios.aspx.designer.cs">
       <DependentUpon>servicios.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Colaborador\Administrador\Vehiculos.aspx.cs">
+      <DependentUpon>Vehiculos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Colaborador\Administrador\Vehiculos.aspx.designer.cs">
+      <DependentUpon>Vehiculos.aspx</DependentUpon>
     </Compile>
     <Compile Include="Colaborador\default.aspx.cs">
       <DependentUpon>default.aspx</DependentUpon>

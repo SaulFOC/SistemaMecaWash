@@ -41,10 +41,7 @@
     <div class="menu-bar">
         <div class="menu">
 
-            <li class="search-box">
-                <i class='bx bx-search icon'></i>
-                <input type="text" placeholder="Search...">
-            </li>
+            
 
             <ul class="menu-links">
                 <li class="nav-link first">
@@ -76,24 +73,30 @@
                 </li>
 
                 <li class="nav-link five">
-                    <a href="#" target="myFrame">
+                    <a href="Clientes.aspx" target="myFrame">
                         <i class='bx bx-support icon'></i>
-                        <span class="text nav-text">Soporte</span>
+                        <span class="text nav-text">Clientes</span>
                     </a>
+                </li>
+                <li class="nav-link six">
+                    <a href="Vehiculos.aspx" target="myFrame">
+                    <i class='bx bx-search icon'></i>
+                    <span class="text nav-text">Vehiculo</span>
+                        </a>
                 </li>
 
             </ul>
         </div>
 
         <div class="bottom-content ">
-            <li class="six">
+            <li class="nav-link seven">
                 <a href="../backend/controller/cerrarSesionCliente.php">
                     <i class='bx bx-log-out icon'></i>
                     <span class="text nav-text">Salir</span>
                 </a>
             </li>
 
-            <li class="mode seven">
+            <li class="mode eight">
                 <div class="sun-moon">
                     <i class='bx bx-moon icon moon'></i>
                     <i class='bx bx-sun icon sun'></i>
@@ -154,21 +157,25 @@
                         intro: 'En este apartado podras ver tu perfil, editar tu informacion y cambiar tu contraseña'
                     },
                     {
-                        title: 'Soporte 📞',
+                        title: 'Clientes 👨🏼‍🤝‍👨🏼',
                         element: document.querySelector('.five'),
-                        intro: 'En este apartado podras hablar con el soporte tecnico de la empresa'
+                        intro: 'En este apartado podras ver los clientes que se han registrado en la empresa, agregarlos, editarlos y eliminarlos'
                     },
                     {
-                        title: 'Salir 🚪',
+                        title: 'Vehiculos 🚗',
                         element: document.querySelector('.six'),
+                        intro: 'En este apartado podras ver los vehiculos que se han registrado en la empresa, agregarlos, editarlos y eliminarlos'
+                    }, 
+                    {
+                        title: 'Salir 🚪',
+                        element: document.querySelector('.seven'),
                         intro: 'En este apartado podras cerrar sesion'
                     },
                     {
                         title: 'Dark mode y Light mode 🌙',
-                        element: document.querySelector('.seven'),
+                        element: document.querySelector('.eight'),
                         intro: 'En este apartado podras cambiar el modo de la pagina entre claro y oscuro'
                     }
-
 
                 ],
                 showBullets: false,

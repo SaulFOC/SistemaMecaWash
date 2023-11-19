@@ -37,7 +37,7 @@
                             </FooterTemplate>
                         </asp:TemplateField>
 
-                        <asp:TemplateField HeaderText="Tipo de Servicio" ControlStyle-Width="140px">
+                        <asp:TemplateField HeaderText="Tipo de Servicio" >
                             <EditItemTemplate>
                                 <asp:TextBox ID="txtTipoDeServicioE" CssClass="form-control" runat="server" Text='<%# Bind("TipoServicio") %>'></asp:TextBox>
                             </EditItemTemplate>
@@ -47,12 +47,12 @@
                             <ItemTemplate>
                                 <asp:Label ID="Label2" CssClass="text-truncate" runat="server" Text='<%# Bind("TipoServicio") %>'></asp:Label>
                             </ItemTemplate>
-                            <ControlStyle Width="110px" />
+                           
                         </asp:TemplateField>
 
 
 
-                        <asp:TemplateField HeaderText="Descripcion" ControlStyle-Width="140px">
+                        <asp:TemplateField HeaderText="Descripcion" ControlStyle-Width="650px">
                             <EditItemTemplate>
                                 <asp:TextBox ID="txtDescripcionServicioE" CssClass="form-control" runat="server" Text='<%# Bind("DescripcionServicio") %>'></asp:TextBox>
                             </EditItemTemplate>
@@ -61,8 +61,9 @@
                             </FooterTemplate>
                             <ItemTemplate>
                                 <asp:Label ID="Label4" CssClass="text-truncate" runat="server" Text='<%# Bind("DescripcionServicio") %>'></asp:Label>
+                            
                             </ItemTemplate>
-                            <ControlStyle Width="110px" />
+                           
                         </asp:TemplateField>
 
                         <asp:TemplateField HeaderText="Precio" ControlStyle-Width="110px">
@@ -75,7 +76,7 @@
                             <ItemTemplate>
                                 <asp:Label ID="Label5" CssClass="text-truncate" runat="server" Text='<%# Bind("PrecioServicio") %>'></asp:Label>
                             </ItemTemplate>
-                            <ControlStyle Width="140px" />
+                            
                         </asp:TemplateField>
 
                        
