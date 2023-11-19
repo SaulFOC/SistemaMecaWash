@@ -90,25 +90,37 @@ namespace MecaWash.Proyecto.Presentacion.Colaborador.Administrador
 
         protected void GridView1_RowCommand(object sender, GridViewCommandEventArgs e)
         {
-            if (e.CommandName == "Insertar")
+            try
             {
-                TextBox txtTipoDeServicio = (TextBox)GridView1.FooterRow.FindControl("txtTipoDeServicio");
-                TextBox txtDescripcion = (TextBox)GridView1.FooterRow.FindControl("txtDescripcionServicio");
-                TextBox txtPrecio = (TextBox)GridView1.FooterRow.FindControl("txtPrecio");
-                objServiciosE.TipoServicio = txtTipoDeServicio.Text;
-                objServiciosE.Descripcion = txtDescripcion.Text;
-                objServiciosE.PrecioServicio= Convert.ToDouble(txtPrecio.Text);
-                objServiciosE.Estado = 1;
-                objServiciosN.RegistrarServicio(objServiciosE);
-                
-                VaciarCombo();
-                LlenarCombo();
-                ddlBuscar.SelectedValue = "gg";
-                ListarServicios();
+                if (e.CommandName == "Insertar")
+                {
+                    TextBox txtTipoDeServicio = (TextBox)GridView1.FooterRow.FindControl("txtTipoDeServicio");
+                    TextBox txtDescripcion = (TextBox)GridView1.FooterRow.FindControl("txtDescripcionServicio");
+                    TextBox txtPrecio = (TextBox)GridView1.FooterRow.FindControl("txtPrecio");
+                    objServiciosE.TipoServicio = txtTipoDeServicio.Text;
+                    objServiciosE.Descripcion = txtDescripcion.Text;
+                    objServiciosE.PrecioServicio = Convert.ToDouble(txtPrecio.Text);
+                    objServiciosE.Estado = 1;
+                    int respuesta = objServiciosN.RegistrarServicio(objServiciosE);
 
-                ScriptManager.RegisterStartupScript(this, GetType(), "insertAlert", "registroExitoso();", true);
+                    VaciarCombo();
+                    LlenarCombo();
+                    ddlBuscar.SelectedValue = "gg";
+                    ListarServicios();
 
-
+                    if (respuesta == 1)
+                    {
+                        ScriptManager.RegisterStartupScript(this, GetType(), "insertAlert", "registroExitoso();", true);
+                    }
+                    else
+                    {
+                        ScriptManager.RegisterStartupScript(this, GetType(), "Error", "notiError('Llenar todos los campos!');", true);
+                    }
+                }
+            }
+            catch
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "Error", "notiError('Llenar todos los campos!');", true);
             }
         }
 

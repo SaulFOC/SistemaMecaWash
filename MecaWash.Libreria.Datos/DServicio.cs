@@ -60,7 +60,6 @@ namespace MecaWash.Libreria.Datos
 
         public int RegistrarServicio(EServicios obj)
         {
-            string error = "";
             int resp;
             try
             {
@@ -76,11 +75,11 @@ namespace MecaWash.Libreria.Datos
                     resp = cmd.ExecuteNonQuery();
                     cn.Close();
                 }
+                resp = 1;
             }
-            catch (Exception ex)
+            catch
             {
                 resp = 0;
-                error = ex.Message;
 
             }
             return resp;

@@ -20,27 +20,28 @@ namespace MecaWash.Libreria.Negocio
 
         public int RegistrarServicio(EServicios obj)
         {
-            int error = 0;
+            int error = 1;
             if (string.IsNullOrEmpty(obj.TipoServicio) || string.IsNullOrWhiteSpace(obj.TipoServicio))
             {
-                error = 1;
+                error = 0;
             }
             else if (string.IsNullOrEmpty(obj.Descripcion) || string.IsNullOrWhiteSpace(obj.Descripcion))
             {
-                error = 1;
+                error = 0;
             }
             else if (obj.PrecioServicio == 0)
             {
-                error = 1;
+                error = 0;
             }
-            if (error == 0)
+            if (error == 1)
             {
                 return datos.RegistrarServicio(obj);
             }
             else
             {
-                return error;
+                error = 0;
             }
+            return error;
         }
 
         public bool EditarServicio(EServicios obj)

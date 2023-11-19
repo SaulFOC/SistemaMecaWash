@@ -37,7 +37,7 @@
     function actualizacionExitosa() {
         Swal.fire({
             title: "Actualizado",
-            text: "Empleado actualizado con éxito!",
+            text: "Actualizacion exitoza!",
             icon: "success"
         });
         }
@@ -45,7 +45,7 @@
     function registroExitoso() {
         Swal.fire({
             title: "Registrado",
-            text: "Empleado registrado con éxito!",
+            text: "Registro exitoso!",
             icon: "success"
         });
         }

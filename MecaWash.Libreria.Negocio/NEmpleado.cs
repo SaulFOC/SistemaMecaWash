@@ -22,39 +22,39 @@ namespace MecaWash.Libreria.Negocio
         }
         public int RegistrarEmpleado(EEmpleado obj)
         {
-            int error = 0;
+            int error = 1;
             if(obj.Dni.Length != 8)
             {
-               error = 1;
+               error = 0;
             }else if (string.IsNullOrEmpty(obj.Nombre) || string.IsNullOrWhiteSpace(obj.Nombre))
             {
-                error = 1; 
+                error = 0; 
             }
             else if (string.IsNullOrEmpty(obj.Telefono) || string.IsNullOrWhiteSpace(obj.Telefono))
             {
-                error = 1;
+                error = 0;
             }
             else if (string.IsNullOrEmpty(obj.CorreoElectronico) || string.IsNullOrWhiteSpace(obj.CorreoElectronico))
             {
-                error = 1;
+                error = 0;
             }
             else if (string.IsNullOrEmpty(obj.Puesto) || string.IsNullOrWhiteSpace(obj.Puesto))
             {
-                error = 1;
+                error = 0;
             }
             else if (string.IsNullOrEmpty(obj.Contrasena) || string.IsNullOrWhiteSpace(obj.Contrasena))
             {
-                error = 1;
+                error = 0;
             }
             
-            if(error== 0)
+            if(error== 1)
             {
                 //obj.Contrasena = NEncriptacion.Encriptar(obj.Contrasena);
                 return datos.RegistrarEmpleado(obj);
             }
             else
             {
-                error=1;
+                error=0;
             }
             return error;
         }

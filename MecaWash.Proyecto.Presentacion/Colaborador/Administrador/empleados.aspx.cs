@@ -91,7 +91,7 @@ namespace MecaWash.Proyecto.Presentacion.Colaborador.Administrador
                     LlenarCombo();
                     ddlBuscar.SelectedValue = "gg";
                     ListarEmpleados();
-                    if (respuesta == 0)
+                    if (respuesta == 1)
                     {
                         ScriptManager.RegisterStartupScript(this, GetType(), "insertAlert", "registroExitoso();", true);
                     }else{
