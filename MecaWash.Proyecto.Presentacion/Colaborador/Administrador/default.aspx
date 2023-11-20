@@ -22,6 +22,7 @@
             <div class="text logo-text">
                 <span class="name">MecWash</span>
                 <span class="profession">Administrador</span>
+                <asp:Label ID="llbNombre" runat="server" CssClass="text-truncate"></asp:Label></span>
             </div>
         </div>
 
@@ -90,7 +91,7 @@
 
         <div class="bottom-content ">
             <li class="nav-link seven">
-                <a href="../backend/controller/cerrarSesionCliente.php">
+                <a href="cerrar.aspx">
                     <i class='bx bx-log-out icon'></i>
                     <span class="text nav-text">Salir</span>
                 </a>

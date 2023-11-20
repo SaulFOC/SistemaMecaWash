@@ -112,5 +112,10 @@ namespace MecaWash.Libreria.Negocio
         {
             return datos.VerificarUsuario(obj);
         }
+
+        public DataTable loguearEmpleado(EEmpleado obj)
+        {
+            return datos.loguearEmpleado(obj);
+        }
     }
 }

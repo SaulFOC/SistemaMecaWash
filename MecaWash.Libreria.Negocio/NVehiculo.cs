@@ -24,7 +24,7 @@ namespace MecaWash.Libreria.Negocio
             if (string.IsNullOrEmpty(obj.NumeroPlaca) || string.IsNullOrWhiteSpace(obj.NumeroPlaca))
             {
                 error = 1;
-            }else if(obj.NumeroPlaca.Length != 6)
+            }else if(obj.NumeroPlaca.Length !=7)
             {
                 error = 1;
             }
