@@ -54,8 +54,8 @@
                                     </label>
                                     <span class="ml-auto"><a href="#" class="forgot-pass">Soporte</a></span>
                                 </div>
-
-                                <asp:Button ID="Button1" runat="server" Text="Iniciar Sesion"   class="btn text-decoration-none btn-secundario" OnClick="Button1_Click"/>
+                                <asp:LinkButton ID="LinkButton1" CssClass="btn text-decoration-none btn-secundario" CommandName="Loguear" OnCommand="LoguearEmpleado" runat="server">Iniciar Sesion</asp:LinkButton>
+                                <%--<asp:Button ID="Button1" runat="server" Text="Iniciar Sesion"   class="btn text-decoration-none btn-secundario" OnClick="Button1_Click"/>--%>
                             
                         </div>
                     </div>

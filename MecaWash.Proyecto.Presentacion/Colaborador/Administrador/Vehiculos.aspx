@@ -22,7 +22,7 @@
                     </div>
                 </div>
                 <div class="table-responsive">
-                    <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" GridLines="None" ShowFooter="True" CssClass="table" AllowPaging="True" DataKeyNames="IDVehiculo" OnPageIndexChanging="GridView1_PageIndexChanging" OnRowCommand="GridView1_RowCommand" OnRowEditing="GridView1_RowEditing" OnRowUpdating="GridView1_RowUpdating" OnRowCancelingEdit="GridView1_RowCancelingEdit" EmptyDataText="No hay datos disponibles" PageSize="6">
+                    <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" GridLines="None" ShowFooter="True" CssClass="table" AllowPaging="True" DataKeyNames="IDVehiculo" OnPageIndexChanging="GridView1_PageIndexChanging" OnRowCommand="GridView1_RowCommand" OnRowEditing="GridView1_RowEditing" OnRowUpdating="GridView1_RowUpdating" OnRowCancelingEdit="GridView1_RowCancelingEdit" EmptyDataText="No hay datos disponibles" PageSize="6" >
                         <alternatingrowstyle />
                         <columns>
                             <asp:TemplateField HeaderText="COD">
@@ -44,11 +44,12 @@
                                     <asp:TextBox ID="txtNumeroPlacaE" CssClass="form-control" MaxLength="8" runat="server" Text='<%# Bind("NumeroPlaca") %>'></asp:TextBox>
                                 </edititemtemplate>
                                 <footertemplate>
-                                    <asp:TextBox ID="txtNumeroPlaca" CssClass="form-control" MaxLength="8" placeholder="Numero de Placa" runat="server"></asp:TextBox>
+                                    <asp:TextBox ID="txtNumeroPlaca" CssClass="form-control" MaxLength="7" placeholder="Numero de Placa" runat="server"></asp:TextBox>
                                 </footertemplate>
                                 <itemtemplate>
                                     <asp:Label ID="Label2" CssClass="text-truncate" runat="server" Text='<%# Bind("NumeroPlaca") %>'></asp:Label>
                                 </itemtemplate>
+                               
                             </asp:TemplateField>
 
 
@@ -62,11 +63,12 @@
                                 <itemtemplate>
                                     <asp:Label ID="Label3" CssClass="text-truncate" runat="server" Text='<%# Bind("Marca") %>'></asp:Label>
                                 </itemtemplate>
+                                
                             </asp:TemplateField>
 
                             <asp:TemplateField HeaderText="Modelo" ControlStyle-Width="110px">
                                 <edititemtemplate>
-                                    <asp:TextBox ID="txtModeloE" CssClass="form-control" runat="server" Text='<%# Bind("Modelo") %>' TextMode="Password"></asp:TextBox>
+                                    <asp:TextBox ID="txtModeloE" CssClass="form-control" runat="server" Text='<%# Bind("Modelo") %>' ></asp:TextBox>
                                 </edititemtemplate>
                                 <footertemplate>
                                     <asp:TextBox ID="txtModelo" placeholder="Modelo" TextMode="SingleLine" CssClass="form-control" runat="server"></asp:TextBox>
@@ -74,6 +76,7 @@
                                 <itemtemplate>
                                     <asp:Label ID="Label4" CssClass="text-truncate" runat="server" Text='<%# Bind("Modelo") %>'></asp:Label>
                                 </itemtemplate>
+                                
                             </asp:TemplateField>
 
 
@@ -88,6 +91,7 @@
                                 <itemtemplate>
                                     <asp:Label ID="Label5" CssClass="text-truncate" runat="server" Text='<%# Bind("Anio") %>'></asp:Label>
                                 </itemtemplate>
+                               
                             </asp:TemplateField>
 
                             <asp:TemplateField HeaderText="Color" ControlStyle-Width="140px">
@@ -100,23 +104,30 @@
                                 <itemtemplate>
                                     <asp:Label ID="Label7" CssClass="text-truncate" runat="server" Text='<%# Bind("Color") %>'></asp:Label>
                                 </itemtemplate>
+                                
                             </asp:TemplateField>
 
                             <asp:TemplateField HeaderText="Cliente" ControlStyle-Width="140px">
                                 <edititemtemplate>
                                     <asp:TextBox ID="txtNombreClienteE" Text='<%# Bind("Nombre") %>' CssClass="form-control" runat="server" Visible="False"></asp:TextBox>
-                                    <asp:DropDownList ID="ddlBuscarCLiente" AutoPostBack="true" runat="server" CssClass="js-example-basic-single w-100" AppendDataBoundItems="true">
-                                        <asp:ListItem Value="gg">buscar...</asp:ListItem>
-                                    </asp:DropDownList>
+                                    <asp:DropDownList ID="DropDownList2" runat="server"></asp:DropDownList>
+                                    
+                                    <%-- <asp:DropDownList ID="ddlBuscarCLienteE" AutoPostBack="true" runat="server" CssClass="js-example-basic-single w-100" AppendDataBoundItems="true">
+                                        <asp:ListItem Value="">buscar...</asp:ListItem>
+                                    </asp:DropDownList>--%>
                                 </edititemtemplate>
                                 <footertemplate>
-                                    <asp:DropDownList ID="ddlBuscarCLiente2" AutoPostBack="true" runat="server" CssClass="js-example-basic-single w-100" AppendDataBoundItems="true">
-                                        <asp:ListItem Value="gg">buscar...</asp:ListItem>
+                                    <asp:DropDownList ID="DropDownList1" runat="server">
+                                    
                                     </asp:DropDownList>
+                                    <%--<asp:DropDownList ID="ddlBuscarCLiente" AutoPostBack="true" runat="server" CssClass="js-example-basic-single w-100"  AppendDataBoundItems="true">
+                                        <asp:ListItem Value="">buscar...</asp:ListItem>
+                                    </asp:DropDownList>--%>
                                 </footertemplate>
                                 <itemtemplate>
                                     <asp:Label ID="Label9" CssClass="text-truncate" runat="server" Text='<%# Bind("Nombre") %>'></asp:Label>
                                 </itemtemplate>
+                                
                             </asp:TemplateField>
 
 

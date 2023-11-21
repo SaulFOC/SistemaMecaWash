@@ -152,5 +152,20 @@ namespace MecaWash.Libreria.Datos
             }
         }
 
+        public DataTable loguearEmpleado(EEmpleado obj)
+        {
+            using (SqlConnection cn = new SqlConnection(Conexion.cn))
+            {
+                DataTable dt = new DataTable();
+                SqlCommand cmd = new SqlCommand("LoginEmpleado", cn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@Correo", obj.CorreoElectronico);
+                cmd.Parameters.AddWithValue("@Contrasena", obj.Contrasena);
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(dt);
+                return dt;
+            }
+        }
+
     }
 }
