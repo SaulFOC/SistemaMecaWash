@@ -12,9 +12,19 @@ namespace MecaWash.Libreria.Negocio
     public class NCarrito
     {
         DCarrito datos = new DCarrito();
-        public int AgregarCarrrito(ECarrito obj)
+        public async Task AgregarCarrritoAsync(ECarrito obj)
         {
-            return datos.AgregarCarrrito(obj);
+            await Task.Run(() => datos.AgregarCarrritoAsync(obj));
+        }
+
+        public async Task EliminarCarrito(ECarrito obj)
+        {
+            await Task.Run(() => datos.EliminarCarrito(obj));
+        }
+
+        public DataTable listarCarrito(ECarrito obj)
+        {
+            return datos.listarCarrito(obj);
         }
 
     }

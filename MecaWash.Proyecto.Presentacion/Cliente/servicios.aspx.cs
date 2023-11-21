@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -32,7 +33,7 @@ namespace MecaWash.Proyecto.Presentacion.Cliente
                 if (Request.Cookies["Carrito"] == null)
                 {
                     HttpCookie carritoCookie = new HttpCookie("Carrito");
-                    carritoCookie.Expires = DateTime.Now.AddDays(1); // Puedes ajustar la duración de la cookie.
+                    carritoCookie.Expires = DateTime.Now.AddDays(10); // Puedes ajustar la duración de la cookie.
                     Response.Cookies.Add(carritoCookie);
                 }
             }
@@ -86,6 +87,7 @@ namespace MecaWash.Proyecto.Presentacion.Cliente
                     // Serializa la lista de productos y actualiza la cookie.
                     carritoCookie.Value = JsonConvert.SerializeObject(carrito);
                     Response.Cookies.Set(carritoCookie);
+                    Task.Run(() => insertarCarritoBD(idCliente, idServicio, precio));
                     ScriptManager.RegisterStartupScript(this, GetType(), "exito", "notiExito('Servicio agregado!','Se agrego el servicio al carrito');", true);
                 }
                 else
@@ -94,6 +96,14 @@ namespace MecaWash.Proyecto.Presentacion.Cliente
                 }
                    
             }
+        }
+
+        public async Task insertarCarritoBD(int idc, int ids, decimal precio)
+        {
+            objEC.IDCliente = idc;
+            objEC.IDServicio = ids;
+            objEC.precio = precio;
+            await Task.Run(() => objC.AgregarCarrritoAsync(objEC));
         }
 
     }

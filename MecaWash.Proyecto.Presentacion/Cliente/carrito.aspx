@@ -2,7 +2,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
     <div class="container pt-3 pb-3">
-        <h4>Servicios</h4>
+        <h4>Carrito de Servicios</h4>
         <asp:UpdatePanel ID="UpdatePanel1" runat="server" UpdateMode="Conditional">
             <ContentTemplate>
 
@@ -30,7 +30,7 @@
                                                     </span>
                                                 </div>
                                                 <div class="col-4 text-end">
-                                                    <asp:Button ID="Button1" CommandArgument='<%#Eval("Ids") %>' CssClass="btn btn-dark text-light" runat="server" Text="-" />
+                                                    <asp:Button ID="Button1" CommandName="Quitar" OnCommand="QuitarCarrito" CommandArgument='<%#Eval("Ids")+"|"+Eval("Idc") %>' CssClass="btn btn-dark text-light" runat="server" Text="-" />
                                                 </div>
                                             </div>
                                             <label for="" class="text-precio fw-bold">S/ <%#Eval("Precio") %></label>

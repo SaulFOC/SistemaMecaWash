@@ -6,6 +6,9 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using Newtonsoft.Json;
 using System.Globalization;
+using System.Threading.Tasks;
+using MecaWash.Libreria.Entidad;
+using MecaWash.Libreria.Negocio;
 
 namespace MecaWash.Proyecto.Presentacion.Cliente
 {
@@ -44,5 +47,6 @@ namespace MecaWash.Proyecto.Presentacion.Cliente
 
             return nombreCompleto; // Devuelve el nombre original si no hay al menos dos partes.
         }
+
     }
 }

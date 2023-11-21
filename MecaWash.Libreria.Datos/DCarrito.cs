@@ -11,9 +11,8 @@ namespace MecaWash.Libreria.Datos
 {
     public class DCarrito
     {
-        public int AgregarCarrrito(ECarrito obj)
+        public async Task AgregarCarrritoAsync(ECarrito obj)
         {
-            int resp;
             try
             {
                 using (SqlConnection cn = new SqlConnection(Conexion.cn))
@@ -24,18 +23,56 @@ namespace MecaWash.Libreria.Datos
                     cmd.Parameters.AddWithValue("@ids", obj.IDServicio);
                     cmd.Parameters.AddWithValue("@precio", obj.precio);
                     cn.Open();
-                    cmd.ExecuteNonQuery();
+
+                    // Usa ExecuteNonQueryAsync en lugar de ExecuteNonQuery
+                    await cmd.ExecuteNonQueryAsync();
+
                     cn.Close();
-                    resp = 1;
                 }
             }
             catch (SqlException ex)
             {
-                resp = 0;
                 Console.WriteLine(ex.Message);
             }
-            return resp;
         }
-        
+
+        public async Task EliminarCarrito(ECarrito obj)
+        {
+            try
+            {
+                using (SqlConnection cn = new SqlConnection(Conexion.cn))
+                {
+                    SqlCommand cmd = new SqlCommand("EliminarCarrito", cn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@idc", obj.IDCliente);
+                    cmd.Parameters.AddWithValue("@ids", obj.IDServicio);
+                    cn.Open();
+
+                    // Usa ExecuteNonQueryAsync en lugar de ExecuteNonQuery
+                    await cmd.ExecuteNonQueryAsync();
+
+                    cn.Close();
+                }
+            }
+            catch (SqlException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+        }
+
+        public DataTable listarCarrito(ECarrito obj)
+        {
+                using (SqlConnection cn = new SqlConnection(Conexion.cn))
+                {
+                    DataTable dt = new DataTable();
+                    SqlCommand cmd = new SqlCommand("listarCarrito", cn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@idc", obj.IDCliente);
+                    SqlDataAdapter da = new SqlDataAdapter(cmd);
+                    da.Fill(dt);
+                    return dt;
+                }
+        }
+
     }
 }

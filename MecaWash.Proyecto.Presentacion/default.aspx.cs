@@ -10,6 +10,7 @@ using System.Data;
 using System.Net;
 using System.Net.Mail;
 using Newtonsoft.Json;
+using System.Threading.Tasks;
 
 namespace MecaWash.Proyecto.Presentacion
 {
@@ -18,6 +19,8 @@ namespace MecaWash.Proyecto.Presentacion
         ECliente objE = new ECliente();
         NCliente objN = new NCliente();
         apis NApi = new apis();
+        ECarrito eC = new ECarrito();
+        NCarrito nC = new NCarrito();
         protected void Page_Load(object sender, EventArgs e)
         {
             if (Request.Cookies["ClienteCookie"] != null)
@@ -48,6 +51,10 @@ namespace MecaWash.Proyecto.Presentacion
                         cookie.Value = valoresSerializados;
                         cookie.Expires = DateTime.Now.AddDays(10); // Puedes ajustar la expiración según tus necesidades
                         Response.Cookies.Add(cookie);
+
+                        //llenar cookie carrito si existe carrito
+                        llenarCookie(int.Parse(dt2.Rows[0]["IDCliente"].ToString()));
+
                         Response.Redirect("/Cliente");
                     }else if (dt2.Rows[0]["Estado"].ToString() == "2")
                     {
@@ -176,5 +183,41 @@ namespace MecaWash.Proyecto.Presentacion
                 ScriptManager.RegisterStartupScript(this, GetType(), "Error", "notiError('Error correo no valido!');", true);
             }
         }
+
+        protected void llenarCookie(int idc)
+        {
+            DataTable dtC = new DataTable();
+            eC.IDCliente = idc;
+            dtC = nC.listarCarrito(eC);
+
+            HttpCookie carritoCookie = Request.Cookies["Carrito"];
+
+            if (carritoCookie == null)
+            {
+                carritoCookie = new HttpCookie("Carrito");
+                carritoCookie.Expires = DateTime.Now.AddDays(10); // Puedes ajustar la duración de la cookie.
+            }
+
+            List<CarritoServicio> carrito = new List<CarritoServicio>();
+
+            foreach (DataRow row in dtC.Rows)
+            {
+                // Obtener los valores de las columnas necesarias del DataTable
+                int idServicio = Convert.ToInt32(row["IDServicio"]);
+                decimal precio = Convert.ToDecimal(row["precio"]);
+                string imagen = row["imagen"].ToString(); // Ajusta el nombre de la columna según tu DataTable
+                string nom = row["TipoServicio"].ToString(); // Ajusta el nombre de la columna según tu DataTable
+
+                // Crear un nuevo producto y agregarlo a la lista
+                CarritoServicio nuevoProducto = new CarritoServicio(idc, idServicio, precio, imagen, nom);
+                carrito.Add(nuevoProducto);
+            }
+
+            // Serializa la lista de productos y actualiza la cookie.
+            carritoCookie.Value = JsonConvert.SerializeObject(carrito);
+            Response.Cookies.Set(carritoCookie);
+        }
+
+
     }
 }
