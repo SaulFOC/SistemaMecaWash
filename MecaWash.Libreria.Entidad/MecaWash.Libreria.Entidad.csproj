@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ECarrito.cs" />
     <Compile Include="ECita.cs" />
     <Compile Include="ECliente.cs" />
     <Compile Include="EDetalle_Cliente.cs" />

@@ -4,11 +4,11 @@
     <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
     <div class="container pt-3 pb-3">
         <h4>Servicios</h4>
-        <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+        <asp:UpdatePanel ID="UpdatePanel1" runat="server" UpdateMode="Conditional">
             <ContentTemplate>
 
                 <div class="row">
-                    <asp:Repeater ID="Repeater1" runat="server">
+                    <asp:Repeater ID="Repeater1"  runat="server">
                         <ItemTemplate>
 
                             <div class="col-sm-12 col-md-4 col-lg-4 col-xl-4 mb-3">
@@ -31,7 +31,7 @@
                                                     </span>
                                                 </div>
                                                 <div class="col-4 text-end">
-                                                    <asp:LinkButton ID="LinkButton1" CommandName="Agregar" OnCommand="AgregarCarrito" CommandArgument='<%#Eval("IDServicio") %>' CssClass="btn btn-dark text-light" runat="server"><i class='bx bx-cart-add'></i></asp:LinkButton>
+                                                    <asp:Button ID="Button1" CommandName="Agregar" OnCommand="AgregarCarrito" CommandArgument='<%#Eval("IDServicio")+"|"+Eval("PrecioServicio")+"|"+"assets/img/sinImagen.png"+ "|"+Eval("TipoServicio") %>' CssClass="btn btn-dark text-light" runat="server" Text="+" />
                                                 </div>
                                             </div>
                                             <label for="" class="text-precio fw-bold">S/ <%#Eval("PrecioServicio") %></label>

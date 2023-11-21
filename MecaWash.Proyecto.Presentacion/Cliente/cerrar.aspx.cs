@@ -18,6 +18,14 @@ namespace MecaWash.Proyecto.Presentacion.Cliente
                 Response.Cookies["ClienteCookie"].Expires = DateTime.Now.AddDays(-1);
             }
 
+            if (Request.Cookies["Carrito"] != null)
+            {
+                Response.Cookies["Carrito"].Value = "";
+                Response.Cookies["Carrito"].Expires = DateTime.Now.AddDays(-1);
+            }
+
+
+
             // Redirigir a la página de inicio de sesión o a la página principal
             Response.Redirect("../"); // Cambia la URL según tu estructura de proyecto
         }

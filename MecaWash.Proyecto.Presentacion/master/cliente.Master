@@ -71,6 +71,23 @@
             </asp:ContentPlaceHolder>
     </form>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        function notiError(mensaje) {
+            Swal.fire({
+                title: "Ocurrio un error",
+                text: mensaje,
+                icon: "error"
+            });
+        }
+
+        function notiExito(titulo,mensaje) {
+            Swal.fire({
+                title: titulo,
+                text: mensaje,
+                icon: "success"
+            });
+        }
+    </script>
     <script src="../Scripts/bootstrap.min.js"></script>
     <script src="../assets/js/activarDarkmode.js"></script>
 </body>
