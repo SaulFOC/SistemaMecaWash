@@ -24,6 +24,24 @@ namespace MecaWash.Proyecto.Presentacion.Colaborador.Administrador
         protected global::System.Web.UI.WebControls.Button BtnCargar;
 
         /// <summary>
+        /// Control Btnempleados.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button Btnempleados;
+
+        /// <summary>
+        /// Control Btnvehiculo.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button Btnvehiculo;
+
+        /// <summary>
         /// Control ReportViewer1.
         /// </summary>
         /// <remarks>

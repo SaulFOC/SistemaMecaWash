@@ -511,6 +511,8 @@
   <ItemGroup />
   <ItemGroup>
     <EmbeddedResource Include="reportes\Rclientes.rdlc" />
+    <EmbeddedResource Include="reportes\Rempleados.rdlc" />
+    <EmbeddedResource Include="reportes\Rvehiculo.rdlc" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
