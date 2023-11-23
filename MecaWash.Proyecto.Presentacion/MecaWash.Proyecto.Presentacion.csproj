@@ -173,6 +173,7 @@
     <Content Include="Cliente\repuestos.aspx" />
     <Content Include="Cliente\servicios.aspx" />
     <Content Include="Colaborador\Administrador\cerrar.aspx" />
+    <Content Include="Colaborador\Administrador\citas.aspx" />
     <Content Include="Colaborador\Administrador\Clientes.aspx" />
     <Content Include="Colaborador\Administrador\default.aspx" />
     <Content Include="Colaborador\Administrador\empleados.aspx" />
@@ -266,6 +267,13 @@
     </Compile>
     <Compile Include="Colaborador\Administrador\cerrar.aspx.designer.cs">
       <DependentUpon>cerrar.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Colaborador\Administrador\citas.aspx.cs">
+      <DependentUpon>citas.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Colaborador\Administrador\citas.aspx.designer.cs">
+      <DependentUpon>citas.aspx</DependentUpon>
     </Compile>
     <Compile Include="Colaborador\Administrador\Clientes.aspx.cs">
       <DependentUpon>Clientes.aspx</DependentUpon>

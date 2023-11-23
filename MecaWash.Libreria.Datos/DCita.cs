@@ -36,5 +36,19 @@ namespace MecaWash.Libreria.Datos
                 Console.WriteLine(ex.Message);
             }
         }
+
+        public DataTable ListarCita()
+        {
+            using (SqlConnection cn = new SqlConnection(Conexion.cn))
+            {
+                DataTable dt = new DataTable();
+                SqlCommand cmd = new SqlCommand("listarCitaNueva", cn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(dt);
+                return dt;
+            }
+
+        }
     }
 }

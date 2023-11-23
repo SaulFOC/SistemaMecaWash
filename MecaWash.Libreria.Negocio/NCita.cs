@@ -17,5 +17,10 @@ namespace MecaWash.Libreria.Negocio
             datos.agregarCita(obj);
         }
 
+        public DataTable ListarCita()
+        {
+            return datos.ListarCita();
+        }
+
     }
 }

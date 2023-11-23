@@ -150,7 +150,7 @@ namespace MecaWash.Proyecto.Presentacion
                     objE.Telefono = tel;
                     objE.CorreoElectronico = correo;
                     objE.clave = clave;
-                    objE.Estado = 2;
+                    objE.Estado = 1;
 
                     bool respuesta = objN.ExisteCuenta(objE);
                     if (respuesta == true)

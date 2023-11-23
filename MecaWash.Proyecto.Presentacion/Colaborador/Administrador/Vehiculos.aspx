@@ -117,7 +117,7 @@
                                     </asp:DropDownList>--%>
                                 </edititemtemplate>
                                 <footertemplate>
-                                    <asp:DropDownList ID="DropDownList1" runat="server">
+                                    <asp:DropDownList ID="DropDownList1" CssClass="js-example-basic-single w-100" runat="server">
                                     
                                     </asp:DropDownList>
                                     <%--<asp:DropDownList ID="ddlBuscarCLiente" AutoPostBack="true" runat="server" CssClass="js-example-basic-single w-100"  AppendDataBoundItems="true">

@@ -11,6 +11,7 @@
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/intro.js/7.2.0/introjs.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../../assets/css/estilomenu.css">
+    
 </head>
 <body>
     <form id="form1" runat="server">
@@ -44,7 +45,10 @@
     <div class="menu-bar">
         <div class="menu">
 
-            
+            <li class="search-box">
+                <i class='bx bx-search icon'></i>
+                <input type="text" placeholder="Search...">
+            </li>
 
             <ul class="menu-links">
                 <li class="nav-link first">
@@ -65,6 +69,13 @@
                     <a href="empleados.aspx" target="myFrame">
                     <i class='bx bxs-user-detail icon'></i>
                         <span class="text nav-text">Empleados</span>
+                    </a>
+                </li>
+
+                <li class="nav-link third">
+                    <a href="citas.aspx" target="myFrame">
+                    <i class='bx bx-calendar-star icon'></i>
+                        <span class="text nav-text">Citas</span>
                     </a>
                 </li>
 
@@ -175,7 +186,7 @@
                         title: 'Clientes 👩🏻‍🤝‍🧑🏿',
                         element: document.querySelector('.six'),
                         intro: 'En este apartado podras ver los clientes que se han registrado en la empresa, agregarlos, editarlos y eliminarlos'
-                    }, 
+                    },
                     {
                         title: 'Vehiculos 🚗',
                         element: document.querySelector('.seven'),

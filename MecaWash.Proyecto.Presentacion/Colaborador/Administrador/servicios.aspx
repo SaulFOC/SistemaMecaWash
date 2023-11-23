@@ -52,7 +52,7 @@
 
 
 
-                        <asp:TemplateField HeaderText="Descripcion" ControlStyle-Width="650px">
+                        <asp:TemplateField HeaderText="Descripcion" ControlStyle-Width="450px">
                             <EditItemTemplate>
                                 <asp:TextBox ID="txtDescripcionServicioE" CssClass="form-control" runat="server" Text='<%# Bind("DescripcionServicio") %>'></asp:TextBox>
                             </EditItemTemplate>
