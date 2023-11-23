@@ -2,12 +2,15 @@
 
 <%@ Register Assembly="Microsoft.ReportViewer.WebForms" Namespace="Microsoft.Reporting.WebForms" TagPrefix="rsweb" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <div class = "container" >
-        <asp:Button ID="BtnCargar" runat="server" Text="Cliente " OnClick="BtnCargar_Click" BackColor="#6699FF" />
-        <asp:Button ID="Btnempleados" runat="server" BackColor="#FFFF66" OnClick="Btnempleados_Click" Text="Empleados " />
-        <asp:Button ID="Btnvehiculo" runat="server" BackColor="#66FF66" OnClick="Btnvehiculo_Click" Text="Vehiculos " />
-        <rsweb:ReportViewer CssClass="w-100" ID="ReportViewer1" runat="server" Width="845px">
+    
+    <div class = "container pt-3 pb-3" >
+        <asp:Button ID="BtnCargar" runat="server" Text="Cliente " OnClick="BtnCargar_Click" CssClass="btn btn-info" />
+        <asp:Button ID="Btnempleados" runat="server" CssClass="btn btn-secondary" OnClick="Btnempleados_Click" Text="Empleados " />
+        <asp:Button ID="Btnvehiculo" runat="server" CssClass="btn btn-warning" OnClick="Btnvehiculo_Click" Text="Vehiculos " />
+        <center>
+        <rsweb:ReportViewer Width="100%" Height="520px" ID="ReportViewer1" runat="server">
         </rsweb:ReportViewer>
+            </center>
     </div>
     <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
 </asp:Content>

@@ -79,6 +79,13 @@
                     </a>
                 </li>
 
+                <li class="nav-link third">
+                    <a href="reporte.aspx" target="myFrame">
+                    <i class='bx bx-bar-chart-square icon'></i>
+                        <span class="text nav-text">Reportes</span>
+                    </a>
+                </li>
+
                 <li class="nav-link fourth">
                     <a href="Repuestos.aspx" target="myFrame">
                         <i class='bx bxs-box icon'></i>
