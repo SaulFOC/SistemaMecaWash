@@ -110,5 +110,10 @@ namespace MecaWash.Libreria.Negocio
         {
             return datos.BuscarVehiculo(obj);
         }
+
+        public DataTable BuscarVehiculoCliente(EVehiculos obj)
+        {
+            return datos.BuscarVehiculoCliente(obj);
+        }
     }
 }

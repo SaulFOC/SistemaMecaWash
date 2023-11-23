@@ -120,5 +120,18 @@ namespace MecaWash.Libreria.Datos
                 return dt;
             }
         }
+        public DataTable BuscarVehiculoCliente(EVehiculos obj)
+        {
+            using (SqlConnection cn = new SqlConnection(Conexion.cn))
+            {
+                DataTable dt = new DataTable();
+                SqlCommand cmd = new SqlCommand("buscarVehiculop", cn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@idc", obj.IDCliente);
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(dt);
+                return dt;
+            }
+        }
     }
 }

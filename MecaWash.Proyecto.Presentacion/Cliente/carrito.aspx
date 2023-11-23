@@ -41,6 +41,27 @@
 
                         </ItemTemplate>
                     </asp:Repeater>
+                    <asp:Label ID="lblNoti" runat="server" CssClass="form-label"></asp:Label>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6 col-md-6 col-lg-3 col-xl-3 mt-3">
+                        <label class="form-label">Fecha de la cita</label>
+                        <asp:TextBox ID="txtFechaC" TextMode="Date" CssClass="form-control w-100" runat="server"></asp:TextBox>
+                    </div>
+                    <div class="col-sm-6 col-md-6 col-lg-3 col-xl-3 mt-3">
+                        <label class="form-label">Hora de la cita</label>
+                        <asp:TextBox ID="txtHoraC" TextMode="Time" CssClass="form-control w-100" runat="server"></asp:TextBox>
+                    </div>
+                    <div class="col-sm-6 col-md-6 col-lg-3 col-xl-3 mt-3">
+                        <label class="form-label">Selecciona vehiculo</label>
+                        <asp:DropDownList ID="ddlCarro" CssClass="form-select w-100" runat="server">
+                            <asp:ListItem Value="gg">Seleccionar...</asp:ListItem>
+                        </asp:DropDownList>
+                    </div>
+                    <div class="col-sm-6 col-md-6 col-lg-3 col-xl-3 mt-3">
+                        <label class="form-label">Enviar</label>
+                        <asp:Button ID="btnRegistrar" CommandName="Registrar" OnCommand="RegistrarCita" CssClass="btn btn-secondary w-100" runat="server" Text="Registrar" />
+                    </div>
                 </div>
             </ContentTemplate>
         </asp:UpdatePanel>

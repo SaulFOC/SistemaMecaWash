@@ -15,12 +15,33 @@ namespace MecaWash.Proyecto.Presentacion.Cliente
     {
         NCarrito objC = new NCarrito();
         ECarrito objEC = new ECarrito();
+        EVehiculos eV = new EVehiculos();
+        NVehiculo nV = new NVehiculo();
+        ECita eCi = new ECita();
+        NCita nCi = new NCita();
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            int idc=0;
+            if (Request.Cookies["ClienteCookie"] != null)
+            {
+                string valoresSerializados = Request.Cookies["ClienteCookie"].Value;
+
+                // Deserializar los valores desde la cookie
+                var valoresDeserializados = JsonConvert.DeserializeObject<dynamic>(valoresSerializados);
+                string id = valoresDeserializados.id;
+                idc = int.Parse(id);
+            }
+            else
+            {
+                // La cookie no existe, redirige al usuario a la página de inicio de sesión
+                Response.Redirect("../");
+            }
             if (!IsPostBack)
             {
                 MostrarCarrito();
+                VaciarCombo();
+                LlenarCombo(idc);
             }
 
         }
@@ -42,7 +63,7 @@ namespace MecaWash.Proyecto.Presentacion.Cliente
             {
                 // Si la cookie está vacía, puedes mostrar un mensaje o dejar el Repeater vacío.
                 Repeater1.Visible = false;
-                Response.Write("El carrito está vacío.");
+                lblNoti.Text = "El carrito esta vacio...";
             }
         }
 
@@ -104,6 +125,77 @@ namespace MecaWash.Proyecto.Presentacion.Cliente
             objEC.IDCliente = idc;
             objEC.IDServicio = ids;
             await Task.Run(() => objC.EliminarCarrito(objEC));
+        }
+
+        protected void LlenarCombo(int idc)
+        {
+            try
+            {
+                eV.IDCliente = idc;
+                ddlCarro.DataSource = nV.BuscarVehiculoCliente(eV);
+                ddlCarro.DataTextField = "carro";
+                ddlCarro.DataValueField = "IDVehiculo";
+                ddlCarro.DataBind();
+            }
+            catch
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "exito", "notiError('No ha registrado ningun vehiculo!');", true);
+            }
+            
+        }
+        protected void VaciarCombo()
+        {
+            ddlCarro.Items.Clear();
+            ddlCarro.Items.Add(new ListItem("Seleccionar...", "gg"));
+        }
+        protected void RegistrarCita(object source, CommandEventArgs e)
+        {
+            if(e.CommandName == "Registrar")
+            {
+                try
+                {
+                    if (ddlCarro.SelectedValue != null && txtFechaC.Text != "" && txtHoraC.Text != "")
+                    {
+                        string fecha, hora;
+                        int idc, idv;
+                        fecha = txtFechaC.Text;
+                        hora = txtHoraC.Text;
+                        idv = int.Parse(ddlCarro.SelectedValue.ToString());
+                        string valoresSerializados = Request.Cookies["ClienteCookie"].Value;
+
+                        // Deserializar los valores desde la cookie
+                        var valoresDeserializados = JsonConvert.DeserializeObject<dynamic>(valoresSerializados);
+                        string id = valoresDeserializados.id;
+                        idc = int.Parse(id);
+
+                        eCi.Fecha = fecha;
+                        eCi.Hora = hora;
+                        eCi.IDCliente = idc;
+                        eCi.IDVehiculo = idv;
+                        nCi.agregarCita(eCi);
+
+                        if (Request.Cookies["Carrito"] != null)
+                        {
+                            Response.Cookies["Carrito"].Value = "";
+                            Response.Cookies["Carrito"].Expires = DateTime.Now.AddDays(-1);
+                        }
+
+                        Repeater1.Visible = false;
+                        lblNoti.Text = "El carrito esta vacio...";
+
+                        ScriptManager.RegisterStartupScript(this, GetType(), "exito", "notiExito('Compra exitosa!','Se agendo la cita para tu servicio!');", true);
+
+                    }
+                    else
+                    {
+                        ScriptManager.RegisterStartupScript(this, GetType(), "error", "notiError('llenar todos los datos!');", true);
+                    }
+                }
+                catch
+                {
+                    ScriptManager.RegisterStartupScript(this, GetType(), "error", "notiError('No se pudo procesar la compra!');", true);
+                }
+            }
         }
     }
 }
