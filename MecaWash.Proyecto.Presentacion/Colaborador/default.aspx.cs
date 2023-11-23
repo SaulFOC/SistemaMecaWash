@@ -21,7 +21,7 @@ namespace MecaWash.Proyecto.Presentacion.Colaborador
         {
             if (Request.Cookies["EmpleadoCookie"] != null)
             {
-                Response.Redirect("/Administrador");
+                Response.Redirect("Administrador");
             }
             InitializeCulture();
         }
@@ -47,7 +47,7 @@ namespace MecaWash.Proyecto.Presentacion.Colaborador
                         cookie.Value = valoresSerializados;
                         cookie.Expires = DateTime.Now.AddDays(7); // Puedes ajustar la expiración según tus necesidades
                         Response.Cookies.Add(cookie);
-                        Response.Redirect("/Administrador");
+                        Response.Redirect("Administrador");
                     }
                 }
                 else

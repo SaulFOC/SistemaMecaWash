@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
     <link rel="stylesheet" href="assets/css/cabecera.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+        <script src="https://www.google.com/recaptcha/api.js" async defer></script>
     <title></title>
     <style>
         * {
@@ -353,6 +354,9 @@
                             <div class="mb-3">
                                 <label for="loginPassword" class="form-label">Contraseña</label>
                                 <asp:TextBox ID="txtClave" CssClass="form-control" TextMode="Password" placeholder="********" runat="server"></asp:TextBox>
+                            </div>
+                            <div class="mb-3">
+                                <div class="g-recaptcha" data-sitekey="6Le-XxkpAAAAACMNval5Zz43VD3-OlzL54G8-zGX"></div>
                             </div>
                             <asp:LinkButton ID="LinkButton1" CssClass="btn btn-login" CommandName="Loguear" OnCommand="LoguearCliente2" runat="server">Iniciar sesión</asp:LinkButton>
 

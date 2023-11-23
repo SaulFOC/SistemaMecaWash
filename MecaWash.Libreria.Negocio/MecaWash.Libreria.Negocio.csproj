@@ -82,6 +82,8 @@
     <Compile Include="NCliente.cs" />
     <Compile Include="NEmpleado.cs" />
     <Compile Include="NEncriptacion.cs" />
+    <Compile Include="NEstadisticas.cs" />
+    <Compile Include="NInvetario.cs" />
     <Compile Include="NServicio.cs" />
     <Compile Include="NUtilidades.cs" />
     <Compile Include="NVehiculo.cs" />
