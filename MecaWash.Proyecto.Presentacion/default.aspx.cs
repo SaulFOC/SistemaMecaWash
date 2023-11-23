@@ -11,6 +11,9 @@ using System.Net;
 using System.Net.Mail;
 using Newtonsoft.Json;
 using System.Threading.Tasks;
+using Newtonsoft.Json.Linq;
+using System.Configuration;
+using System.IO;
 
 namespace MecaWash.Proyecto.Presentacion
 {
@@ -21,6 +24,27 @@ namespace MecaWash.Proyecto.Presentacion
         apis NApi = new apis();
         ECarrito eC = new ECarrito();
         NCarrito nC = new NCarrito();
+
+        public bool IsReCaptchValid()
+        {
+            var result = false;
+            var captchaResponse = Request.Form["g-recaptcha-response"];
+            var secretKey = ConfigurationManager.AppSettings["SecretKey"];
+            var apiUrl = "https://www.google.com/recaptcha/api/siteverify?secret={0}&response={1}";
+            var requestUri = string.Format(apiUrl, secretKey, captchaResponse);
+            var request = (HttpWebRequest)WebRequest.Create(requestUri);
+
+            using (WebResponse response = request.GetResponse())
+            {
+                using (StreamReader stream = new StreamReader(response.GetResponseStream()))
+                {
+                    JObject jResponse = JObject.Parse(stream.ReadToEnd());
+                    var isSuccess = jResponse.Value<bool>("success");
+                    result = (isSuccess) ? true : false;
+                }
+            }
+            return result;
+        }
         protected void Page_Load(object sender, EventArgs e)
         {
             if (Request.Cookies["ClienteCookie"] != null)
@@ -32,44 +56,57 @@ namespace MecaWash.Proyecto.Presentacion
 
         protected void LoguearCliente2(object sender, CommandEventArgs e)
         {
-            if (e.CommandName == "Loguear")
-            {
-                DataTable dt2 = new DataTable();
-                string correo, clave;
-                correo = txtCorreo.Text;
-                clave = txtClave.Text;
-                objE.CorreoElectronico = correo;
-                objE.clave = clave;
-                dt2 = objN.LoguearCliente(objE);
-
-                if (dt2.Rows.Count > 0)
+            
+                if (e.CommandName == "Loguear")
                 {
-                    if (dt2.Rows[0]["Estado"].ToString() == "1")
+                    if (IsReCaptchValid())
                     {
-                        string valoresSerializados = JsonConvert.SerializeObject(new { id = dt2.Rows[0]["IDCliente"], dni = dt2.Rows[0]["DNI"], nombre = dt2.Rows[0]["Nombre"], direccion = dt2.Rows[0]["Direccion"], email = correo });
-                        HttpCookie cookie = new HttpCookie("ClienteCookie");
-                        cookie.Value = valoresSerializados;
-                        cookie.Expires = DateTime.Now.AddDays(10); // Puedes ajustar la expiración según tus necesidades
-                        Response.Cookies.Add(cookie);
+                    DataTable dt2 = new DataTable();
+                    string correo, clave;
+                    correo = txtCorreo.Text;
+                    clave = txtClave.Text;
+                    objE.CorreoElectronico = correo;
+                    objE.clave = clave;
+                    dt2 = objN.LoguearCliente(objE);
 
-                        //llenar cookie carrito si existe carrito
-                        llenarCookie(int.Parse(dt2.Rows[0]["IDCliente"].ToString()));
-
-                        Response.Redirect("/Cliente");
-                    }else if (dt2.Rows[0]["Estado"].ToString() == "2")
+                    if (dt2.Rows.Count > 0)
                     {
-                        string nombre = dt2.Rows[0]["Nombre"].ToString();
-                        string codigo = dt2.Rows[0]["codigo"].ToString();
-                        string id= dt2.Rows[0]["IDCliente"].ToString();
-                        EnviarCorreo(nombre, correo, codigo);
-                        Response.Redirect("/verificarcorreo.aspx?id="+id);
+                        if (dt2.Rows[0]["Estado"].ToString() == "1")
+                        {
+                            string valoresSerializados = JsonConvert.SerializeObject(new { id = dt2.Rows[0]["IDCliente"], dni = dt2.Rows[0]["DNI"], nombre = dt2.Rows[0]["Nombre"], direccion = dt2.Rows[0]["Direccion"], email = correo });
+                            HttpCookie cookie = new HttpCookie("ClienteCookie");
+                            cookie.Value = valoresSerializados;
+                            cookie.Expires = DateTime.Now.AddDays(10); // Puedes ajustar la expiración según tus necesidades
+                            Response.Cookies.Add(cookie);
+
+                            //llenar cookie carrito si existe carrito
+                            llenarCookie(int.Parse(dt2.Rows[0]["IDCliente"].ToString()));
+
+                            Response.Redirect("/Cliente");
+                        }
+                        else if (dt2.Rows[0]["Estado"].ToString() == "2")
+                        {
+                            string nombre = dt2.Rows[0]["Nombre"].ToString();
+                            string codigo = dt2.Rows[0]["codigo"].ToString();
+                            string id = dt2.Rows[0]["IDCliente"].ToString();
+                            EnviarCorreo(nombre, correo, codigo);
+                            Response.Redirect("/verificarcorreo.aspx?id=" + id);
+                        }
+                    }
+                    else
+                    {
+                        ScriptManager.RegisterStartupScript(this, GetType(), "Error", "notiError('Correo o clave incorrecta!');", true);
                     }
                 }
-                else
-                {
-                    ScriptManager.RegisterStartupScript(this, GetType(), "Error", "notiError('Correo o clave incorrecta!');", true);
+                    else
+                    {
+                       
+                             ScriptManager.RegisterStartupScript(this, GetType(), "Error", "notiError('Error!');", true);
                 }
+                    
             }
+           
+
         }
         protected void ConsultaDNI(object sender, CommandEventArgs e)
         {

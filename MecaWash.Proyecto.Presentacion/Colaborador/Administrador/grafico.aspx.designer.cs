@@ -11,7 +11,7 @@ namespace MecaWash.Proyecto.Presentacion.Colaborador.Administrador
 {
 
 
-    public partial class home
+    public partial class grafico
     {
     }
 }

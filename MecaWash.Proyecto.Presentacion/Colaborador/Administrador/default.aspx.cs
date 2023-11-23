@@ -24,7 +24,7 @@ namespace MecaWash.Proyecto.Presentacion.Colaborador.Administrador
             else
             {
                 // La cookie no existe, redirige al usuario a la página de inicio de sesión
-                Response.Redirect("./");
+                Response.Redirect("../");
             }
         }
     }

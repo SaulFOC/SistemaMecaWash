@@ -48,7 +48,7 @@
 
             <ul class="menu-links">
                 <li class="nav-link first">
-                    <a href="default.aspx" target="myFrame">
+                    <a href="grafico.aspx" target="myFrame">
                         <i class='bx bxs-dashboard icon'></i>
                         <span class="text nav-text">Inicio</span>
                     </a>
@@ -69,21 +69,28 @@
                 </li>
 
                 <li class="nav-link fourth">
+                    <a href="Repuestos.aspx" target="myFrame">
+                        <i class='bx bxs-box icon'></i>
+                        <span class="text nav-text">Inventario</span>
+                    </a>
+                </li>
+
+                <li class="nav-link five">
                     <a href="Perfil.aspx" target="myFrame">
                         <i class='bx bx-user icon'></i>
                         <span class="text nav-text">Perfil</span>
                     </a>
                 </li>
 
-                <li class="nav-link five">
+                <li class="nav-link six">
                     <a href="Clientes.aspx" target="myFrame">
                         <i class='bx bx-support icon'></i>
                         <span class="text nav-text">Clientes</span>
                     </a>
                 </li>
-                <li class="nav-link six">
+                <li class="nav-link seven">
                     <a href="Vehiculos.aspx" target="myFrame">
-                    <i class='bx bx-search icon'></i>
+                    <i class='bx bxs-car-wash icon'></i>
                     <span class="text nav-text">Vehiculo</span>
                         </a>
                 </li>
@@ -92,14 +99,14 @@
         </div>
 
         <div class="bottom-content ">
-            <li class="nav-link seven">
+            <li class="nav-link eight">
                 <a href="cerrar.aspx">
                     <i class='bx bx-log-out icon'></i>
                     <span class="text nav-text">Salir</span>
                 </a>
             </li>
 
-            <li class="mode eight">
+            <li class="mode nine">
                 <div class="sun-moon">
                     <i class='bx bx-moon icon moon'></i>
                     <i class='bx bx-sun icon sun'></i>
@@ -117,7 +124,7 @@
 </nav>
 
     <section class="home">
-        <iframe src="home.aspx" name='myFrame' style="height: 100%; width: 100%; border: none;"></iframe>
+        <iframe src="grafico.aspx" name='myFrame' style="height: 100%; width: 100%; border: none;"></iframe>
 
         <!--<div class="text">Dashboard Sidebar</div>-->
     </section>
@@ -155,30 +162,35 @@
                         intro: 'En este apartado podras ver los empleados que trabajan en la empresa, agregarlos, editarlos y eliminarlos'
                     },
                     {
-                        title: 'Perfil 👤',
+                        title: 'Inventario 👜',
                         element: document.querySelector('.fourth'),
-                        intro: 'En este apartado podras ver tu perfil, editar tu informacion y cambiar tu contraseña'
+                        intro: 'En este apartado podras ver los respuestos, agregarlos, editarlos y eliminarlos'
                     },
                     {
-                        title: 'Clientes 👨🏼‍🤝‍👨🏼',
+                        title: 'Perfil 👤',
                         element: document.querySelector('.five'),
-                        intro: 'En este apartado podras ver los clientes que se han registrado en la empresa, agregarlos, editarlos y eliminarlos'
+                        intro: 'Aqui Podras Ver tu Perfil'
                     },
                     {
-                        title: 'Vehiculos 🚗',
+                        title: 'Clientes 👩🏻‍🤝‍🧑🏿',
                         element: document.querySelector('.six'),
-                        intro: 'En este apartado podras ver los vehiculos que se han registrado en la empresa, agregarlos, editarlos y eliminarlos'
+                        intro: 'En este apartado podras ver los clientes que se han registrado en la empresa, agregarlos, editarlos y eliminarlos'
                     }, 
                     {
-                        title: 'Salir 🚪',
+                        title: 'Vehiculos 🚗',
                         element: document.querySelector('.seven'),
-                        intro: 'En este apartado podras cerrar sesion'
+                        intro: 'En este apartado podras ver los vehiculos que se han registrado en la empresa, agregarlos, editarlos y eliminarlos'
                     },
                     {
-                        title: 'Dark mode y Light mode 🌙',
+                        title: 'Salir 🚪 🌙',
                         element: document.querySelector('.eight'),
+                        intro: 'Haz click aqui para cerrar la sesion'
+                    },
+                    {
+                        title: 'Modo oscuro y claro 🌙',
+                        element: document.querySelector('.nine'),
                         intro: 'En este apartado podras cambiar el modo de la pagina entre claro y oscuro'
-                    }
+                    },
 
                 ],
                 showBullets: false,

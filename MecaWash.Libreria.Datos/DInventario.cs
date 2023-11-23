@@ -23,6 +23,20 @@ namespace MecaWash.Libreria.Datos
                 return dt;
             }
         }
+        
+        public DataTable BuscarInventario(EInventario obj)
+        {
+            using (SqlConnection cn = new SqlConnection(Conexion.cn))
+            {
+                DataTable dt = new DataTable();
+                SqlCommand cmd = new SqlCommand("BuscarInventario", cn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@id", obj.IDInventario);
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(dt);
+                return dt;
+            }
+        }
 
         public int RegistrarInventario(EInventario obj)
         {
@@ -71,7 +85,6 @@ namespace MecaWash.Libreria.Datos
                     cmd.Parameters.AddWithValue("@Descripcion", obj.Descripcion);
                     cmd.Parameters.AddWithValue("@CantidadInventario", obj.Cantidad);
                     cmd.Parameters.AddWithValue("@PrecioPorUnidad", obj.PrecioProducto);
-                    cmd.Parameters.AddWithValue("@Estado", obj.Estado);
                     cn.Open();
                     cmd.ExecuteNonQuery();
                     cn.Close();
@@ -86,7 +99,7 @@ namespace MecaWash.Libreria.Datos
             return resp;
         }
 
-        public bool EliminarInventario(EInventario obj)
+        public bool EliminarInventario(int id)
         {
             string error = "";
             bool resp = false;
@@ -96,7 +109,7 @@ namespace MecaWash.Libreria.Datos
                 {
                     SqlCommand cmd = new SqlCommand("EliminarInventario", cn);
                     cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.AddWithValue("@IDProducto", obj.IDInventario);
+                    cmd.Parameters.AddWithValue("@IDProducto", id);
                     cn.Open();
                     cmd.ExecuteNonQuery();
                     cn.Close();
@@ -107,6 +120,30 @@ namespace MecaWash.Libreria.Datos
             {
                 resp = false;
                 error = ex.Message;
+            }
+            return resp;
+        }
+
+        public int AgregarInventario(EInventario obj)
+        {
+            int resp=1;
+            try
+            {
+                using (SqlConnection cn = new SqlConnection(Conexion.cn))
+                {
+                    SqlCommand cmd = new SqlCommand("addInventario", cn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@id", obj.IDInventario);
+                    cmd.Parameters.AddWithValue("@CantidadAgregar", obj.Cantidad);
+                    cn.Open();
+                    cmd.ExecuteNonQuery();
+                    cn.Close();
+                    resp = 1;
+                }
+            }
+            catch
+            {
+                resp = 0;
             }
             return resp;
         }

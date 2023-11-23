@@ -47,6 +47,7 @@
     <Compile Include="DCita.cs" />
     <Compile Include="DClientes.cs" />
     <Compile Include="DEmpleado.cs" />
+    <Compile Include="DEstadisticas.cs" />
     <Compile Include="DInventario.cs" />
     <Compile Include="DServicio.cs" />
     <Compile Include="DVehiculo.cs" />
