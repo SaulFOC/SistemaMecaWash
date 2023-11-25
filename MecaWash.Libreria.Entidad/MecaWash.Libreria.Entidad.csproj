@@ -43,7 +43,9 @@
   <ItemGroup>
     <Compile Include="ECarrito.cs" />
     <Compile Include="ECita.cs" />
+    <Compile Include="ECitaEven.cs" />
     <Compile Include="ECliente.cs" />
+    <Compile Include="EDesdeBD.cs" />
     <Compile Include="EDetalle_Cliente.cs" />
     <Compile Include="EEmpleado.cs" />
     <Compile Include="EFactura.cs" />

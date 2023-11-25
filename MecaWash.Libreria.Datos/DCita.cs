@@ -50,5 +50,18 @@ namespace MecaWash.Libreria.Datos
             }
 
         }
+        public DataTable ListarCitaAceptada()
+        {
+            using (SqlConnection cn = new SqlConnection(Conexion.cn))
+            {
+                DataTable dt = new DataTable();
+                SqlCommand cmd = new SqlCommand("listarCitaAceptada", cn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(dt);
+                return dt;
+            }
+
+        }
     }
 }

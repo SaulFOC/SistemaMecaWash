@@ -24,7 +24,7 @@ namespace MecaWash.Proyecto.Presentacion.Colaborador.Administrador
             var datos = servicioGrafico.ObtenerDatosGraficoEmpleados();
 
             // Serializar los datos a formato JSON y devolverlos
-            return JsonConvert.SerializeObject(datos);
+            return JsonConvert.SerializeObject(datos); 
         }
 
         [WebMethod]

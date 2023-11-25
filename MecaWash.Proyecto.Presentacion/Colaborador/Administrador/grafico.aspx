@@ -208,6 +208,7 @@
     
     
     
+    <script src="../../assets/js/activarDarkmode.js"></script>
 </body>
 </html>
 

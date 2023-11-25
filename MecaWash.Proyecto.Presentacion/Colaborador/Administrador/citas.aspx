@@ -1,140 +1,120 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/master/colaborador.Master" AutoEventWireup="true" CodeBehind="citas.aspx.cs" Inherits="MecaWash.Proyecto.Presentacion.Colaborador.Administrador.citas" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="citas.aspx.cs" Inherits="MecaWash.Proyecto.Presentacion.Colaborador.Administrador.citas" %>
 
-<asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title></title>
+    <link rel="stylesheet" href="../../Content/bootstrap.min.css">
+    <link rel="stylesheet" href="../../assets/css/cabecera.css">
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src='../../fullcalendar/dist/index.global.js'></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            
+            // Llamada al WebMethod para obtener los datos
+            $.ajax({
+                type: "POST",
+                url: "Citas.aspx/obtenerDatosCitasCalendar",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (response) {
+                    // Se obtienen los datos y se recorren
+                    var datos = JSON.parse(response.d);
+                    var events = [];
+                    console.log(datos);
+                    for (var i = 0; i < datos.length; i++) {
+                        // Se crea el objeto con los datos de la cita
+                        events.push({
+                            id: datos[i].Id,
+                            title: datos[i].Title,
+                            start: datos[i].Start,
+                            end: datos[i].End,
+                            color: "#FFB900",
+                            textColor: "#000000"
+                        });
+                    };
+
+                    // Configuración y renderizado del calendario
+
+                    var calendarEl = document.getElementById('calendar');
+
+                    var calendar = new FullCalendar.Calendar(calendarEl, {
+                        headerToolbar: {
+                            left: 'prevYear,prev,next,nextYear today',
+                            center: 'title',
+                            right: 'dayGridMonth,dayGridWeek,dayGridDay',
+                            
+                        },
+                        buttonText: {
+                            today: 'Hoy',
+                            month: 'Mes',
+                            week: 'Semana',
+                            day: 'Día'
+                        },
+                        locale: 'es',
+                        defaultDate: new Date(),
+                        navLinks: true, // can click day/week names to navigate views
+                        dayMaxEvents: true, // allow "more" link when too many events
+                        eventStartEditable: false,
+                        eventDurationEditable: false,
+                        events: events,
+                        eventClick: function () {
+                            $('#exampleModal').modal('show');
+                        },
+                        eventMouseEnter: function (info) {
+                            info.el.style.backgroundColor = "black";
+                        },
+                        eventMouseLeave: function (info) {
+                            info.el.style.backgroundColor = "transparent";
+                        },
+                    });
+                    calendar.render();
+                },
+            });
+        });
+
+    </script>
     <style>
-        .sombra {
-            box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.12);
-        }
-
-        .menu-linea {
-            color: var(--text-color);
-            background: transparent;
-            border: none;
-            width: 100%;
-            border-bottom: 4px solid var(--text-color);
-        }
-
-            .menu-linea:hover,
-            .menu-linea:active,
-            .menu-linea:focus {
-                color: var(--text-color);
-                background: transparent;
-                transform: var(--tran-03);
-                border-bottom: 4px solid var(--caja-text);
-            }
-
-        .linea {
-            color: var(--caja-text);
-            border-bottom: 4px solid var(--caja-text);
-        }
-
-        .btn-secundario {
-            background: var(--color-precio);
-            color: var(--color-white);
-        }
-
-            .btn-secundario:hover,
-            .btn-secundario:active,
-            .btn-secundario:focus {
-                background: var(--text-color);
-                color: var(--color-white);
-                scale: 1.07;
-                transform: var(--tran-03);
-            }
-
-        .st {
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            background: var(--body-color);
-        }
-
-        #ordenesActivas {
-            display: none;
-        }
-
-        @media screen and (max-width: 468px) {
-
-            .st {
-                top: 63px;
-            }
+        body {
+    margin: 40px 10px;
+    padding: 0;
+    font-family: Arial, Helvetica Neue, Helvetica, sans-serif;
+    font-size: 14px;
+  }
+        #calendar {
+            max-width: 1100px;
+            margin: 0 auto;
         }
     </style>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div id='calendar'></div>
+    </form>
 
-    <div class="container">
-        <div class="row px-3 st">
-            <div class="col-6 p-0">
-                <div class="container p-0 w-100 mt-3 mb-3 text-center">
-                    <button id="btnNueva" class="menu-linea linea fs-5">
-                        Nueva Cita
-                    </button>
-                </div>
-            </div>
-            <div class="col-6 p-0">
-                <div class="container p-0 w-100 mt-3 mb-3 text-center">
-                    <button id="btnActivas" class="menu-linea fs-5">
-                        Citas Aceptadas
-                    </button>
-                </div>
-            </div>
-        </div>
-        <div class="row" id="nuevaOrden">
-            <asp:UpdatePanel ID="UpdatePanel1" runat="server">
-                <ContentTemplate>
-                    <div class="row">
-                    <asp:Repeater ID="Repeater1" runat="server">
-                        <ItemTemplate>
-                            <div class="col-sm-12 col-md-4 col-lg-4 col-xl-4 mb-3">
-                                <div class="container bg-white redondear p-3">
-                                    <div class="pb-2">
-                                        <label><i class="bi bi-person-bounding-box"></i> <%#Eval("Nombre") %></label><br />
-                                    </div>
-                                    <div class="row pb-2">
-                                        <div class="col-6">
-                                            <label><i class="bi bi-calendar-date"></i> <%#Eval("Fecha") %></label>
-                                        </div>
-                                        <div class="col-6">
-                                            <label><i class="bi bi-watch"></i> <%#Eval("Hora") %></label>
-                                        </div>
-                                    </div>
-                                    <div class="pb-2">
-                                        <label><i class="bi bi-car-front-fill"></i> <%#Eval("Vehiculo") %></label>
-                                    </div>
-                                    
-                                </div>
-                            </div>
-                        </ItemTemplate>
-                    </asp:Repeater>
-                        </div>
-
-                    <asp:Label ID="lblNoti" runat="server" CssClass="form-label"></asp:Label>
-                </ContentTemplate>
-            </asp:UpdatePanel>
-        </div>
-        <div class="row" id="ordenesActivas">
-            <asp:UpdatePanel ID="UpdatePanel2" runat="server">
-                <ContentTemplate>
-                    <asp:Repeater ID="Repeater2" runat="server">
-                    </asp:Repeater>
-                    <asp:Label ID="lblNoti2" runat="server" CssClass="form-label"></asp:Label>
-                </ContentTemplate>
-            </asp:UpdatePanel>
-        </div>
+    <!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
     </div>
-
-    <script>
-        document.getElementById('btnNueva').addEventListener('click', function () {
-            document.getElementById('nuevaOrden').style.display = 'flex';
-            document.getElementById('ordenesActivas').style.display = 'none';
-            document.getElementById('btnNueva').classList.add('linea');
-            document.getElementById('btnActivas').classList.remove('linea');
-        });
-        document.getElementById('btnActivas').addEventListener('click', function () {
-            document.getElementById('nuevaOrden').style.display = 'none';
-            document.getElementById('ordenesActivas').style.display = 'flex';
-            document.getElementById('btnNueva').classList.remove('linea');
-            document.getElementById('btnActivas').classList.add('linea');
-        });
-    </script>
-</asp:Content>
+  </div>
+</div>
+    
+    <script src="../../assets/js/activarDarkmode.js"></script>
+    <script src="../../Scripts/bootstrap.min.js"></script>
+</body>
+</html>
