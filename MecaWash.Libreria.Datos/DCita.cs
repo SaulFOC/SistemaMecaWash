@@ -63,5 +63,20 @@ namespace MecaWash.Libreria.Datos
             }
 
         }
+
+        public DataTable ListarDetalleCita(ECita obj)
+        {
+            using (SqlConnection cn = new SqlConnection(Conexion.cn))
+            {
+                DataTable dt = new DataTable();
+                SqlCommand cmd = new SqlCommand("listarDetalleCita", cn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@idc", obj.IDCita);
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(dt);
+                return dt;
+            }
+
+        }
     }
 }

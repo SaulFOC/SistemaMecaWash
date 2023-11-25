@@ -46,6 +46,7 @@
     <Compile Include="ECitaEven.cs" />
     <Compile Include="ECliente.cs" />
     <Compile Include="EDesdeBD.cs" />
+    <Compile Include="EDetalleCita.cs" />
     <Compile Include="EDetalle_Cliente.cs" />
     <Compile Include="EEmpleado.cs" />
     <Compile Include="EFactura.cs" />

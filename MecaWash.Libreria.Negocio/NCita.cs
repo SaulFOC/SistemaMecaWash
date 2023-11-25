@@ -27,5 +27,10 @@ namespace MecaWash.Libreria.Negocio
             return datos.ListarCitaAceptada();
         }
 
+        public DataTable ListarDetalleCita(ECita obj)
+        {
+            return datos.ListarDetalleCita(obj);
+        }
+
     }
 }

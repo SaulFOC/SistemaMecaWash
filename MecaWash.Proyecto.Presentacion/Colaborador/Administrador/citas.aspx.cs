@@ -17,17 +17,17 @@ namespace MecaWash.Proyecto.Presentacion.Colaborador.Administrador
         NCita nC = new NCita();
         protected void Page_Load(object sender, EventArgs e)
         {
-            /*
+            
             if (!IsPostBack)
             {
                 LlenarCitasNuevas();
             }
-            */
+            
         }
 
         protected void LlenarCitasNuevas()
         {
-            /*
+            
             DataTable dt = nC.ListarCita();
             if (dt.Rows.Count > 0)
             {
@@ -39,7 +39,7 @@ namespace MecaWash.Proyecto.Presentacion.Colaborador.Administrador
                 Repeater1.Visible = false;
                 lblNoti.Text = "Aun no se agendan citas...";
             }
-            */
+            
         }
 
         [WebMethod]
@@ -110,6 +110,28 @@ namespace MecaWash.Proyecto.Presentacion.Colaborador.Administrador
             }
 
             return lista;
+        }
+
+        [WebMethod]
+        public static string obtenerDetallesEvento(string eventId)
+        {
+            try
+            {
+                NCita nC = new NCita();
+                ECita eC = new ECita();
+                int id = int.Parse(eventId);
+                eC.IDCita = id;
+                DataTable dt = nC.ListarDetalleCita(eC);
+                List<EDetalleCita> miLista = ConvertirDataTableALista<EDetalleCita>(dt);
+
+                return JsonConvert.SerializeObject(miLista);
+
+            }
+            catch (Exception ex)
+            {
+                // Manejar excepciones según tus necesidades
+                return "Error al obtener detalles del evento: " + ex.Message;
+            }
         }
     }
 }
