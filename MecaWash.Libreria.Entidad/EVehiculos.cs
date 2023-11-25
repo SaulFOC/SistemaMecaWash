@@ -25,6 +25,6 @@ namespace MecaWash.Libreria.Entidad
         public int Anio { get; set; }
         public string Color { get; set; }
         public int IDCliente { get; set; }
-        public int Estado { get; set; }
+        public int  Estado { get; set; }
     }
 }

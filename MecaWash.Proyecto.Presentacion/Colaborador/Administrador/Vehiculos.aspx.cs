@@ -22,6 +22,14 @@ namespace MecaWash.Proyecto.Presentacion.Colaborador.Administrador
             GridView1.DataBind();
         }
 
+        protected void ActualizarComboCLiente()
+        {
+            if (IsPostBack)
+            {
+                LlenarComboCliente();
+            }
+        }
+
         protected void Eliminar(object sender, EventArgs e)
         {
             if (ddlBuscar.SelectedValue == "gg")
@@ -44,6 +52,8 @@ namespace MecaWash.Proyecto.Presentacion.Colaborador.Administrador
                 ddlBuscar.SelectedValue = "gg";
                 ListarVehiculos();
             }
+            ActualizarComboCLiente();
+           
         }
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -51,10 +61,10 @@ namespace MecaWash.Proyecto.Presentacion.Colaborador.Administrador
             {
                 ListarVehiculos();
                 VaciarCombo();
-                LlenarCombo();
-                LlenarComboCliente();
-
+                LlenarCombo(); 
+                 
             }
+            LlenarComboCliente();
             ScriptManager.RegisterStartupScript(this, GetType(), "Select2Script", "$('.js-example-basic-single').select2();", true);
         }
         protected void LlenarCombo()
@@ -68,7 +78,7 @@ namespace MecaWash.Proyecto.Presentacion.Colaborador.Administrador
         //funcion para llenar el combo con los clientes
         protected void LlenarComboCliente()
         {
-            DropDownList ddlClienteInsertar = (DropDownList)GridView1.FooterRow.FindControl("DropDownList1");
+            DropDownList ddlClienteInsertar = (DropDownList)GridView1.FooterRow.FindControl("ddlBuscarCliente");
             ddlClienteInsertar.DataSource = objClienteN.ListarClientes();
             ddlClienteInsertar.DataTextField = "Nombre";
             ddlClienteInsertar.DataValueField = "IDCliente";
@@ -94,6 +104,7 @@ namespace MecaWash.Proyecto.Presentacion.Colaborador.Administrador
             {
                 ListarVehiculos();
             }
+            ActualizarComboCLiente();
 
         }
 
@@ -103,12 +114,14 @@ namespace MecaWash.Proyecto.Presentacion.Colaborador.Administrador
             {
                 BuscarVehiculo();
             }
+            ActualizarComboCLiente();
         }
 
         protected void btnMostrarE_Click(object sender, EventArgs e)
         {
             ddlBuscar.SelectedValue = "gg";
             ListarVehiculos();
+            ActualizarComboCLiente();
         }
 
         protected void GridView1_PageIndexChanging(object sender, GridViewPageEventArgs e)
@@ -128,39 +141,62 @@ namespace MecaWash.Proyecto.Presentacion.Colaborador.Administrador
             {
                 BuscarVehiculo();
             }
+            ActualizarComboCLiente();
         }
 
         protected void GridView1_RowUpdating(object sender, GridViewUpdateEventArgs e)
         {
+           
             int n = e.RowIndex;
             int xcod = int.Parse(GridView1.DataKeys[n].Value.ToString());
             try
             {
-               TextBox txtIdVehiculo = (TextBox)GridView1.Rows[n].FindControl("txtIdVehiculoE");
+                string marca, modelo, color, numeroPlaca, idVehiculo;
+                string anio, idCliente;
+                TextBox txtIdVehiculo = (TextBox)GridView1.Rows[n].FindControl("txtIdVehiculoE");
                 TextBox txtNumeroDePlaca = (TextBox)GridView1.Rows[n].FindControl("txtNumeroPlacaE");
                 TextBox txtMarca = (TextBox)GridView1.Rows[n].FindControl("txtMarcaE");
                 TextBox txtModelo = (TextBox)GridView1.Rows[n].FindControl("txtModeloE");
                 TextBox txtAnio = (TextBox)GridView1.Rows[n].FindControl("txtAnnioE");
                 TextBox txtColor = (TextBox)GridView1.Rows[n].FindControl("txtColorE");
-                //obetner el valor del combo de cliente
-                DropDownList ddlCliente = (DropDownList)GridView1.Rows[n].FindControl("DropDownList2");
+                DropDownList ddlCliente = (DropDownList)GridView1.Rows[e.RowIndex].FindControl("ddlBuscarClienteE");
+                TextBox txtIdCliente = (TextBox)GridView1.Rows[n].FindControl("txtIdClienteE");
 
-                //ddlCliente.DataSource = objClienteN.ListarClientes();
-                //ddlCliente.DataTextField = "Nombre";
-                //ddlCliente.DataValueField = "IDCliente";
-                //ddlCliente.DataBind();
+                string p;
+                if (ddlCliente.SelectedValue == "gg")
+                {
+                    p = txtIdCliente.Text;
+                }
+                else
+                {
+                    p = ddlCliente.SelectedValue;
+                }
+                // Llenar el DropDownList con la función correspondiente
+                //LlenarComboClienteEditar(ddlCliente);
 
-                objVehiculoE.IDVehiculo = int.Parse(txtIdVehiculo.Text);
-                objVehiculoE.NumeroPlaca = txtNumeroDePlaca.Text;
-                objVehiculoE.Marca = txtMarca.Text;
-                objVehiculoE.Modelo = txtModelo.Text;
-                objVehiculoE.Anio = int.Parse(txtAnio.Text);
-                objVehiculoE.Color = txtColor.Text;
-                objVehiculoE.IDCliente = int.Parse(ddlCliente.SelectedValue);
+                idVehiculo = txtIdVehiculo.Text;
+                marca = txtMarca.Text;
+                modelo = txtModelo.Text;
+                color = txtColor.Text;
+                numeroPlaca = txtNumeroDePlaca.Text;
+                anio = txtAnio.Text;
+                idCliente = txtIdCliente.Text;
+
+
+
+                objVehiculoE.IDVehiculo = int.Parse(idVehiculo.ToString());
+                objVehiculoE.NumeroPlaca = numeroPlaca;
+                objVehiculoE.Marca = marca;
+                objVehiculoE.Modelo = modelo;
+                objVehiculoE.Anio = int.Parse(anio.ToString());
+                objVehiculoE.Color = color;
+                objVehiculoE.IDCliente =int.Parse(p.ToString());
                 GridView1.EditIndex = -1;
                 objVehiculoN.EditarVehiculo(objVehiculoE);
+               
                 VaciarCombo();
                 LlenarCombo();
+               
                 ddlBuscar.SelectedValue = "gg";
                 if (ddlBuscar.Text == "Buscar...")
                 {
@@ -176,6 +212,7 @@ namespace MecaWash.Proyecto.Presentacion.Colaborador.Administrador
             {
                 ScriptManager.RegisterStartupScript(this, GetType(), "Error", $"notiError('Error durante la actualización: {ex.Message}');", true);
             }
+            ActualizarComboCLiente();
         }
 
         protected void GridView1_RowCommand(object sender, GridViewCommandEventArgs e)
@@ -184,28 +221,39 @@ namespace MecaWash.Proyecto.Presentacion.Colaborador.Administrador
             {
                 if (e.CommandName == "Insertar")
                 {
+                    
+                    string marca, modelo, color, numeroPlaca;
+                    string anio, idCliente;
+
                     TextBox txtNumeroDePlaca = (TextBox)GridView1.FooterRow.FindControl("txtNumeroPlaca");
                     TextBox txtMarca = (TextBox)GridView1.FooterRow.FindControl("txtMarca");
                     TextBox txtModelo = (TextBox)GridView1.FooterRow.FindControl("txtModelo");
                     TextBox txtAnio = (TextBox)GridView1.FooterRow.FindControl("txtAnnio");
                     TextBox txtColor = (TextBox)GridView1.FooterRow.FindControl("txtColor");
-                    DropDownList ddlClienteInsertar = (DropDownList)GridView1.FooterRow.FindControl("DropDownList1");
-
+                    DropDownList ddlClienteInsertar = (DropDownList)GridView1.FooterRow.FindControl("ddlBuscarCliente");
                    
 
-                    objVehiculoE.NumeroPlaca = txtNumeroDePlaca.Text;
-                    objVehiculoE.Marca = txtMarca.Text;
-                    objVehiculoE.Modelo = txtModelo.Text;
-                    objVehiculoE.Anio = Convert.ToInt32(txtAnio.Text);
-                    objVehiculoE.Color = txtColor.Text;
-                    objVehiculoE.IDCliente = int.Parse(ddlClienteInsertar.SelectedValue);
+                    marca = txtMarca.Text;
+                    modelo = txtModelo.Text;
+                    color = txtColor.Text;
+                    numeroPlaca = txtNumeroDePlaca.Text;
+                    anio = txtAnio.Text;
+                    idCliente = ddlClienteInsertar.SelectedValue;
+
+                    objVehiculoE.NumeroPlaca = numeroPlaca;
+                    objVehiculoE.Marca = marca;
+                    objVehiculoE.Modelo = modelo;
+                    objVehiculoE.Anio = int.Parse(anio.ToString());
+                    objVehiculoE.Color = color;
+                    objVehiculoE.IDCliente = int.Parse(idCliente.ToString());
                     objVehiculoE.Estado = 1;
-                    int resp = objVehiculoN.RegistarVehiculo(objVehiculoE);
+                    int resp=objVehiculoN.RegistarVehiculo(objVehiculoE);
                     VaciarCombo();
                     LlenarCombo();
+                    LlenarComboCliente();
                     ddlBuscar.SelectedValue = "gg";
                     ListarVehiculos();
-                    if (resp == 0)
+                    if (resp == 1)
                     {
                         ScriptManager.RegisterStartupScript(this, GetType(), "insertAlert", "registroExitoso();", true);
                     }
@@ -213,6 +261,8 @@ namespace MecaWash.Proyecto.Presentacion.Colaborador.Administrador
                     {
                         ScriptManager.RegisterStartupScript(this, GetType(), "Error", "notiError('Llenar todos los campos!');", true);
                     }
+                    ActualizarComboCLiente();
+
                 }
             }
             catch(Exception ex)
@@ -234,7 +284,27 @@ namespace MecaWash.Proyecto.Presentacion.Colaborador.Administrador
             {
                 BuscarVehiculo();
             }
+           ActualizarComboCLiente();
         }
-      
+
+        protected void LlenarComboClienteEditar(DropDownList ddlCliente)
+        {
+            ddlCliente.DataSource = objClienteN.ListarClientes();
+            ddlCliente.DataTextField = "Nombre";
+            ddlCliente.DataValueField = "IDCliente";
+            ddlCliente.DataBind();
+        }
+
+        protected void GridView1_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow && (e.Row.RowState & DataControlRowState.Edit) > 0)
+            {
+                DropDownList ddlClienteEditar = (DropDownList)e.Row.FindControl("ddlBuscarClienteE");
+                LlenarComboClienteEditar(ddlClienteEditar);
+            }
+        }
+
+       
+        
     }
 }

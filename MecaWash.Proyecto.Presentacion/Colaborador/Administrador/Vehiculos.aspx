@@ -22,7 +22,7 @@
                     </div>
                 </div>
                 <div class="table-responsive">
-                    <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" GridLines="None" ShowFooter="True" CssClass="table" AllowPaging="True" DataKeyNames="IDVehiculo" OnPageIndexChanging="GridView1_PageIndexChanging" OnRowCommand="GridView1_RowCommand" OnRowEditing="GridView1_RowEditing" OnRowUpdating="GridView1_RowUpdating" OnRowCancelingEdit="GridView1_RowCancelingEdit" EmptyDataText="No hay datos disponibles" PageSize="6" >
+                    <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" GridLines="None" ShowFooter="True" CssClass="table" AllowPaging="True" DataKeyNames="IDVehiculo" OnPageIndexChanging="GridView1_PageIndexChanging" OnRowCommand="GridView1_RowCommand" OnRowEditing="GridView1_RowEditing" OnRowUpdating="GridView1_RowUpdating" OnRowCancelingEdit="GridView1_RowCancelingEdit" EmptyDataText="No hay datos disponibles" PageSize="6" OnRowDataBound="GridView1_RowDataBound" >
                         <alternatingrowstyle />
                         <columns>
                             <asp:TemplateField HeaderText="COD">
@@ -83,10 +83,10 @@
 
                             <asp:TemplateField HeaderText="Año" ControlStyle-Width="140px">
                                 <edititemtemplate>
-                                    <asp:TextBox ID="txtAnnioE" CssClass="form-control" runat="server" Text='<%# Bind("Anio") %>'></asp:TextBox>
+                                    <asp:TextBox ID="txtAnnioE" CssClass="form-control" runat="server" TextMode="Number" Text='<%# Bind("Anio") %>'></asp:TextBox>
                                 </edititemtemplate>
                                 <footertemplate>
-                                    <asp:TextBox ID="txtAnnio" placeholder="Año" CssClass="form-control" runat="server"></asp:TextBox>
+                                    <asp:TextBox ID="txtAnnio" placeholder="Año" CssClass="form-control" runat="server" TextMode="Number"></asp:TextBox>
                                 </footertemplate>
                                 <itemtemplate>
                                     <asp:Label ID="Label5" CssClass="text-truncate" runat="server" Text='<%# Bind("Anio") %>'></asp:Label>
@@ -99,7 +99,7 @@
                                     <asp:TextBox ID="txtColorE" CssClass="form-control" MaxLength="9" runat="server" Text='<%# Bind("Color") %>'></asp:TextBox>
                                 </edititemtemplate>
                                 <footertemplate>
-                                    <asp:TextBox ID="txtColor" placeholder="Color" CssClass="form-control" MaxLength="9" runat="server"></asp:TextBox>
+                                    <asp:TextBox ID="txtColor" placeholder="Color" CssClass="form-control"  runat="server"></asp:TextBox>
                                 </footertemplate>
                                 <itemtemplate>
                                     <asp:Label ID="Label7" CssClass="text-truncate" runat="server" Text='<%# Bind("Color") %>'></asp:Label>
@@ -107,28 +107,29 @@
                                 
                             </asp:TemplateField>
 
-                            <asp:TemplateField HeaderText="Cliente" ControlStyle-Width="140px">
+                            <asp:TemplateField HeaderText="Nombres" ControlStyle-Width="140px">
                                 <edititemtemplate>
-                                    <asp:TextBox ID="txtNombreClienteE" Text='<%# Bind("Nombre") %>' CssClass="form-control" runat="server" Visible="False"></asp:TextBox>
-                                    <asp:DropDownList ID="DropDownList2" runat="server"></asp:DropDownList>
                                     
-                                    <%-- <asp:DropDownList ID="ddlBuscarCLienteE" AutoPostBack="true" runat="server" CssClass="js-example-basic-single w-100" AppendDataBoundItems="true">
-                                        <asp:ListItem Value="">buscar...</asp:ListItem>
-                                    </asp:DropDownList>--%>
+                                    <asp:DropDownList ID="ddlBuscarClienteE" AutoPostBack="true" runat="server" CssClass="js-example-basic-single w-100" AppendDataBoundItems="true" >
+                                        <asp:ListItem Value="gg">buscar...</asp:ListItem>
+
+                                    </asp:DropDownList>
+                                        <asp:TextBox ID="txtIdClienteE" runat="server" CssClass="form-control" Visible="false" Text='<%# Bind("IDCliente") %>'></asp:TextBox>
                                 </edititemtemplate>
                                 <footertemplate>
-                                    <asp:DropDownList ID="DropDownList1" CssClass="js-example-basic-single w-100" runat="server">
-                                    
+                                    <asp:DropDownList ID="ddlBuscarCliente" AutoPostBack="true" runat="server" CssClass="js-example-basic-single w-100" AppendDataBoundItems="true">
+                                        <asp:ListItem Value="gg">buscar...</asp:ListItem>
                                     </asp:DropDownList>
-                                    <%--<asp:DropDownList ID="ddlBuscarCLiente" AutoPostBack="true" runat="server" CssClass="js-example-basic-single w-100"  AppendDataBoundItems="true">
-                                        <asp:ListItem Value="">buscar...</asp:ListItem>
-                                    </asp:DropDownList>--%>
+                                    <%--<asp:TextBox runat="server" ID="txtIdCliente" CssClass="form-control" placeholder="id"></asp:TextBox>--%>
                                 </footertemplate>
                                 <itemtemplate>
                                     <asp:Label ID="Label9" CssClass="text-truncate" runat="server" Text='<%# Bind("Nombre") %>'></asp:Label>
                                 </itemtemplate>
-                                
                             </asp:TemplateField>
+
+                           
+
+                          
 
 
                             <asp:CommandField />
