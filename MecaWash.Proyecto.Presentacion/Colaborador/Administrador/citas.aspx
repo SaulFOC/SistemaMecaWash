@@ -11,6 +11,8 @@
     <link rel="stylesheet" href="../../assets/css/cabecera.css">
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script src='../../fullcalendar/dist/index.global.js'></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
         function mostrarCalendario () {
 
@@ -97,10 +99,11 @@
                     // Mostrar el modal y pasar la id del evento
                     var texto = "";
                     var totalpagar = 0;
-
+                    var empleado = "";
                     for (var i = 0; i < datos.length; i++) {
                         // Utiliza += para concatenar las líneas en lugar de +=
                         totalpagar += datos[i].subtotal;
+                        empleado = datos[i].Nombre;
                         texto += "Nombre del servicio: " + datos[i].servicio + "<br>" +
                             "Precio del servicio: " + datos[i].precio + "<br>" +
                             "Descuento del servicio: " + datos[i].descuento + "<br>" +
@@ -109,7 +112,7 @@
 
                     $('#exampleModal').modal('show');
                     $('#exampleModal').find('.modal-header').find('.modal-title').html(cliente);
-                    $('#exampleModal').find('.modal-body').html(texto + "<hr>" + "Total a Pagar: " + totalpagar + " soles"); // Usa html en lugar de text para interpretar las etiquetas HTML
+                    $('#exampleModal').find('.modal-body').html(texto + "<hr>" +"<strong>Empleado Asignado: "+empleado+"</strong><br>"+ "Total a Pagar: " + totalpagar + " soles"); // Usa html en lugar de text para interpretar las etiquetas HTML
                 },
                 error: function (error) {
                     console.error("Error al obtener detalles del evento:", error);
@@ -118,6 +121,42 @@
         }
 
         mostrarCalendario();
+
+        var object = { status: false, ele: null };
+
+        function confirmaEliminar(ev) {
+            if (object.status) {
+                return true;
+            }
+
+            Swal.fire({
+                title: "¿Desea aceptar la cita?",
+                text: "Rivice si hay disponibilidad para ese día.",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Sí, Aceptar",
+                cancelButtonText: "Cancelar",
+                closeOnConfirm: true
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    Swal.fire({
+                        title: "Cita aceptada",
+                        text: "La cita se agendo con éxito",
+                        icon: "success"
+                    });
+
+                    // Establecer el estado a verdadero y hacer clic en el elemento
+                    object.status = true;
+                    object.ele = ev;
+                    object.ele.click();
+                    object.status = false;
+                }
+            });
+
+            return false;
+        }
     </script>
     <style>
         body {
@@ -126,6 +165,7 @@
             font-family: Arial, Helvetica Neue, Helvetica, sans-serif;
             font-size: 14px;
             overflow:hidden;
+            user-select: none !important;
         }
 
         #calendar-container {
@@ -153,7 +193,7 @@
         .posicion {
             position: absolute;
             top: 5rem;
-            right: 3rem;
+            left: 3rem;
             width: 24%;
             height:80vh;
             cursor: move;
@@ -220,23 +260,34 @@
             <asp:UpdatePanel ID="UpdatePanel1" runat="server">
                         <contenttemplate>
                             <div class="row">
-                                <asp:Repeater ID="Repeater1" runat="server">
+                                <asp:Repeater ID="Repeater1" runat="server" OnItemDataBound="Repeater1_ItemDataBound" OnItemCommand="Repeater1_ItemCommand">
                                     <itemtemplate>
                                         <div class="col-12 mb-3">
                                             <div class="container bg-blanco2 redondear p-3">
                                                 <div class="pb-2">
-                                                    <label><i class="bi bi-person-bounding-box"></i><%#Eval("Nombre") %></label><br />
+                                                    <label class="text-truncate w-100"><i class="bi bi-person-bounding-box"> </i><%#Eval("Nombre") %></label><br />
                                                 </div>
                                                 <div class="row pb-2">
                                                     <div class="col-6">
-                                                        <label><i class="bi bi-calendar-date"></i><%#Eval("Fecha") %></label>
+                                                        <label><i class="bi bi-calendar-date"></i> <%#Eval("Fecha") %></label>
                                                     </div>
                                                     <div class="col-6">
-                                                        <label><i class="bi bi-watch"></i><%#Eval("Hora") %></label>
+                                                        <label><i class="bi bi-watch"></i> <%#Eval("Hora") %></label>
                                                     </div>
                                                 </div>
                                                 <div class="pb-2">
-                                                    <label><i class="bi bi-car-front-fill"></i><%#Eval("Vehiculo") %></label>
+                                                    <label><i class="bi bi-watch"></i> Hora termino aprox: <%#Eval("tiempo") %></label>
+                                                </div>
+                                                <div class="pb-2">
+                                                    <asp:DropDownList ID="ddlEmpleados" CssClass="form-select" runat="server"></asp:DropDownList>
+                                                </div>
+                                                <div class="row pb-2">
+                                                    <div class="col-6">
+                                                        <asp:Button ID="btnAcepta" CommandName="AceptarCita" CommandArgument='<%# Eval("IDCita") %>' OnClientClick="return confirmaEliminar(this);" CssClass="btn btn-success w-100" runat="server" Text="​✓" />
+                                                    </div>
+                                                    <div class="col-6">
+                                                         <asp:Button ID="btnRechaza" CssClass="btn btn-danger w-100" runat="server" Text="X" />
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -268,6 +319,26 @@
             </div>
         </div>
     </div>
+        <script>
+            //para hacer dorp drag
+            const posi = document.getElementsByClassName("posicion")[0]; // Agrega [0] para seleccionar el primer elemento con la clase "posicion"
+            let offsetx, offsety;
+
+            const move = (e) => {
+                posi.style.left = `${e.clientX - offsetx}px`;
+                posi.style.top = `${e.clientY - offsety}px`;
+            }
+
+            posi.addEventListener("mousedown", (e) => {
+                offsetx = e.clientX - posi.offsetLeft;
+                offsety = e.clientY - posi.offsetTop;
+                document.addEventListener("mousemove", move); // Corrige "mosusemove" a "mousemove"
+            });
+
+            posi.addEventListener("mouseup", () => {
+                document.removeEventListener("mousemove", move);
+            });
+        </script>
     </form>
     
 
@@ -275,25 +346,6 @@
 
     <script src="../../assets/js/activarDarkmode.js"></script>
     <script src="../../Scripts/bootstrap.min.js"></script>
-    <script>
-        //para hacer dorp drag
-        const posi = document.getElementsByClassName("posicion")[0]; // Agrega [0] para seleccionar el primer elemento con la clase "posicion"
-        let offsetx, offsety;
-
-        const move = (e) => {
-            posi.style.left = `${e.clientX - offsetx}px`;
-            posi.style.top = `${e.clientY - offsety}px`;
-        }
-
-        posi.addEventListener("mousedown", (e) => {
-            offsetx = e.clientX - posi.offsetLeft;
-            offsety = e.clientY - posi.offsetTop;
-            document.addEventListener("mousemove", move); // Corrige "mosusemove" a "mousemove"
-        });
-
-        posi.addEventListener("mouseup", () => {
-            document.removeEventListener("mousemove", move);
-        });
-    </script>
+    
 </body>
 </html>

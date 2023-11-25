@@ -78,5 +78,30 @@ namespace MecaWash.Libreria.Datos
             }
 
         }
+
+        public void AceptarCita(ECita obj)
+        {
+            try
+            {
+                using (SqlConnection cn = new SqlConnection(Conexion.cn))
+                {
+                    SqlCommand cmd = new SqlCommand("aceptaCita", cn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@idc", obj.IDCita);
+                    cmd.Parameters.AddWithValue("@ide", obj.IDEmpleado);
+                    cn.Open();
+
+                    // Usa ExecuteNonQueryAsync en lugar de ExecuteNonQuery
+                    cmd.ExecuteNonQuery();
+
+                    cn.Close();
+                }
+            }
+            catch (SqlException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+        }
+
     }
 }

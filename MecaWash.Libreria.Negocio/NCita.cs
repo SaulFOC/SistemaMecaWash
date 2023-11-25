@@ -31,6 +31,9 @@ namespace MecaWash.Libreria.Negocio
         {
             return datos.ListarDetalleCita(obj);
         }
-
+        public void AceptarCita(ECita obj)
+        {
+            datos.AceptarCita(obj);
+        }
     }
 }

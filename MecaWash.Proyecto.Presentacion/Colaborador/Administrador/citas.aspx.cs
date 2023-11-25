@@ -15,6 +15,8 @@ namespace MecaWash.Proyecto.Presentacion.Colaborador.Administrador
     public partial class citas : System.Web.UI.Page
     {
         NCita nC = new NCita();
+        ECita eC = new ECita();
+        NEmpleado nE = new NEmpleado();
         protected void Page_Load(object sender, EventArgs e)
         {
             
@@ -25,12 +27,15 @@ namespace MecaWash.Proyecto.Presentacion.Colaborador.Administrador
             
         }
 
+
         protected void LlenarCitasNuevas()
         {
             
             DataTable dt = nC.ListarCita();
             if (dt.Rows.Count > 0)
             {
+                Repeater1.DataSource = "";
+                Repeater1.DataBind();
                 Repeater1.DataSource = dt;
                 Repeater1.DataBind();
             }
@@ -41,6 +46,8 @@ namespace MecaWash.Proyecto.Presentacion.Colaborador.Administrador
             }
             
         }
+
+        
 
         [WebMethod]
         public static string obtenerDatosCitasCalendar()
@@ -131,6 +138,46 @@ namespace MecaWash.Proyecto.Presentacion.Colaborador.Administrador
             {
                 // Manejar excepciones según tus necesidades
                 return "Error al obtener detalles del evento: " + ex.Message;
+            }
+        }
+
+        protected void Repeater1_ItemDataBound(object sender, RepeaterItemEventArgs e)
+        {
+            if(e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
+            {
+                DropDownList ddlOpciones = (DropDownList)e.Item.FindControl("ddlEmpleados");
+                ddlOpciones.Items.Clear();
+                ddlOpciones.Items.Insert(0, new ListItem("Elige Empleado", "0"));
+                ddlOpciones.DataSource = nE.ListarEmpleados();
+                
+                ddlOpciones.DataTextField = "Nombre";
+                ddlOpciones.DataValueField = "IDEmpleado";
+                ddlOpciones.DataBind();
+
+                // Puedes agregar un elemento predeterminado si es necesario
+
+            }
+        }
+
+        protected void Repeater1_ItemCommand(object source, RepeaterCommandEventArgs e)
+        {
+            if(e.CommandName == "AceptarCita")
+            {
+                string id = e.CommandArgument.ToString();
+                int idc = int.Parse(id);
+                DropDownList ddlEmpleados = (DropDownList)e.Item.FindControl("ddlEmpleados");
+                int ide = int.Parse(ddlEmpleados.SelectedValue);
+
+                
+
+
+                eC.IDEmpleado = ide;
+                eC.IDCita = idc;
+                nC.AceptarCita(eC);
+
+                LlenarCitasNuevas();
+                ScriptManager.RegisterStartupScript(this, GetType(), "insertAlert", "mostrarCalendario();", true);
+
             }
         }
     }
