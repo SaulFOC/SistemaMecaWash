@@ -23,5 +23,6 @@ namespace MecaWash.Libreria.Entidad
         public int IDCliente { get; set; }
         public int IDVehiculo { get; set; }
         public int IDEmpleado { get; set; }
+        public int Estado { get; set; }
     }
 }
