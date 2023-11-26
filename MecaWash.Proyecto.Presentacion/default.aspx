@@ -357,6 +357,7 @@
                             </div>
                             <div class="mb-3">
                                 <div class="g-recaptcha" data-sitekey="6Le-XxkpAAAAACMNval5Zz43VD3-OlzL54G8-zGX"></div>
+                                <%--<div class="g-recaptcha" data-sitekey="6LeunRwpAAAAANHT8A9NNahykJzCYiWYSDASrvMk"></div>--%>
                             </div>
                             <asp:LinkButton ID="LinkButton1" CssClass="btn btn-login" CommandName="Loguear" OnCommand="LoguearCliente2" runat="server">Iniciar sesión</asp:LinkButton>
 

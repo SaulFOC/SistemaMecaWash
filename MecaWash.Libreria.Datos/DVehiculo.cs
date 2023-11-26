@@ -32,6 +32,7 @@ namespace MecaWash.Libreria.Datos
                 using (SqlConnection cn = new SqlConnection(Conexion.cn))
                 {
                     SqlCommand cmd = new SqlCommand("InsertarVehiculo", cn);
+                    cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@NumeroPlaca", obj.NumeroPlaca);
                     cmd.Parameters.AddWithValue("@Marca", obj.Marca);
                     cmd.Parameters.AddWithValue("@Modelo", obj.Modelo);
@@ -127,7 +128,7 @@ namespace MecaWash.Libreria.Datos
                 DataTable dt = new DataTable();
                 SqlCommand cmd = new SqlCommand("buscarVehiculop", cn);
                 cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@idc", obj.IDCliente);
+                cmd.Parameters.AddWithValue("@id", obj.IDCliente);
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
                 da.Fill(dt);
                 return dt;
