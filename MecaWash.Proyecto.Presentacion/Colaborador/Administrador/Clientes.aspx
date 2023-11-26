@@ -1,5 +1,13 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/master/colaborador.Master" AutoEventWireup="true" CodeBehind="Clientes.aspx.cs" Inherits="MecaWash.Proyecto.Presentacion.Colaborador.Administrador.Clientes" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <style>
+        .btnBuscar{
+            position:absolute;
+            right: 0.8rem;
+            top:50%;
+            transform: translateY(-50%);
+        }
+    </style>
     <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
     <div class="contedor1 pt-3 pb-3">
      <asp:UpdatePanel ID="UpdatePanel1" runat="server">
@@ -40,10 +48,13 @@
 
                 <asp:TemplateField HeaderText="DNI" ControlStyle-Width="110px">
                     <EditItemTemplate>
-                        <asp:TextBox ID="txtDniE" CssClass="form-control" MaxLength="8" runat="server" Text='<%# Bind("DNI") %>'></asp:TextBox>
+                        <asp:TextBox ID="txtDniE" CssClass="form-control" ReadOnly="true" MaxLength="8" runat="server" Text='<%# Bind("DNI") %>'></asp:TextBox>
                     </EditItemTemplate>
                     <FooterTemplate>
-                        <asp:TextBox ID="txtDni" CssClass="form-control" MaxLength="8" placeholder="DNI" runat="server"></asp:TextBox>
+                        <div class="position-relative">
+                             <asp:TextBox ID="txtDni" CssClass="form-control" MaxLength="8" placeholder="DNI" runat="server"></asp:TextBox>
+                             <asp:LinkButton CssClass="btnBuscar text-dark" CommandName="BuscarNombre" ID="lnbBuscarDNI" OnClientClick="ocultarLinkButton()" runat="server"><i class='bx bx-search' ></i></asp:LinkButton>
+                        </div>
                     </FooterTemplate>
                     <ItemTemplate>
                         <asp:Label ID="Label2" CssClass="text-truncate" runat="server" Text='<%# Bind("DNI") %>'></asp:Label>
@@ -51,12 +62,12 @@
                 </asp:TemplateField>
 
 
-                <asp:TemplateField HeaderText="Nombre" ControlStyle-Width="110px">
+                <asp:TemplateField HeaderText="Nombre" ControlStyle-Width="240px">
                     <EditItemTemplate>
-                        <asp:TextBox ID="txtNombreE" CssClass="form-control" runat="server" Text='<%# Bind("Nombre") %>'></asp:TextBox>
+                        <asp:TextBox ID="txtNombreE" ReadOnly="true" CssClass="form-control" runat="server" Text='<%# Bind("Nombre") %>'></asp:TextBox>
                     </EditItemTemplate>
                     <FooterTemplate>
-                        <asp:TextBox ID="txtNombre" placeholder="Nombre" TextMode="SingleLine" CssClass="form-control" runat="server"></asp:TextBox>
+                        <asp:TextBox ID="txtNombre" ReadOnly="true" placeholder="Nombre" TextMode="SingleLine" CssClass="form-control" runat="server"></asp:TextBox>
                     </FooterTemplate>
                     <ItemTemplate>
                         <asp:Label ID="Label3" CssClass="text-truncate" runat="server" Text='<%# Bind("Nombre") %>'></asp:Label>

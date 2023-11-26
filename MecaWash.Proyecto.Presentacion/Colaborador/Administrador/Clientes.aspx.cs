@@ -13,7 +13,7 @@ namespace MecaWash.Proyecto.Presentacion.Colaborador.Administrador
     {
         ECliente objClienteE = new ECliente();
         NCliente objClienteN = new NCliente();
-
+        apis nApi = new apis();
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -149,6 +149,26 @@ namespace MecaWash.Proyecto.Presentacion.Colaborador.Administrador
             catch
             {
                 ScriptManager.RegisterStartupScript(this, GetType(), "Error", "notiError('Llenar todos los campos!');", true);
+            }
+
+            try
+            {
+
+                if (e.CommandName == "BuscarNombre")
+                {
+                    TextBox txtDni = (TextBox)GridView1.FooterRow.FindControl("txtDni");
+                    TextBox txtNombre = (TextBox)GridView1.FooterRow.FindControl("txtNombre");
+
+                    if (txtDni.Text.Length == 8)
+                    {
+                        dynamic respuesta = nApi.Get("https://dniruc.apisperu.com/api/v1/dni/" + txtDni.Text + "?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6Im1hcnRpbmNhY2VyZXMyNTQzQGdtYWlsLmNvbSJ9.2L9dqF_KgPP7WLepsD50TlrK3w7i2VjDd0IekWz8cVE");
+                        txtNombre.Text = respuesta.nombres.ToString() + " " + respuesta.apellidoPaterno.ToString() + " " + respuesta.apellidoMaterno.ToString();
+                    }
+                }
+            }
+            catch
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "Error", "notiError('Dni no existe!');", true);
             }
         }
 
