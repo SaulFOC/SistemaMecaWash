@@ -79,9 +79,9 @@ namespace MecaWash.Libreria.Negocio
             return datos.BuscarServicio(obj);
         }
 
-        public DataTable BuscarPrecioServicio(EServicios obj)
+        public DataTable BuscarPrecioServicio(int id)
         {
-            return datos.BuscarPrecioServicio(obj);
+            return datos.BuscarPrecioServicio(id);
         }
     }
 }

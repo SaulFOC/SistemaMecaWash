@@ -32,5 +32,15 @@ namespace MecaWash.Libreria.Negocio
         {
             return datos.eliminarServicioPresencial(id);
         }
+
+        public int insertarDetalleCitaPresencial(EDetalleCita obj)
+        {
+            return datos.insertarCitaDetallePresencial(obj);
+        }
+
+        public bool eliminarDetalleCitaPresencial(EDetalleCita obj)
+        {
+            return datos.eliminarServicioDeCita(obj);
+        }
     }
 }

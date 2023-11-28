@@ -9,7 +9,7 @@ namespace MecaWash.Libreria.Entidad
     public class EDetalleCita
     {
         public int IDCita { get; set; }
-        public string servicio { get; set; }
+        public int servicio { get; set; }
         public decimal precio { get; set; }
         public decimal descuento { get; set; }
         public decimal subtotal { get; set; }

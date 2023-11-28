@@ -96,5 +96,65 @@ namespace MecaWash.Libreria.Datos
             }
             return resp;
         }
+
+        public int insertarCitaDetallePresencial(EDetalleCita obj)
+        {
+            int resp=0;
+            try
+            {
+                using(SqlConnection cn = new SqlConnection(Conexion.cn))
+                {
+                    SqlCommand cmd = new SqlCommand("insertarCitaDetallePresencial", cn);
+                    cmd.CommandType=CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@idcita", obj.IDCita);
+                    cmd.Parameters.AddWithValue("@idservicio", obj.servicio);
+                    cmd.Parameters.AddWithValue("@total", obj.precio);
+                    cmd.Parameters.AddWithValue("@descuento", obj.descuento);
+                    cn.Open();
+                    cmd.ExecuteNonQuery();
+                    cn.Close();
+                    resp=1;
+                }
+            }
+            catch(SqlException ex)
+            {
+                Console.WriteLine(ex.Message);
+                resp=0;
+            }
+            return resp;
+        }
+
+        public bool eliminarServicioDeCita(EDetalleCita obj)
+        {
+            bool resp;
+            try
+            {
+                using(SqlConnection cn = new SqlConnection(Conexion.cn))
+                {
+                    SqlCommand cmd = new SqlCommand("eliminarServicioDeCita", cn);
+                    cmd.CommandType=CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@idcita", obj.IDCita);
+                    cmd.Parameters.AddWithValue("@idservicio", obj.servicio);
+                    cn.Open();
+                    cmd.ExecuteNonQuery();
+                    cn.Close();
+                    resp=true;
+                }
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                resp= false;
+            }
+            return resp;
+           
+         
+        }
+
+
+
     }
+
+        
 }
+
