@@ -211,6 +211,7 @@
     <Content Include="Cliente\perfil.aspx" />
     <Content Include="Cliente\repuestos.aspx" />
     <Content Include="Cliente\servicios.aspx" />
+    <Content Include="Colaborador\Administrador\carrito.aspx" />
     <Content Include="Colaborador\Administrador\cerrar.aspx" />
     <Content Include="Colaborador\Administrador\citas.aspx" />
     <Content Include="Colaborador\Administrador\Clientes.aspx" />
@@ -522,6 +523,13 @@
     </Compile>
     <Compile Include="Cliente\servicios.aspx.designer.cs">
       <DependentUpon>servicios.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Colaborador\Administrador\carrito.aspx.cs">
+      <DependentUpon>carrito.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Colaborador\Administrador\carrito.aspx.designer.cs">
+      <DependentUpon>carrito.aspx</DependentUpon>
     </Compile>
     <Compile Include="Colaborador\Administrador\cerrar.aspx.cs">
       <DependentUpon>cerrar.aspx</DependentUpon>

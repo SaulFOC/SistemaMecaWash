@@ -23,9 +23,14 @@ namespace MecaWash.Libreria.Negocio
             return datos.InsertarServicioPresencial(obj);
         }
 
-        public DataTable listarCita()
+        public DataTable listarCita(int id)
         {
-            return datos.listarCita();
+            return datos.listarCita(id);
+        }
+
+        public bool EliminarServicioPresencial(int id)
+        {
+            return datos.eliminarServicioPresencial(id);
         }
     }
 }

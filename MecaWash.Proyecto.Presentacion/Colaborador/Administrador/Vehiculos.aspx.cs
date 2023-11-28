@@ -1,5 +1,6 @@
 ﻿using MecaWash.Libreria.Entidad;
 using MecaWash.Libreria.Negocio;
+using MecaWash.Proyecto.Presentacion.reportes;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -19,7 +20,14 @@ namespace MecaWash.Proyecto.Presentacion.Colaborador.Administrador
         NCliente objClienteN = new NCliente();
         ECita objCitaE = new ECita();
         NServicioPresencial objCitaN = new NServicioPresencial();
-
+        NServicio objServicioN = new NServicio();
+        EServicios EServicios = new EServicios();
+       
+       protected void sendIdNew(object source, CommandEventArgs e)
+        {
+            //mostar alerta 
+           
+        }
 
         protected void addServicio(object source, CommandEventArgs e)
         {
@@ -62,36 +70,37 @@ namespace MecaWash.Proyecto.Presentacion.Colaborador.Administrador
         {
             if (e.CommandName == "Insertarbd")
             {
-                int idCliente,idVehiculo,idEmpleado;
-                string fecha,hora;
-                idCliente = int.Parse(txtClienteServicio.Text);
-                idVehiculo = int.Parse(txtVehiculoServicio.Text);
-                idEmpleado = int.Parse(txtEmpleadoServicio.Text);
-                fecha = txtFechaServicio.Text;
-                hora = txtHoraServicio.Text;
-                objCitaE.IDVehiculo = idVehiculo;
-                objCitaE.IDCliente = idCliente;
-                objCitaE.IDEmpleado = idEmpleado;
-                objCitaE.Fecha = fecha;
-                objCitaE.Hora = hora;
-                objCitaE.Estado = 1;
-                objCitaN.InsertarServicioPresencial(objCitaE);
-                txtFechaServicio.Text = "";
-                txtHoraServicio.Text = "";
-                txtVehiculoServicio.Text = "";
-                txtClienteServicio.Text = "";
-                txtEmpleadoServicio.Text = "";
-                
+                try
+                {
+                    int idCliente, idVehiculo, idEmpleado;
+                    string fecha, hora;
+                    idCliente = int.Parse(txtClienteServicio.Text);
+                    idVehiculo = int.Parse(txtVehiculoServicio.Text);
+                    idEmpleado = int.Parse(txtEmpleadoServicio.Text);
+                    fecha = txtFechaServicio.Text;
+                    hora = txtHoraServicio.Text;
+                    objCitaE.IDVehiculo = idVehiculo;
+                    objCitaE.IDCliente = idCliente;
+                    objCitaE.IDEmpleado = idEmpleado;
+                    objCitaE.Fecha = fecha;
+                    objCitaE.Hora = hora;
+                    objCitaE.Estado = 1;
+                    objCitaN.InsertarServicioPresencial(objCitaE);
+                    txtFechaServicio.Text = "";
+                    txtHoraServicio.Text = "";
+                    txtVehiculoServicio.Text = "";
+                    txtClienteServicio.Text = "";
+                    txtEmpleadoServicio.Text = "";
+                    Response.Redirect("Vehiculos.aspx");
+                    ScriptManager.RegisterStartupScript(this, GetType(), "insertAlert", "registroExitoso();", true);
+                }
+                catch(Exception ex)
+                {
+                    ScriptManager.RegisterStartupScript(this, GetType(), "Error", $"notiError('Error durante la inserción: {ex.Message}');", true);
+
+                }
 
             }
-        }
-
-       
-
-        public void ListarCitas()
-        {
-            GridView2.DataSource = objCitaN.listarCita();
-            GridView2.DataBind();
         }
 
         /*
@@ -143,10 +152,9 @@ namespace MecaWash.Proyecto.Presentacion.Colaborador.Administrador
             {
                 ListarVehiculos();
                 VaciarCombo();
-                LlenarCombo(); 
-               
-                 
+                LlenarCombo();
             }
+          
             LlenarComboCliente();
             ScriptManager.RegisterStartupScript(this, GetType(), "Select2Script", "$('.js-example-basic-single').select2();", true);
         }

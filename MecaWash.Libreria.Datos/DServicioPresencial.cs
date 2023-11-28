@@ -25,13 +25,14 @@ namespace MecaWash.Libreria.Datos
                 }  
         }
 
-        public DataTable listarCita()
+        public DataTable listarCita(int id)
         {
             using(SqlConnection cn = new SqlConnection(Conexion.cn))
             {
                 DataTable dt = new DataTable();
-                SqlCommand cmd = new SqlCommand("ListarCita", cn);
+                SqlCommand cmd = new SqlCommand("listarDetalleCitaPresencial", cn);
                 cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@id", id);
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
                 da.Fill(dt);
                 return dt;
@@ -66,6 +67,32 @@ namespace MecaWash.Libreria.Datos
             {
                 Console.WriteLine(ex.Message);
                 resp=0;
+            }
+            return resp;
+        }
+
+        public bool eliminarServicioPresencial(int id)
+        {
+            bool resp = false;
+            try
+            {
+                using (SqlConnection cn = new SqlConnection(Conexion.cn))
+                {
+                    SqlCommand cmd = new SqlCommand("EliminarCitaPresencial", cn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@IDCita", id);
+                    cn.Open();
+
+                    cmd.ExecuteNonQuery();
+
+                    cn.Close();
+                    resp = true;
+                }
+            }
+            catch (SqlException ex)
+            {
+                Console.WriteLine(ex.Message);
+                resp = false;
             }
             return resp;
         }
