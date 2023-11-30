@@ -41,7 +41,7 @@
     </style>
 
     <div class="container">
-        <div class="container posicion text-center pb-3">
+        <div class="container posicion draggable text-center pb-3">
             <h4 class="pt-3">Taller de Pintura</h4>
             <div id="info" class="container w-100">
                 <span class="colorPicker">
@@ -302,24 +302,24 @@
         document.getElementById("glass-color").addEventListener("change", getColorG);
 
     </script>
+    <script src="https://cdn.jsdelivr.net/npm/interactjs/dist/interact.min.js"></script>
     <script>
         //para hacer dorp drag
-        const posi = document.getElementsByClassName("posicion")[0]; // Agrega [0] para seleccionar el primer elemento con la clase "posicion"
-        let offsetx, offsety;
+        const position = { x: 0, y: 0 }
 
-        const move = (e) => {
-            posi.style.left = `${e.clientX - offsetx}px`;
-            posi.style.top = `${e.clientY - offsety}px`;
-        }
+        interact('.draggable').draggable({
+            listeners: {
+                start(event) {
+                    console.log(event.type, event.target)
+                },
+                move(event) {
+                    position.x += event.dx
+                    position.y += event.dy
 
-        posi.addEventListener("mousedown", (e) => {
-            offsetx = e.clientX - posi.offsetLeft;
-            offsety = e.clientY - posi.offsetTop;
-            document.addEventListener("mousemove", move); // Corrige "mosusemove" a "mousemove"
-        });
-
-        posi.addEventListener("mouseup", () => {
-            document.removeEventListener("mousemove", move);
-        });
+                    event.target.style.transform =
+                        `translate(${position.x}px, ${position.y}px)`
+                },
+            }
+        })
     </script>
 </asp:Content>

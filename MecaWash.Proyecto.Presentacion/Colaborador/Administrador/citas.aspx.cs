@@ -161,23 +161,44 @@ namespace MecaWash.Proyecto.Presentacion.Colaborador.Administrador
 
         protected void Repeater1_ItemCommand(object source, RepeaterCommandEventArgs e)
         {
-            if(e.CommandName == "AceptarCita")
+            try
             {
-                string id = e.CommandArgument.ToString();
-                int idc = int.Parse(id);
-                DropDownList ddlEmpleados = (DropDownList)e.Item.FindControl("ddlEmpleados");
-                int ide = int.Parse(ddlEmpleados.SelectedValue);
+                if (e.CommandName == "AceptarCita")
+                {
+                    string[] argumentos = e.CommandArgument.ToString().Split('|');
+                    string id = argumentos[0];
+                    string fecha = argumentos[1];
+                    string hora = argumentos[2];
+                    int idc = int.Parse(id);
+                    DropDownList ddlEmpleados = (DropDownList)e.Item.FindControl("ddlEmpleados");
+                    int ide = int.Parse(ddlEmpleados.SelectedValue);
 
-                
 
+                    //para comprobar
+                    eC.Fecha = fecha;
+                    eC.Hora = hora;
 
-                eC.IDEmpleado = ide;
-                eC.IDCita = idc;
-                nC.AceptarCita(eC);
+                    eC.IDEmpleado = ide;
+                    eC.IDCita = idc;
 
-                LlenarCitasNuevas();
-                ScriptManager.RegisterStartupScript(this, GetType(), "insertAlert", "mostrarCalendario();", true);
+                    DataTable dt3 = nC.ComprobarDisponibilidad(eC);
+                        if (dt3.Rows.Count == 0)
+                        {
+                            nC.AceptarCita(eC);
 
+                            LlenarCitasNuevas();
+                            ScriptManager.RegisterStartupScript(this, GetType(), "insertAlert", "mostrarCalendario();", true);
+                            ScriptManager.RegisterStartupScript(this, GetType(), "insertAlert", "notiExito('Cita aceptada','La cita se agrego con exito!');", true);
+                        }
+                        else
+                        {
+                            ScriptManager.RegisterStartupScript(this, GetType(), "insertAlert", "notiError('No hay personal disponible para la fecha!');", true);
+                        }
+                }
+            }
+            catch
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "insertAlert", "notiError('Ah ocurrido un grave!');", true);
             }
         }
     }

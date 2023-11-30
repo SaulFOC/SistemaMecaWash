@@ -128,7 +128,7 @@ namespace MecaWash.Libreria.Datos
                 DataTable dt = new DataTable();
                 SqlCommand cmd = new SqlCommand("buscarVehiculop", cn);
                 cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@id", obj.IDCliente);
+                cmd.Parameters.AddWithValue("@idc", obj.IDCliente);
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
                 da.Fill(dt);
                 return dt;

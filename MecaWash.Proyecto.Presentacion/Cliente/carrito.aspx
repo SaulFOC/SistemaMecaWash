@@ -1,5 +1,24 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/master/cliente.Master" AutoEventWireup="true" CodeBehind="carrito.aspx.cs" Inherits="MecaWash.Proyecto.Presentacion.Cliente.carrito" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Obtener el elemento TextBox de fecha
+            var fechaInput = document.getElementById('<%= txtFechaC.ClientID %>');
+
+            // Obtener la fecha actual en formato yyyy-MM-dd en la zona horaria UTC
+            var fechaActualUTC = new Date().toISOString().split('T')[0];
+
+            // Ajustar la fecha actual al huso horario de Lima (UTC-5)
+            var fechaActualLima = new Date(fechaActualUTC);
+            fechaActualLima.setHours(fechaActualLima.getHours() - 5);
+
+            // Formatear la fecha actual en formato yyyy-MM-dd
+            var fechaActualPeru = fechaActualLima.toISOString().split('T')[0];
+
+            // Establecer el valor mínimo para bloquear fechas anteriores
+            fechaInput.setAttribute('min', fechaActualPeru);
+        });
+    </script>
     <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
     <div class="container pt-3 pb-3">
         <h4>Carrito de Servicios</h4>

@@ -141,11 +141,7 @@
                 closeOnConfirm: true
             }).then((result) => {
                 if (result.isConfirmed) {
-                    Swal.fire({
-                        title: "Cita aceptada",
-                        text: "La cita se agendo con éxito",
-                        icon: "success"
-                    });
+                    
 
                     // Establecer el estado a verdadero y hacer clic en el elemento
                     object.status = true;
@@ -156,6 +152,22 @@
             });
 
             return false;
+        }
+
+        function notiError(mensaje) {
+            Swal.fire({
+                title: "Ocurrio un error",
+                text: mensaje,
+                icon: "error"
+            });
+        }
+
+        function notiExito(titulo, mensaje) {
+            Swal.fire({
+                title: titulo,
+                text: mensaje,
+                icon: "success"
+            });
         }
     </script>
     <style>
@@ -253,7 +265,7 @@
         </div>
 
          <div class="container">
-        <div class="container posicion pt-2 pb-2">
+        <div class="container posicion draggable pt-2 pb-2">
             
             <div class="container contenedor2">
                 <h5 class="pt-2 pb-2 position-sticky top-0 bg-cabecera2">Aceptar Citas</h5>
@@ -283,7 +295,7 @@
                                                 </div>
                                                 <div class="row pb-2">
                                                     <div class="col-6">
-                                                        <asp:Button ID="btnAcepta" CommandName="AceptarCita" CommandArgument='<%# Eval("IDCita") %>' OnClientClick="return confirmaEliminar(this);" CssClass="btn btn-success w-100" runat="server" Text="​✓" />
+                                                        <asp:Button ID="btnAcepta" CommandName="AceptarCita" CommandArgument='<%# Eval("IDCita")+"|"+Eval("Fecha")+"|"+Eval("Hora") %>' OnClientClick="return confirmaEliminar(this);" CssClass="btn btn-success w-100" runat="server" Text="​✓" />
                                                     </div>
                                                     <div class="col-6">
                                                          <asp:Button ID="btnRechaza" CssClass="btn btn-danger w-100" runat="server" Text="X" />
@@ -319,25 +331,24 @@
             </div>
         </div>
     </div>
+        <script src="https://cdn.jsdelivr.net/npm/interactjs/dist/interact.min.js"></script>
         <script>
-            //para hacer dorp drag
-            const posi = document.getElementsByClassName("posicion")[0]; // Agrega [0] para seleccionar el primer elemento con la clase "posicion"
-            let offsetx, offsety;
+            const position = { x: 0, y: 0 }
 
-            const move = (e) => {
-                posi.style.left = `${e.clientX - offsetx}px`;
-                posi.style.top = `${e.clientY - offsety}px`;
-            }
+            interact('.draggable').draggable({
+                listeners: {
+                    start(event) {
+                        console.log(event.type, event.target)
+                    },
+                    move(event) {
+                        position.x += event.dx
+                        position.y += event.dy
 
-            posi.addEventListener("mousedown", (e) => {
-                offsetx = e.clientX - posi.offsetLeft;
-                offsety = e.clientY - posi.offsetTop;
-                document.addEventListener("mousemove", move); // Corrige "mosusemove" a "mousemove"
-            });
-
-            posi.addEventListener("mouseup", () => {
-                document.removeEventListener("mousemove", move);
-            });
+                        event.target.style.transform =
+                            `translate(${position.x}px, ${position.y}px)`
+                    },
+                }
+            })
         </script>
     </form>
     

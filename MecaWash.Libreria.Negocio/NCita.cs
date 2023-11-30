@@ -35,5 +35,9 @@ namespace MecaWash.Libreria.Negocio
         {
             datos.AceptarCita(obj);
         }
+        public DataTable ComprobarDisponibilidad(ECita obj)
+        {
+            return datos.ComprobarDisponibilidad(obj);
+        }
     }
 }

@@ -103,5 +103,22 @@ namespace MecaWash.Libreria.Datos
             }
         }
 
+        public DataTable ComprobarDisponibilidad(ECita obj)
+        {
+            using (SqlConnection cn = new SqlConnection(Conexion.cn))
+            {
+                DataTable dt = new DataTable();
+                SqlCommand cmd = new SqlCommand("comprobarFecha", cn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@ide", obj.IDEmpleado);
+                cmd.Parameters.AddWithValue("@hora", obj.Hora);
+                cmd.Parameters.AddWithValue("@fecha", obj.Fecha);
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(dt);
+                return dt;
+            }
+
+        }
+
     }
 }
