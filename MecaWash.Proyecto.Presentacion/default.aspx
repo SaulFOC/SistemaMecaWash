@@ -267,13 +267,16 @@
                             <img class="imagen2" src="assets/img/banner1.jpg" alt="">
                         </div>
                         <div class="swiper-slide">
-                            <img class="imagen2" src="assets/img/banner1.jpg" alt="">
+                            <img class="imagen2" src="assets/img/banner2.jpg" alt="">
                         </div>
                         <div class="swiper-slide">
-                            <img class="imagen2" src="assets/img/banner1.jpg" alt="">
+                            <img class="imagen2" src="assets/img/banner3.jpg" alt="">
                         </div>
                         <div class="swiper-slide">
-                            <img class="imagen2" src="assets/img/banner1.jpg" alt="">
+                            <img class="imagen2" src="assets/img/banner4.jpg" alt="">
+                        </div>
+                        <div class="swiper-slide">
+                            <img class="imagen2" src="assets/img/banner5.jpg" alt="">
                         </div>
                     </div>
                     <!-- para la paginacion del slider (los puntitos) -->

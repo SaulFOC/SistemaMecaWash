@@ -16,6 +16,10 @@ namespace MecaWash.Proyecto.Presentacion.Colaborador.Administrador
         NServicio objServiciosN = new NServicio();
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (Request.Cookies["EmpleadoCookie"] == null)
+            {
+                Response.Redirect("../");
+            }
             if (!IsPostBack)
             {
                 VaciarCombo();

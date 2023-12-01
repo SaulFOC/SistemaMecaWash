@@ -40,7 +40,7 @@ namespace MecaWash.Proyecto.Presentacion.Colaborador
 
                 if (dt2.Rows.Count > 0)
                 {
-                    if (dt2.Rows[0]["Estado"].ToString() == "1")
+                    if (dt2.Rows[0]["Estado"].ToString() == "1" && dt2.Rows[0]["Puesto"].ToString()=="Administrador")
                     {
                         string valoresSerializados = JsonConvert.SerializeObject(new { id = dt2.Rows[0]["IDEmpleado"], dni = dt2.Rows[0]["DNI"], nombre = dt2.Rows[0]["Nombre"], puesto = dt2.Rows[0]["Puesto"], email = correo });
                         HttpCookie cookie = new HttpCookie("EmpleadoCookie");
@@ -49,6 +49,17 @@ namespace MecaWash.Proyecto.Presentacion.Colaborador
                         Response.Cookies.Add(cookie);
                         Response.Redirect("Administrador");
                     }
+
+                    if (dt2.Rows[0]["Estado"].ToString() == "1" && dt2.Rows[0]["Puesto"].ToString() == "Tecnico")
+                    {
+                        string valoresSerializados = JsonConvert.SerializeObject(new { id = dt2.Rows[0]["IDEmpleado"], dni = dt2.Rows[0]["DNI"], nombre = dt2.Rows[0]["Nombre"], puesto = dt2.Rows[0]["Puesto"], email = correo });
+                        HttpCookie cookie = new HttpCookie("TecnicoCookie");
+                        cookie.Value = valoresSerializados;
+                        cookie.Expires = DateTime.Now.AddDays(7); // Puedes ajustar la expiración según tus necesidades
+                        Response.Cookies.Add(cookie);
+                        Response.Redirect("Tecnico");
+                    }
+
                 }
                 else
                 {

@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/master/colaborador.Master" AutoEventWireup="true" CodeBehind="Perfil.aspx.cs" Inherits="MecaWash.Proyecto.Presentacion.Colaborador.Administrador.Perfil" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/master/colaborador.Master" AutoEventWireup="true" CodeBehind="Perfil.aspx.cs" Inherits="MecaWash.Proyecto.Presentacion.Colaborador.Tecnico.Perfil" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="container pt-3 pb-3">
         <h3>PERFIL DEL TRABAJADOR</h3>

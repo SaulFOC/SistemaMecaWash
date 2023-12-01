@@ -88,7 +88,7 @@
             });
         }
     </script>
-    <script src="../Scripts/bootstrap.min.js"></script>
+    <script src="/Scripts/bootstrap.min.js"></script>
     <script src="../assets/js/activarDarkmode.js"></script>
 </body>
 </html>

@@ -15,7 +15,12 @@ namespace MecaWash.Proyecto.Presentacion.Colaborador.Administrador
          EInventario objInventarioE = new EInventario();
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack)
+            if (Request.Cookies["EmpleadoCookie"] == null)
+            {
+                Response.Redirect("../");
+            }
+
+                if (!IsPostBack)
             {
                 ListarRespuestos();
                 VaciarCombo();

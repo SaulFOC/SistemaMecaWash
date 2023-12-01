@@ -71,18 +71,72 @@
                         <label class="form-label">Hora de la cita</label>
                         <asp:TextBox ID="txtHoraC" TextMode="Time" CssClass="form-control w-100" runat="server"></asp:TextBox>
                     </div>
-                    <div class="col-sm-6 col-md-6 col-lg-3 col-xl-3 mt-3">
-                        <label class="form-label">Selecciona vehiculo</label>
+                    <div class="col-sm-6 col-md-6 col-lg-4 col-xl-4 mt-3">
+                        <div class="row">
+                        <div class="col-9">
+                            <label class="form-label">Selecciona vehiculo</label>
                         <asp:DropDownList ID="ddlCarro" CssClass="form-select w-100" runat="server">
                             <asp:ListItem Value="gg">Seleccionar...</asp:ListItem>
                         </asp:DropDownList>
+                        </div>
+                        <div class="col-3">
+                            <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="bi bi-plus-circle"></i></button>
+                        </div>
+                            </div>
                     </div>
-                    <div class="col-sm-6 col-md-6 col-lg-3 col-xl-3 mt-3">
+                    <div class="col-sm-6 col-md-6 col-lg-2 col-xl-2 mt-3">
                         <label class="form-label">Enviar</label>
                         <asp:Button ID="btnRegistrar" CommandName="Registrar" OnCommand="RegistrarCita" CssClass="btn btn-secondary w-100" runat="server" Text="Registrar" />
                     </div>
                 </div>
+
+                <!-- modal -->
+                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Agregar Vehiculo</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="row mb-3">
+            <div class="col-6">
+                <label class="focus-label">Numero de Placa</label>
+                <asp:TextBox ID="txtPlacaN" MaxLength="7" placeholder="placa" CssClass="form-control" runat="server"></asp:TextBox>
+            </div>
+            <div class="col-6">
+                <label class="focus-label">Marca</label>
+                <asp:TextBox ID="txtMarcaN" placeholder="Marca" CssClass="form-control" runat="server"></asp:TextBox>
+            </div>
+        </div>
+          <div class="row mb-3">
+            <div class="col-6">
+                <label class="focus-label">Color</label>
+                <asp:TextBox ID="txtColorN" placeholder="color" CssClass="form-control" runat="server"></asp:TextBox>
+            </div>
+            <div class="col-6">
+                <label class="focus-label">Año</label>
+                <asp:TextBox ID="txtYear" placeholder="año" TextMode="Number" CssClass="form-control" runat="server"></asp:TextBox>
+            </div>
+        </div>
+          <div class="mb-3">
+                <label class="focus-label">Modelo</label>
+                <asp:TextBox ID="txtModeloN" placeholder="modelo" CssClass="form-control" runat="server"></asp:TextBox>
+        </div>
+      </div>
+      <div class="modal-footer">
+          <asp:Button ID="Button2" CssClass="btn btn-secondary" CommandName="aggVehiculo" OnCommand="AgregarVehiculo" data-bs-dismiss="modal" runat="server" Text="Agregar Vehiculo" />
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
             </ContentTemplate>
         </asp:UpdatePanel>
     </div>
+
+
+    
 </asp:Content>

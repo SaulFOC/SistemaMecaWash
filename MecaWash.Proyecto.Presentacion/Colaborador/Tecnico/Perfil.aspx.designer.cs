@@ -7,7 +7,7 @@
 // </generado automáticamente>
 //------------------------------------------------------------------------------
 
-namespace MecaWash.Proyecto.Presentacion.Colaborador.Administrador
+namespace MecaWash.Proyecto.Presentacion.Colaborador.Tecnico
 {
 
 
