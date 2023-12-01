@@ -773,9 +773,11 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <EmbeddedResource Include="reportes\RCita.rdlc" />
     <EmbeddedResource Include="reportes\Rclientes.rdlc" />
     <EmbeddedResource Include="reportes\Rempleados.rdlc" />
     <EmbeddedResource Include="reportes\Rvehiculo.rdlc" />
+    <EmbeddedResource Include="reportes\RVentas.rdlc" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
