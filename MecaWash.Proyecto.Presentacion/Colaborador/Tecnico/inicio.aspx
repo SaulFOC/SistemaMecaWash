@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="citas.aspx.cs" Inherits="MecaWash.Proyecto.Presentacion.Colaborador.Administrador.citas" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="inicio.aspx.cs" Inherits="MecaWash.Proyecto.Presentacion.Colaborador.Tecnico.inicio" %>
 
 <!DOCTYPE html>
 
@@ -19,7 +19,7 @@
             // Llamada al WebMethod para obtener los datos
             $.ajax({
                 type: "POST",
-                url: "Citas.aspx/obtenerDatosCitasCalendar",
+                url: "Inicio.aspx/obtenerDatosCitasCalendar",
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
                 success: function (response) {
@@ -87,7 +87,7 @@
         function obtenerDetallesEvento(eventId, cliente) {
             $.ajax({
                 type: "POST",
-                url: "Citas.aspx/obtenerDetallesEvento",
+                url: "Inicio.aspx/obtenerDetallesEvento",
                 data: JSON.stringify({ eventId: eventId }),
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
@@ -275,57 +275,7 @@
             <div id='calendar'></div>
         </div>
 
-         <div class="container">
-        <div id="conP" class="container draggable h-80d pt-2 pb-2">
-            
-            <div class="container contenedor2">
-                <h5 class="pt-2 pb-2 position-sticky top-0 bg-cabecera2"><spam>Aceptar Citas</spam> <i id="swith" class="bi bi-caret-up-fill o"></i></h5>
-            <asp:UpdatePanel ID="UpdatePanel1" runat="server">
-                        <contenttemplate>
-                            <div id="contenedorCitas" class="row">
-                                <asp:Repeater ID="Repeater1" runat="server" OnItemDataBound="Repeater1_ItemDataBound" OnItemCommand="Repeater1_ItemCommand">
-                                    <itemtemplate>
-                                        <div class="col-12 mb-3">
-                                            <div class="container bg-blanco2 redondear p-3">
-                                                <div class="pb-2">
-                                                    <label class="text-truncate w-100"><i class="bi bi-person-bounding-box"> </i><%#Eval("Nombre") %></label><br />
-                                                </div>
-                                                <div class="row pb-2">
-                                                    <div class="col-6">
-                                                        <label><i class="bi bi-calendar-date"></i> <%#Eval("Fecha") %></label>
-                                                    </div>
-                                                    <div class="col-6">
-                                                        <label><i class="bi bi-watch"></i> <%#Eval("Hora") %></label>
-                                                    </div>
-                                                </div>
-                                                <div class="pb-2">
-                                                    <label><i class="bi bi-watch"></i> Hora termino aprox: <%#Eval("tiempo") %></label>
-                                                </div>
-                                                <div class="pb-2">
-                                                    <asp:DropDownList ID="ddlEmpleados" CssClass="form-select" runat="server"></asp:DropDownList>
-                                                </div>
-                                                <div class="row pb-2">
-                                                    <div class="col-6">
-                                                        <asp:Button ID="btnAcepta" CommandName="AceptarCita" CommandArgument='<%# Eval("IDCita")+"|"+Eval("Fecha")+"|"+Eval("Hora") %>' OnClientClick="return confirmaEliminar(this);" CssClass="btn btn-success w-100" runat="server" Text="​✓" />
-                                                    </div>
-                                                    <div class="col-6">
-                                                         <asp:Button ID="btnRechaza" CssClass="btn btn-danger w-100" runat="server" Text="X" />
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </itemtemplate>
-                                </asp:Repeater>
-                            </div>
-                            <asp:Label ID="lblNoti" runat="server" CssClass="form-label"></asp:Label>
-                        </contenttemplate>
-                    </asp:UpdatePanel>
-                </div>
-        </div>
-    </div>
-
-
-    <!-- Modal -->
+        <!-- Modal -->
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
@@ -338,61 +288,14 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="btnImprimir" class="btn btn-secondary" data-bs-dismiss="modal">Imprimir</button>
                 </div>
             </div>
         </div>
     </div>
-        <script src="https://cdn.jsdelivr.net/npm/interactjs/dist/interact.min.js"></script>
-        <script>
-            const position = { x: 0, y: 0 }
-
-            interact('.draggable').draggable({
-                listeners: {
-                    start(event) {
-                        console.log(event.type, event.target)
-                    },
-                    move(event) {
-                        position.x += event.dx
-                        position.y += event.dy
-
-                        event.target.style.transform =
-                            `translate(${position.x}px, ${position.y}px)`
-                    },
-                }
-            })
-
-            //para ocultar y mostrar
-            var swith = document.getElementById('swith');
-            var citas = document.getElementById('contenedorCitas');
-            var cotenedor = document.getElementById('conP');
-
-            //agregar la clase oculta si se hace click a swith y quitarla si se vuelve a hacer click
-            swith.addEventListener('click', function () {
-                citas.classList.toggle('oculta');
-                //cambiar de icono
-                if (swith.classList.contains('bi-caret-up-fill')) {
-                    swith.classList.remove('bi-caret-up-fill');
-                    swith.classList.add('bi-caret-down-fill');
-                } else {
-                    swith.classList.remove('bi-caret-down-fill');
-                    swith.classList.add('bi-caret-up-fill');
-                }
-                //cambiar el tamaño contenedor
-                if (cotenedor.classList.contains('h-80d')) {
-                    cotenedor.classList.remove('h-80d');
-                } else {
-                    cotenedor.classList.add('h-80d');
-                }
-
-            });
-        </script>
     </form>
-    
-
-   
 
     <script src="../../assets/js/activarDarkmode.js"></script>
     <script src="../../Scripts/bootstrap.min.js"></script>
-    
 </body>
 </html>

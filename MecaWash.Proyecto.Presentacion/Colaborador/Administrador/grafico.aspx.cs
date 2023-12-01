@@ -14,7 +14,10 @@ namespace MecaWash.Proyecto.Presentacion.Colaborador.Administrador
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (Request.Cookies["EmpleadoCookie"] == null)
+            {
+                Response.Redirect("../");
+            }
         }
         [WebMethod]
         public static string ObtenerDatosGraficoEmpleados()

@@ -20,7 +20,10 @@ namespace MecaWash.Proyecto.Presentacion.Colaborador.Administrador
 
         protected void Page_Load(object sender, EventArgs e)
         {
-          
+            if (Request.Cookies["EmpleadoCookie"] == null)
+            {
+                Response.Redirect("../");
+            }
         }
 
         protected void BtnCargar_Click(object sender, EventArgs e)

@@ -14,5 +14,6 @@ namespace MecaWash.Libreria.Entidad
         public decimal descuento { get; set; }
         public decimal subtotal { get; set; }
         public string Nombre { get; set; }
+        public string color { get; set; }
     }
 }

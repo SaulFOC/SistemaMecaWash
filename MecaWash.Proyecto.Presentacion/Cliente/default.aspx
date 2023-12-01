@@ -65,13 +65,6 @@
                 </li>
 
                 <li class="nav-link">
-                    <a href="repuestos.aspx" target="myFrame">
-                    <i class="bi bi-car-front-fill icon"></i>
-                        <span class="text nav-text">Repuestos</span>
-                    </a>
-                </li>
-
-                <li class="nav-link">
                     <a href="carrito.aspx" target="myFrame">
                         <i class="bi bi-basket-fill icon"></i>
                         <span class="text nav-text">Carrito</span>

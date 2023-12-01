@@ -86,12 +86,6 @@
                     </a>
                 </li>
 
-                <li class="nav-link fourth">
-                    <a href="Repuestos.aspx" target="myFrame">
-                        <i class='bx bxs-box icon'></i>
-                        <span class="text nav-text">Inventario</span>
-                    </a>
-                </li>
 
                 <li class="nav-link five">
                     <a href="Perfil.aspx" target="myFrame">
@@ -178,11 +172,6 @@
                         title: 'Empleados 👨‍🔧',
                         element: document.querySelector('.third'),
                         intro: 'En este apartado podras ver los empleados que trabajan en la empresa, agregarlos, editarlos y eliminarlos'
-                    },
-                    {
-                        title: 'Inventario 👜',
-                        element: document.querySelector('.fourth'),
-                        intro: 'En este apartado podras ver los respuestos, agregarlos, editarlos y eliminarlos'
                     },
                     {
                         title: 'Perfil 👤',

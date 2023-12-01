@@ -7,7 +7,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace MecaWash.Proyecto.Presentacion.Colaborador.Administrador
+namespace MecaWash.Proyecto.Presentacion.Colaborador.Tecnico
 {
     public partial class Clientes : System.Web.UI.Page
     {
@@ -17,7 +17,7 @@ namespace MecaWash.Proyecto.Presentacion.Colaborador.Administrador
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Request.Cookies["EmpleadoCookie"] == null)
+            if (Request.Cookies["TecnicoCookie"] == null)
             {
                 Response.Redirect("../");
             }

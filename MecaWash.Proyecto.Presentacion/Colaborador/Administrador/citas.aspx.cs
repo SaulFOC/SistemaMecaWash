@@ -19,7 +19,11 @@ namespace MecaWash.Proyecto.Presentacion.Colaborador.Administrador
         NEmpleado nE = new NEmpleado();
         protected void Page_Load(object sender, EventArgs e)
         {
-            
+            if (Request.Cookies["EmpleadoCookie"] == null)
+            {
+                Response.Redirect("../");
+            }
+
             if (!IsPostBack)
             {
                 LlenarCitasNuevas();

@@ -6,15 +6,15 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace MecaWash.Proyecto.Presentacion.Colaborador.Administrador
+namespace MecaWash.Proyecto.Presentacion.Colaborador.Tecnico
 {
     public partial class Perfil : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Request.Cookies["EmpleadoCookie"] != null)
+            if (Request.Cookies["TecnicoCookie"] != null)
             {
-                string valoresSerializados = Request.Cookies["EmpleadoCookie"].Value;
+                string valoresSerializados = Request.Cookies["TecnicoCookie"].Value;
 
                 // Deserializar los valores desde la cookie
                 var valoresDeserializados = JsonConvert.DeserializeObject<dynamic>(valoresSerializados);

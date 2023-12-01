@@ -7,12 +7,167 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="Content-Language" content="es">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <title></title>
+    <title>Administrador</title>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/intro.js/7.2.0/introjs.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../assets/css/estilomenu.css">
 </head>
 <body>
     <form id="form1" runat="server">
-        <div>
+        <nav class="sidebar close">
+    <header>
+        <div class="image-text">
+            <span class="image">
+                <img src="../../assets/img/logo.png" alt="logo">
+            </span>
+
+            <div class="text logo-text">
+                <span class="name">MecWash</span>
+                <span class="profession">Administrador</span>
+                <asp:Label ID="llbNombre" runat="server" CssClass="text-truncate"></asp:Label></span>
+            </div>
         </div>
+
+        <!-- cambia el icono segun el dispositivo -->
+            <% if (Request.Browser.IsMobileDevice)
+            { %>
+        <i class='bx bx-grid-small toggle'></i>
+        <%}
+            else
+            { %>
+            <i class='bx bx-chevron-right toggle'></i>
+        <%} %>
+
+
+    </header>
+
+    <div class="menu-bar">
+        <div class="menu">
+
+            <li class="search-box">
+                <i class='bx bx-search icon'></i>
+                <input type="text" placeholder="Search...">
+            </li>
+
+            <ul class="menu-links">
+                <li class="nav-link first">
+                    <a href="inicio.aspx" target="myFrame">
+                        <i class='bx bx-calendar-star icon'></i>
+                        <span class="text nav-text">Inicio</span>
+                    </a>
+                </li>
+
+
+                <li class="nav-link six">
+                    <a href="Clientes.aspx" target="myFrame">
+                        <i class='bx bx-support icon'></i>
+                        <span class="text nav-text">Clientes</span>
+                    </a>
+                </li>
+
+                <li class="nav-link seven">
+                    <a href="Vehiculos.aspx" target="myFrame">
+                    <i class='bx bxs-car-wash icon'></i>
+                    <span class="text nav-text">Vehiculo</span>
+                        </a>
+                </li>
+
+                <li class="nav-link five">
+                    <a href="Perfil.aspx" target="myFrame">
+                        <i class='bx bx-user icon'></i>
+                        <span class="text nav-text">Perfil</span>
+                    </a>
+                </li>
+
+            </ul>
+        </div>
+
+        <div class="bottom-content ">
+            <li class="nav-link eight">
+                <a href="cerrar.aspx">
+                    <i class='bx bx-log-out icon'></i>
+                    <span class="text nav-text">Salir</span>
+                </a>
+            </li>
+
+            <li class="mode nine">
+                <div class="sun-moon">
+                    <i class='bx bx-moon icon moon'></i>
+                    <i class='bx bx-sun icon sun'></i>
+                </div>
+                <span class="mode-text text">Dark mode</span>
+
+                <div class="toggle-switch">
+                    <span class="switch"></span>
+                </div>
+            </li>
+
+        </div>
+    </div>
+
+</nav>
+
+    <section class="home">
+        <iframe src="inicio.aspx" name='myFrame' style="height: 100%; width: 100%; border: none;"></iframe>
+
+        <!--<div class="text">Dashboard Sidebar</div>-->
+    </section>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="../../assets/js/funcionmenu.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/intro.js/7.2.0/intro.min.js"></script>
+        <script>
+            introJs().setOptions({
+
+                nextLabel: 'siguiente',
+                prevLabel: 'atras',
+                doneLabel: 'hecho',
+                //esditar el texto de no mostrar de nuevo a español
+                skipLabel: 'x',
+
+                steps: [
+                    {
+                        title: 'Bienvenido',
+                        intro: '👋 Bienvenido a la pagina de administrador, aqui podras ver los servicios que se ofrecen, los empleados que trabajan en la empresa, tu perfil y el soporte tecnico'
+                    },
+                    {
+                        title: 'Dashboard  📊',
+                        element: document.querySelector('.first'),
+                        intro: 'Haciendo click aca podras ver las estadisiticas de la empresa'
+                    },
+                    {
+                        title: 'Perfil 👤',
+                        element: document.querySelector('.five'),
+                        intro: 'Aqui Podras Ver tu Perfil'
+                    },
+                    {
+                        title: 'Clientes 👩🏻‍🤝‍🧑🏿',
+                        element: document.querySelector('.six'),
+                        intro: 'En este apartado podras ver los clientes que se han registrado en la empresa, agregarlos, editarlos y eliminarlos'
+                    },
+                    {
+                        title: 'Vehiculos 🚗',
+                        element: document.querySelector('.seven'),
+                        intro: 'En este apartado podras ver los vehiculos que se han registrado en la empresa, agregarlos, editarlos y eliminarlos'
+                    },
+                    {
+                        title: 'Salir 🚪 🌙',
+                        element: document.querySelector('.eight'),
+                        intro: 'Haz click aqui para cerrar la sesion'
+                    },
+                    {
+                        title: 'Modo oscuro y claro 🌙',
+                        element: document.querySelector('.nine'),
+                        intro: 'En este apartado podras cambiar el modo de la pagina entre claro y oscuro'
+                    },
+
+                ],
+                showBullets: false,
+                showProgress: true,
+                disableInteraction: true,
+                dontShowAgain: true,
+            }).start();
+        </script>
     </form>
 </body>
 </html>

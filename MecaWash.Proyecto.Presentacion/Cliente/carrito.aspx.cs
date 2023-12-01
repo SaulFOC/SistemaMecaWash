@@ -193,7 +193,44 @@ namespace MecaWash.Proyecto.Presentacion.Cliente
                 }
                 catch
                 {
-                    ScriptManager.RegisterStartupScript(this, GetType(), "error", "notiError('No se pudo procesar la compra!');", true);
+                    ScriptManager.RegisterStartupScript(this, GetType(), "error", "notiError('No se pudo agendar agregue vehiculo!');", true);
+                }
+            }
+        }
+
+        protected void AgregarVehiculo(object source, CommandEventArgs e)
+        {
+            if(e.CommandName== "aggVehiculo")
+            {
+                try
+                {
+                    int anio;
+
+                    string valoresSerializados = Request.Cookies["ClienteCookie"].Value;
+
+                    // Deserializar los valores desde la cookie
+                    var valoresDeserializados = JsonConvert.DeserializeObject<dynamic>(valoresSerializados);
+                    string id = valoresDeserializados.id;
+                    int idCliente = int.Parse(id);
+
+                    anio = int.Parse(txtYear.Text);
+
+                    eV.IDCliente = idCliente;
+                    eV.Anio = anio;
+                    eV.Marca = txtMarcaN.Text;
+                    eV.Modelo = txtModeloN.Text;
+                    eV.Color = txtColorN.Text;
+                    eV.NumeroPlaca = txtPlacaN.Text;
+                    eV.Estado = 1;
+
+                    nV.RegistarVehiculo(eV);
+                    VaciarCombo();
+                    LlenarCombo(idCliente);
+                    ScriptManager.RegisterStartupScript(this, GetType(), "exito", "notiExito('Vehiculo registrado!','Se ha registrado tu vehiculo!');", true);
+                }
+                catch
+                {
+                    ScriptManager.RegisterStartupScript(this, GetType(), "error", "notiError('llenar todos los datos!');", true);
                 }
             }
         }

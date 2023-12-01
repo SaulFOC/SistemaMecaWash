@@ -39,5 +39,19 @@ namespace MecaWash.Libreria.Negocio
         {
             return datos.ComprobarDisponibilidad(obj);
         }
+        public void agregarCarritoColor(ECita obj)
+        {
+            datos.agregarCarritoColor(obj);
+        }
+
+        public void insertarCitaColor(ECita obj)
+        {
+            datos.insertarCitaColor(obj);
+        }
+
+        public DataTable ListarCitaAsignada(ECita obj)
+        {
+            return datos.ListarCitaAsignada(obj);
+        }
     }
 }

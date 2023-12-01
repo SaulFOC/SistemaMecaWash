@@ -120,5 +120,70 @@ namespace MecaWash.Libreria.Datos
 
         }
 
+        public void agregarCarritoColor(ECita obj)
+        {
+            try
+            {
+                using (SqlConnection cn = new SqlConnection(Conexion.cn))
+                {
+                    SqlCommand cmd = new SqlCommand("insertarCarritoColor", cn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@idc", obj.IDCliente);
+                    cmd.Parameters.AddWithValue("@ids", obj.IDServicio);
+                    cmd.Parameters.AddWithValue("@color", obj.Color);
+                    cn.Open();
+
+                    // Usa ExecuteNonQueryAsync en lugar de ExecuteNonQuery
+                    cmd.ExecuteNonQuery();
+
+                    cn.Close();
+                }
+            }
+            catch (SqlException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+        }
+
+        public void insertarCitaColor(ECita obj)
+        {
+            try
+            {
+                using (SqlConnection cn = new SqlConnection(Conexion.cn))
+                {
+                    SqlCommand cmd = new SqlCommand("insertarPintado", cn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@idcl", obj.IDCliente);
+                    cmd.Parameters.AddWithValue("@idv", obj.IDVehiculo);
+                    cmd.Parameters.AddWithValue("@fecha", obj.Fecha);
+                    cmd.Parameters.AddWithValue("@hora", obj.Hora);
+                    cn.Open();
+
+                    // Usa ExecuteNonQueryAsync en lugar de ExecuteNonQuery
+                    cmd.ExecuteNonQuery();
+
+                    cn.Close();
+                }
+            }
+            catch (SqlException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+        }
+
+        public DataTable ListarCitaAsignada(ECita obj)
+        {
+            using (SqlConnection cn = new SqlConnection(Conexion.cn))
+            {
+                DataTable dt = new DataTable();
+                SqlCommand cmd = new SqlCommand("listarCitaAsignada", cn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@ide", obj.IDEmpleado);
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(dt);
+                return dt;
+            }
+
+        }
     }
 }

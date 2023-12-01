@@ -7,7 +7,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace MecaWash.Proyecto.Presentacion.Colaborador.Administrador
+namespace MecaWash.Proyecto.Presentacion.Colaborador.Tecnico
 {
     public partial class Vehiculos : System.Web.UI.Page
     {
@@ -53,11 +53,11 @@ namespace MecaWash.Proyecto.Presentacion.Colaborador.Administrador
                 ListarVehiculos();
             }
             ActualizarComboCLiente();
-           
+
         }
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Request.Cookies["EmpleadoCookie"] == null)
+            if (Request.Cookies["TecnicoCookie"] == null)
             {
                 Response.Redirect("../");
             }
@@ -65,8 +65,8 @@ namespace MecaWash.Proyecto.Presentacion.Colaborador.Administrador
             {
                 ListarVehiculos();
                 VaciarCombo();
-                LlenarCombo(); 
-                 
+                LlenarCombo();
+
             }
             LlenarComboCliente();
             ScriptManager.RegisterStartupScript(this, GetType(), "Select2Script", "$('.js-example-basic-single').select2();", true);
@@ -150,7 +150,7 @@ namespace MecaWash.Proyecto.Presentacion.Colaborador.Administrador
 
         protected void GridView1_RowUpdating(object sender, GridViewUpdateEventArgs e)
         {
-           
+
             int n = e.RowIndex;
             int xcod = int.Parse(GridView1.DataKeys[n].Value.ToString());
             try
@@ -194,13 +194,13 @@ namespace MecaWash.Proyecto.Presentacion.Colaborador.Administrador
                 objVehiculoE.Modelo = modelo;
                 objVehiculoE.Anio = int.Parse(anio.ToString());
                 objVehiculoE.Color = color;
-                objVehiculoE.IDCliente =int.Parse(p.ToString());
+                objVehiculoE.IDCliente = int.Parse(p.ToString());
                 GridView1.EditIndex = -1;
                 objVehiculoN.EditarVehiculo(objVehiculoE);
-               
+
                 VaciarCombo();
                 LlenarCombo();
-               
+
                 ddlBuscar.SelectedValue = "gg";
                 if (ddlBuscar.Text == "Buscar...")
                 {
@@ -212,7 +212,7 @@ namespace MecaWash.Proyecto.Presentacion.Colaborador.Administrador
                 }
                 ScriptManager.RegisterStartupScript(this, GetType(), "updateAlert", "actualizacionExitosa();", true);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 ScriptManager.RegisterStartupScript(this, GetType(), "Error", $"notiError('Error durante la actualización: {ex.Message}');", true);
             }
@@ -225,7 +225,7 @@ namespace MecaWash.Proyecto.Presentacion.Colaborador.Administrador
             {
                 if (e.CommandName == "Insertar")
                 {
-                    
+
                     string marca, modelo, color, numeroPlaca;
                     string anio, idCliente;
 
@@ -235,7 +235,7 @@ namespace MecaWash.Proyecto.Presentacion.Colaborador.Administrador
                     TextBox txtAnio = (TextBox)GridView1.FooterRow.FindControl("txtAnnio");
                     TextBox txtColor = (TextBox)GridView1.FooterRow.FindControl("txtColor");
                     DropDownList ddlClienteInsertar = (DropDownList)GridView1.FooterRow.FindControl("ddlBuscarCliente");
-                   
+
 
                     marca = txtMarca.Text;
                     modelo = txtModelo.Text;
@@ -251,7 +251,7 @@ namespace MecaWash.Proyecto.Presentacion.Colaborador.Administrador
                     objVehiculoE.Color = color;
                     objVehiculoE.IDCliente = int.Parse(idCliente.ToString());
                     objVehiculoE.Estado = 1;
-                    int resp=objVehiculoN.RegistarVehiculo(objVehiculoE);
+                    int resp = objVehiculoN.RegistarVehiculo(objVehiculoE);
                     VaciarCombo();
                     LlenarCombo();
                     LlenarComboCliente();
@@ -269,7 +269,7 @@ namespace MecaWash.Proyecto.Presentacion.Colaborador.Administrador
 
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 ScriptManager.RegisterStartupScript(this, GetType(), "Error", $"notiError('Error durante la inserción: {ex.Message}');", true);
                 //ScriptManager.RegisterStartupScript(this, GetType(), "Error", "notiError('Llenar todos los campos!');", true);
@@ -288,7 +288,7 @@ namespace MecaWash.Proyecto.Presentacion.Colaborador.Administrador
             {
                 BuscarVehiculo();
             }
-           ActualizarComboCLiente();
+            ActualizarComboCLiente();
         }
 
         protected void LlenarComboClienteEditar(DropDownList ddlCliente)
@@ -308,7 +308,7 @@ namespace MecaWash.Proyecto.Presentacion.Colaborador.Administrador
             }
         }
 
-       
-        
+
+
     }
 }

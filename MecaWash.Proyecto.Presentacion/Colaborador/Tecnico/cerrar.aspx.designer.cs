@@ -11,7 +11,7 @@ namespace MecaWash.Proyecto.Presentacion.Colaborador.Tecnico
 {
 
 
-    public partial class _default
+    public partial class cerrar
     {
 
         /// <summary>
@@ -22,14 +22,5 @@ namespace MecaWash.Proyecto.Presentacion.Colaborador.Tecnico
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
-
-        /// <summary>
-        /// Control llbNombre.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label llbNombre;
     }
 }
