@@ -53,5 +53,10 @@ namespace MecaWash.Libreria.Negocio
         {
             return datos.ListarCitaAsignada(obj);
         }
+
+        public DataTable ReporteFechas(string fechI, string fechaF)
+        {
+            return datos.ReporteFechas(fechI, fechaF);
+        }
     }
 }

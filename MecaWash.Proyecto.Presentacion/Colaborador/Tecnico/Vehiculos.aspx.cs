@@ -1,7 +1,10 @@
 ﻿using MecaWash.Libreria.Entidad;
 using MecaWash.Libreria.Negocio;
+using MecaWash.Proyecto.Presentacion.reportes;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -15,7 +18,95 @@ namespace MecaWash.Proyecto.Presentacion.Colaborador.Tecnico
         NVehiculo objVehiculoN = new NVehiculo();
         ECliente objClienteE = new ECliente();
         NCliente objClienteN = new NCliente();
+        ECita objCitaE = new ECita();
+        NServicioPresencial objCitaN = new NServicioPresencial();
+        NServicio objServicioN = new NServicio();
+        EServicios EServicios = new EServicios();
 
+        protected void sendIdNew(object source, CommandEventArgs e)
+        {
+            //mostar alerta 
+
+        }
+
+        protected void addServicio(object source, CommandEventArgs e)
+        {
+            if (e.CommandName == "AgregarServicio")
+            {
+
+                string valoresSerializados = Request.Cookies["EmpleadoCookie"].Value;
+
+                var valoresDeserializados = JsonConvert.DeserializeObject<dynamic>(valoresSerializados);
+                int idEmpleado = valoresDeserializados.id;
+                txtEmpleadoServicio.Text = idEmpleado.ToString();
+
+                DateTime fechaActual = DateTime.Now;
+                string fechaFormateada = fechaActual.ToString("yyyy-MM-dd");
+                DateTime horaActual = DateTime.Now;
+                string horaFormateada = horaActual.ToString("HH:mm:ss");
+                txtFechaServicio.Text = fechaFormateada;
+                txtHoraServicio.Text = horaFormateada;
+
+
+
+                string[] argumentos = e.CommandArgument.ToString().Split(',');
+
+
+                int idVehiculo = Convert.ToInt32(argumentos[0]);
+                int idCliente = Convert.ToInt32(argumentos[1]);
+
+
+                //int itemId = Convert.ToInt32(e.CommandArgument);
+                txtVehiculoServicio.Text = idVehiculo.ToString();
+                txtClienteServicio.Text = idCliente.ToString();
+                objCitaE.IDVehiculo = idVehiculo;
+                GridView2.DataSource = objCitaN.listarCitaPresencial(objCitaE);
+                GridView2.DataBind();
+
+            }
+        }
+
+        protected void agregabd(object source, CommandEventArgs e)
+        {
+            if (e.CommandName == "Insertarbd")
+            {
+                try
+                {
+                    int idCliente, idVehiculo, idEmpleado;
+                    string fecha, hora;
+                    idCliente = int.Parse(txtClienteServicio.Text);
+                    idVehiculo = int.Parse(txtVehiculoServicio.Text);
+                    idEmpleado = int.Parse(txtEmpleadoServicio.Text);
+                    fecha = txtFechaServicio.Text;
+                    hora = txtHoraServicio.Text;
+                    objCitaE.IDVehiculo = idVehiculo;
+                    objCitaE.IDCliente = idCliente;
+                    objCitaE.IDEmpleado = idEmpleado;
+                    objCitaE.Fecha = fecha;
+                    objCitaE.Hora = hora;
+                    objCitaE.Estado = 1;
+                    objCitaN.InsertarServicioPresencial(objCitaE);
+                    txtFechaServicio.Text = "";
+                    txtHoraServicio.Text = "";
+                    txtVehiculoServicio.Text = "";
+                    txtClienteServicio.Text = "";
+                    txtEmpleadoServicio.Text = "";
+                    Response.Redirect("Vehiculos.aspx");
+                    ScriptManager.RegisterStartupScript(this, GetType(), "insertAlert", "registroExitoso();", true);
+                }
+                catch (Exception ex)
+                {
+                    ScriptManager.RegisterStartupScript(this, GetType(), "Error", $"notiError('Error durante la inserción: {ex.Message}');", true);
+
+                }
+
+            }
+        }
+
+        /*
+         
+         Aqui esta el todo el codigo para el mantenimiento de vehiculos
+         */
         protected void ListarVehiculos()
         {
             GridView1.DataSource = objVehiculoN.ListarVehiculo();
@@ -57,17 +148,13 @@ namespace MecaWash.Proyecto.Presentacion.Colaborador.Tecnico
         }
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Request.Cookies["TecnicoCookie"] == null)
-            {
-                Response.Redirect("../");
-            }
             if (!IsPostBack)
             {
                 ListarVehiculos();
                 VaciarCombo();
                 LlenarCombo();
-
             }
+
             LlenarComboCliente();
             ScriptManager.RegisterStartupScript(this, GetType(), "Select2Script", "$('.js-example-basic-single').select2();", true);
         }

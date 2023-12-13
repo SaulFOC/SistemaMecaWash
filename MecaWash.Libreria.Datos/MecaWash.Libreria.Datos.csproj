@@ -50,6 +50,7 @@
     <Compile Include="DEstadisticas.cs" />
     <Compile Include="DInventario.cs" />
     <Compile Include="DServicio.cs" />
+    <Compile Include="DServicioPresencial.cs" />
     <Compile Include="DVehiculo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

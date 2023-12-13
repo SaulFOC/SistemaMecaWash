@@ -1,7 +1,10 @@
 ﻿using MecaWash.Libreria.Entidad;
 using MecaWash.Libreria.Negocio;
+using MecaWash.Proyecto.Presentacion.reportes;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -15,7 +18,95 @@ namespace MecaWash.Proyecto.Presentacion.Colaborador.Administrador
         NVehiculo objVehiculoN = new NVehiculo();
         ECliente objClienteE = new ECliente();
         NCliente objClienteN = new NCliente();
+        ECita objCitaE = new ECita();
+        NServicioPresencial objCitaN = new NServicioPresencial();
+        NServicio objServicioN = new NServicio();
+        EServicios EServicios = new EServicios();
 
+        protected void sendIdNew(object source, CommandEventArgs e)
+        {
+            //mostar alerta 
+
+        }
+
+        protected void addServicio(object source, CommandEventArgs e)
+        {
+            if (e.CommandName == "AgregarServicio")
+            {
+
+                string valoresSerializados = Request.Cookies["EmpleadoCookie"].Value;
+
+                var valoresDeserializados = JsonConvert.DeserializeObject<dynamic>(valoresSerializados);
+                int idEmpleado = valoresDeserializados.id;
+                txtEmpleadoServicio.Text = idEmpleado.ToString();
+
+                DateTime fechaActual = DateTime.Now;
+                string fechaFormateada = fechaActual.ToString("yyyy-MM-dd");
+                DateTime horaActual = DateTime.Now;
+                string horaFormateada = horaActual.ToString("HH:mm:ss");
+                txtFechaServicio.Text = fechaFormateada;
+                txtHoraServicio.Text = horaFormateada;
+
+
+
+                string[] argumentos = e.CommandArgument.ToString().Split(',');
+
+
+                int idVehiculo = Convert.ToInt32(argumentos[0]);
+                int idCliente = Convert.ToInt32(argumentos[1]);
+
+
+                //int itemId = Convert.ToInt32(e.CommandArgument);
+                txtVehiculoServicio.Text = idVehiculo.ToString();
+                txtClienteServicio.Text = idCliente.ToString();
+                objCitaE.IDVehiculo = idVehiculo;
+                GridView2.DataSource = objCitaN.listarCitaPresencial(objCitaE);
+                GridView2.DataBind();
+
+            }
+        }
+
+        protected void agregabd(object source, CommandEventArgs e)
+        {
+            if (e.CommandName == "Insertarbd")
+            {
+                try
+                {
+                    int idCliente, idVehiculo, idEmpleado;
+                    string fecha, hora;
+                    idCliente = int.Parse(txtClienteServicio.Text);
+                    idVehiculo = int.Parse(txtVehiculoServicio.Text);
+                    idEmpleado = int.Parse(txtEmpleadoServicio.Text);
+                    fecha = txtFechaServicio.Text;
+                    hora = txtHoraServicio.Text;
+                    objCitaE.IDVehiculo = idVehiculo;
+                    objCitaE.IDCliente = idCliente;
+                    objCitaE.IDEmpleado = idEmpleado;
+                    objCitaE.Fecha = fecha;
+                    objCitaE.Hora = hora;
+                    objCitaE.Estado = 1;
+                    objCitaN.InsertarServicioPresencial(objCitaE);
+                    txtFechaServicio.Text = "";
+                    txtHoraServicio.Text = "";
+                    txtVehiculoServicio.Text = "";
+                    txtClienteServicio.Text = "";
+                    txtEmpleadoServicio.Text = "";
+                    Response.Redirect("Vehiculos.aspx");
+                    ScriptManager.RegisterStartupScript(this, GetType(), "insertAlert", "registroExitoso();", true);
+                }
+                catch (Exception ex)
+                {
+                    ScriptManager.RegisterStartupScript(this, GetType(), "Error", $"notiError('Error durante la inserción: {ex.Message}');", true);
+
+                }
+
+            }
+        }
+
+        /*
+         
+         Aqui esta el todo el codigo para el mantenimiento de vehiculos
+         */
         protected void ListarVehiculos()
         {
             GridView1.DataSource = objVehiculoN.ListarVehiculo();
@@ -53,21 +144,17 @@ namespace MecaWash.Proyecto.Presentacion.Colaborador.Administrador
                 ListarVehiculos();
             }
             ActualizarComboCLiente();
-           
+
         }
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Request.Cookies["EmpleadoCookie"] == null)
-            {
-                Response.Redirect("../");
-            }
             if (!IsPostBack)
             {
                 ListarVehiculos();
                 VaciarCombo();
-                LlenarCombo(); 
-                 
+                LlenarCombo();
             }
+
             LlenarComboCliente();
             ScriptManager.RegisterStartupScript(this, GetType(), "Select2Script", "$('.js-example-basic-single').select2();", true);
         }
@@ -150,7 +237,7 @@ namespace MecaWash.Proyecto.Presentacion.Colaborador.Administrador
 
         protected void GridView1_RowUpdating(object sender, GridViewUpdateEventArgs e)
         {
-           
+
             int n = e.RowIndex;
             int xcod = int.Parse(GridView1.DataKeys[n].Value.ToString());
             try
@@ -194,13 +281,13 @@ namespace MecaWash.Proyecto.Presentacion.Colaborador.Administrador
                 objVehiculoE.Modelo = modelo;
                 objVehiculoE.Anio = int.Parse(anio.ToString());
                 objVehiculoE.Color = color;
-                objVehiculoE.IDCliente =int.Parse(p.ToString());
+                objVehiculoE.IDCliente = int.Parse(p.ToString());
                 GridView1.EditIndex = -1;
                 objVehiculoN.EditarVehiculo(objVehiculoE);
-               
+
                 VaciarCombo();
                 LlenarCombo();
-               
+
                 ddlBuscar.SelectedValue = "gg";
                 if (ddlBuscar.Text == "Buscar...")
                 {
@@ -212,7 +299,7 @@ namespace MecaWash.Proyecto.Presentacion.Colaborador.Administrador
                 }
                 ScriptManager.RegisterStartupScript(this, GetType(), "updateAlert", "actualizacionExitosa();", true);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 ScriptManager.RegisterStartupScript(this, GetType(), "Error", $"notiError('Error durante la actualización: {ex.Message}');", true);
             }
@@ -225,7 +312,7 @@ namespace MecaWash.Proyecto.Presentacion.Colaborador.Administrador
             {
                 if (e.CommandName == "Insertar")
                 {
-                    
+
                     string marca, modelo, color, numeroPlaca;
                     string anio, idCliente;
 
@@ -235,7 +322,7 @@ namespace MecaWash.Proyecto.Presentacion.Colaborador.Administrador
                     TextBox txtAnio = (TextBox)GridView1.FooterRow.FindControl("txtAnnio");
                     TextBox txtColor = (TextBox)GridView1.FooterRow.FindControl("txtColor");
                     DropDownList ddlClienteInsertar = (DropDownList)GridView1.FooterRow.FindControl("ddlBuscarCliente");
-                   
+
 
                     marca = txtMarca.Text;
                     modelo = txtModelo.Text;
@@ -251,7 +338,7 @@ namespace MecaWash.Proyecto.Presentacion.Colaborador.Administrador
                     objVehiculoE.Color = color;
                     objVehiculoE.IDCliente = int.Parse(idCliente.ToString());
                     objVehiculoE.Estado = 1;
-                    int resp=objVehiculoN.RegistarVehiculo(objVehiculoE);
+                    int resp = objVehiculoN.RegistarVehiculo(objVehiculoE);
                     VaciarCombo();
                     LlenarCombo();
                     LlenarComboCliente();
@@ -269,7 +356,7 @@ namespace MecaWash.Proyecto.Presentacion.Colaborador.Administrador
 
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 ScriptManager.RegisterStartupScript(this, GetType(), "Error", $"notiError('Error durante la inserción: {ex.Message}');", true);
                 //ScriptManager.RegisterStartupScript(this, GetType(), "Error", "notiError('Llenar todos los campos!');", true);
@@ -288,7 +375,7 @@ namespace MecaWash.Proyecto.Presentacion.Colaborador.Administrador
             {
                 BuscarVehiculo();
             }
-           ActualizarComboCLiente();
+            ActualizarComboCLiente();
         }
 
         protected void LlenarComboClienteEditar(DropDownList ddlCliente)
@@ -308,7 +395,7 @@ namespace MecaWash.Proyecto.Presentacion.Colaborador.Administrador
             }
         }
 
-       
-        
+
+
     }
 }

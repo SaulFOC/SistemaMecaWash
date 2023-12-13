@@ -25,5 +25,6 @@ namespace MecaWash.Libreria.Entidad
         public int IDEmpleado { get; set; }
         public int IDServicio { get; set; }
         public string Color { get; set; }
+        public int Estado { get; set; }
     }
 }

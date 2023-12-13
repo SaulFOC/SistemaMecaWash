@@ -2,6 +2,11 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <asp:ScriptManager runat="server"></asp:ScriptManager>
+    <style>
+        .encima{
+            z-index: 1000; 
+        }
+    </style>
     <div class="contedor1 pt-3 pb-3">
         <h4>Vehiculos</h4>
         <asp:UpdatePanel ID="UpdatePanel1" runat="server">
@@ -47,7 +52,17 @@
                                     <asp:TextBox ID="txtNumeroPlaca" CssClass="form-control" MaxLength="7" placeholder="Numero de Placa" runat="server"></asp:TextBox>
                                 </footertemplate>
                                 <itemtemplate>
-                                    <asp:Label ID="Label2" CssClass="text-truncate" runat="server" Text='<%# Bind("NumeroPlaca") %>'></asp:Label>
+                                    <div class="container">
+                                        <div class="row">
+                                            <div class="col-6">
+                                                <asp:Label ID="Label2" CssClass="text-truncate" runat="server" Text='<%# Bind("NumeroPlaca") %>'></asp:Label>
+                                            </div>
+                                            <div class="col-6">
+                                                <asp:Button ID="Button1" CssClass="btn btn-success w-100" runat="server" Text="S+" CommandName="AgregarServicio" CommandArgument='<%# Eval("IDVehiculo") + "," + Eval("IDCliente") %>' OnCommand="addServicio" data-bs-toggle="modal" data-bs-target="#addServicio"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
                                 </itemtemplate>
                                
                             </asp:TemplateField>
@@ -96,7 +111,7 @@
 
                             <asp:TemplateField HeaderText="Color" ControlStyle-Width="140px">
                                 <edititemtemplate>
-                                    <asp:TextBox ID="txtColorE" CssClass="form-control" MaxLength="9" runat="server" Text='<%# Bind("Color") %>'></asp:TextBox>
+                                    <asp:TextBox ID="txtColorE" CssClass="form-control"  runat="server" Text='<%# Bind("Color") %>'></asp:TextBox>
                                 </edititemtemplate>
                                 <footertemplate>
                                     <asp:TextBox ID="txtColor" placeholder="Color" CssClass="form-control"  runat="server"></asp:TextBox>
@@ -126,12 +141,6 @@
                                     <asp:Label ID="Label9" CssClass="text-truncate" runat="server" Text='<%# Bind("Nombre") %>'></asp:Label>
                                 </itemtemplate>
                             </asp:TemplateField>
-
-                           
-
-                          
-
-
                             <asp:CommandField />
 
                             <asp:CommandField ShowEditButton="true" CancelImageUrl="../../assets/img/cancelar.svg" UpdateImageUrl="../../assets/img/guardar.svg" EditImageUrl="../../assets/img/editar.svg" ButtonType="Image">
@@ -151,5 +160,139 @@
 
             </contenttemplate>
         </asp:UpdatePanel>
+
+
+        <div class="modal fade" id="addServicio" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Añadir Servicio</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <asp:UpdatePanel ID="UpdatePanel2" runat="server">
+                            <ContentTemplate>
+                                <div class="row mb-2">
+
+                                    <div class="col-6">
+
+                                        <label>Fecha</label>
+                                        <asp:TextBox ID="txtFechaServicio" runat="server" Enabled="false" CssClass="form-control w-100"></asp:TextBox>
+
+                                    </div>
+
+                                    <div class="col-6">
+                                        <label>Hora</label>
+                                        <asp:TextBox ID="txtHoraServicio" runat="server" Enabled="false" CssClass="form-control w-100"></asp:TextBox>
+                                    </div>
+                                </div>
+                                <div class="row mb-2">
+                                    <div class="col-6">
+                                        <label class="w-100 text-truncate">Cliente</label>
+                                        <asp:TextBox ID="txtClienteServicio" runat="server" Enabled="false" CssClass="form-control w-100"></asp:TextBox>
+                                    </div>
+                                    <div class="col-6">
+
+                                        <label class="w-100 text-truncate">Vehiculo</label>
+                                        <asp:TextBox ID="txtVehiculoServicio" runat="server" Enabled="false" CssClass="form-control w-100"></asp:TextBox>
+
+
+                                    </div>
+                                </div>
+
+                                <div class="mb-2">
+                                    <label>Empleado</label>
+                                    <asp:TextBox ID="txtEmpleadoServicio" runat="server" CssClass="form-control w-50"></asp:TextBox>
+                                </div>
+
+
+                            </ContentTemplate>
+                        </asp:UpdatePanel>
+                        <asp:UpdatePanel ID="UpdatePanel3" runat="server">
+                            <ContentTemplate>
+                                <asp:GridView ID="GridView2" runat="server" AutoGenerateColumns="False" GridLines="None" ShowFooter="True" CssClass="table" AllowPaging="True" DataKeyNames="IDCita" EmptyDataText="No hay servicios registrados" PageSize="6">
+                                    <Columns>
+
+
+                                        <asp:TemplateField HeaderText="ID" ControlStyle-Width="30px" Visible="false">
+
+                                            <ItemTemplate>
+                                                <asp:Label ID="Label71" CssClass="text-truncate" runat="server" Text='<%# Bind("IDCita") %>'></asp:Label>
+
+
+                                            </ItemTemplate>
+
+                                        </asp:TemplateField>
+
+                                        <asp:TemplateField HeaderText="Fecha" ControlStyle-Width="90px">
+
+                                            <ItemTemplate>
+                                                <asp:Label ID="Label72" CssClass="text-truncate" runat="server" Text='<%# Bind("Fecha") %>'></asp:Label>
+                                            </ItemTemplate>
+
+                                        </asp:TemplateField>
+
+                                        <asp:TemplateField HeaderText="Hora" ControlStyle-Width="75px">
+
+                                            <ItemTemplate>
+                                                <asp:Label ID="Label73" CssClass="text-truncate" runat="server" Text='<%# Bind("Hora") %>'></asp:Label>
+                                            </ItemTemplate>
+
+                                        </asp:TemplateField>
+
+                                        <asp:TemplateField HeaderText="Nombre" ControlStyle-Width="100px" Visible="false">
+
+                                            <ItemTemplate>
+                                                <asp:Label ID="Label74" CssClass="text-truncate" runat="server" Text='<%# Bind("Nombre") %>'></asp:Label>
+                                            </ItemTemplate>
+
+                                        </asp:TemplateField>
+
+                                        <asp:TemplateField HeaderText="Numero Placa" ControlStyle-Width="80px" Visible="false">
+
+                                            <ItemTemplate>
+                                                <asp:Label ID="Label75" CssClass="text-truncate" runat="server" Text='<%# Bind("NumeroPlaca") %>'></asp:Label>
+                                            </ItemTemplate>
+
+                                        </asp:TemplateField>
+
+                                        <asp:TemplateField HeaderText="Empleado" ControlStyle-Width="150px">
+
+                                            <ItemTemplate>
+                                                <div class="container">
+                                                    <div class="row">
+                                                        <div class="col-6">
+                                                            <asp:Label ID="Label76" CssClass="text-truncate" runat="server" Text='<%# Bind("Empleado") %>'></asp:Label>
+                                                        </div>
+                                                        <div class="col-6">
+                                                            <asp:Button ID="Button3" runat="server" CommandArgument='<%# Bind("IDCita") %>'  CommandName="sendId" OnCommand="sendIdNew" CssClass="btn btn-success w-100" Text="->" PostBackUrl='<%# $"carrito.aspx?idCita={Eval("IDCita")}" %>'/>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </ItemTemplate>
+
+                                        </asp:TemplateField>
+
+                                        <asp:TemplateField HeaderText="Empleado" ControlStyle-Width="80px" Visible="false">
+
+                                            <ItemTemplate>
+                                                <asp:Label ID="Label76" CssClass="text-truncate" runat="server" Text='<%# Bind("IDVehiculo") %>'></asp:Label>
+                                            </ItemTemplate>
+
+                                        </asp:TemplateField>
+
+                                    </Columns>
+                                </asp:GridView>
+                            </ContentTemplate>
+                        </asp:UpdatePanel>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
+                        <asp:Button ID="Button2" runat="server" Text="Registrar" CommandName="Insertarbd" OnCommand="agregabd" CssClass="btn btn-info" />
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </asp:Content>

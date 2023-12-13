@@ -86,6 +86,7 @@
     <Compile Include="NEstadisticas.cs" />
     <Compile Include="NInvetario.cs" />
     <Compile Include="NServicio.cs" />
+    <Compile Include="NSservicioPresencial.cs" />
     <Compile Include="NUtilidades.cs" />
     <Compile Include="NVehiculo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

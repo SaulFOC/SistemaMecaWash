@@ -72,14 +72,14 @@
                     </a>
                 </li>
 
-                <li class="nav-link third">
+                <li class="nav-link mil">
                     <a href="citas.aspx" target="myFrame">
                     <i class='bx bx-calendar-star icon'></i>
                         <span class="text nav-text">Citas</span>
                     </a>
                 </li>
 
-                <li class="nav-link third">
+                <li class="nav-link mil2">
                     <a href="reporte.aspx" target="myFrame">
                     <i class='bx bx-bar-chart-square icon'></i>
                         <span class="text nav-text">Reportes</span>
@@ -197,6 +197,16 @@
                         title: 'Modo oscuro y claro 🌙',
                         element: document.querySelector('.nine'),
                         intro: 'En este apartado podras cambiar el modo de la pagina entre claro y oscuro'
+                    },
+                    {
+                        title: 'Citas',
+                        element: document.querySelector('.mil'),
+                        intro: 'En este apartado podras ver las citas'
+                    },
+                    {
+                        title: 'Citas',
+                        element: document.querySelector('.mil2'),
+                        intro: 'En este apartado podras ver los reportes'
                     },
 
                 ],

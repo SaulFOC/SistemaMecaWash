@@ -25,26 +25,6 @@ namespace MecaWash.Proyecto.Presentacion
         ECarrito eC = new ECarrito();
         NCarrito nC = new NCarrito();
 
-        public bool IsReCaptchValid()
-        {
-            var result = false;
-            var captchaResponse = Request.Form["g-recaptcha-response"];
-            var secretKey = ConfigurationManager.AppSettings["SecretKey"];
-            var apiUrl = "https://www.google.com/recaptcha/api/siteverify?secret={0}&response={1}";
-            var requestUri = string.Format(apiUrl, secretKey, captchaResponse);
-            var request = (HttpWebRequest)WebRequest.Create(requestUri);
-
-            using (WebResponse response = request.GetResponse())
-            {
-                using (StreamReader stream = new StreamReader(response.GetResponseStream()))
-                {
-                    JObject jResponse = JObject.Parse(stream.ReadToEnd());
-                    var isSuccess = jResponse.Value<bool>("success");
-                    result = (isSuccess) ? true : false;
-                }
-            }
-            return result;
-        }
         protected void Page_Load(object sender, EventArgs e)
         {
             if (Request.Cookies["ClienteCookie"] != null)
@@ -59,8 +39,6 @@ namespace MecaWash.Proyecto.Presentacion
             
                 if (e.CommandName == "Loguear")
                 {
-                    if (IsReCaptchValid())
-                    {
                     DataTable dt2 = new DataTable();
                     string correo, clave;
                     correo = txtCorreo.Text;
@@ -92,7 +70,7 @@ namespace MecaWash.Proyecto.Presentacion
                             EnviarCorreo(nombre, correo, codigo);
                             Response.Redirect("/verificarcorreo.aspx?id=" + id);
                         }
-                    }
+                    
                     else
                     {
                         ScriptManager.RegisterStartupScript(this, GetType(), "Error", "notiError('Correo o clave incorrecta!');", true);

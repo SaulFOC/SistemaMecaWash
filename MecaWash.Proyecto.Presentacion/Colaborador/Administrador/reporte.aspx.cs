@@ -31,70 +31,138 @@ namespace MecaWash.Proyecto.Presentacion.Colaborador.Administrador
 
         protected void BtnCargar_Click(object sender, EventArgs e)
         {
-            DataTable dt = new DataTable();
-            dt = objncliente.ListarClientes();
-            ReportViewer1.LocalReport.DataSources.Clear();
-            ReportDataSource rdc = new ReportDataSource("DataSet1", dt);
-            ReportViewer1.LocalReport.ReportPath = Server.MapPath("../../reportes/Rclientes.rdlc");
-            ReportViewer1.LocalReport.DataSources.Add(rdc);
-            ReportViewer1.LocalReport.Refresh();
+            try
+            {
+                DataTable dt = new DataTable();
+                dt = objncliente.ListarClientes();
+                ReportViewer1.LocalReport.DataSources.Clear();
+                ReportDataSource rdc = new ReportDataSource("DataSet1", dt);
+                ReportViewer1.LocalReport.ReportPath = Server.MapPath("/reportes/Rclientes.rdlc");
+                ReportViewer1.LocalReport.DataSources.Add(rdc);
+                ReportViewer1.LocalReport.Refresh();
+            }
+            catch
+            {
+                string script = $@"<script type='text/javascript'>
+                            alert('Error');
+                       </script>";
+
+                ClientScript.RegisterStartupScript(this.GetType(), "AlertaError", script);
+            }
         }
 
         protected void Btnempleados_Click(object sender, EventArgs e)
         {
-            DataTable dt = new DataTable();
-            dt = objempleado.ListarEmpleados();
-            ReportViewer1.LocalReport.DataSources.Clear();
-            ReportDataSource rdc = new ReportDataSource("DataSet1", dt);
-            ReportViewer1.LocalReport.ReportPath = Server.MapPath("../../reportes/Rempleados.rdlc");
-            ReportViewer1.LocalReport.DataSources.Add(rdc);
-            ReportViewer1.LocalReport.Refresh();
+            try
+            {
+                DataTable dt = new DataTable();
+                dt = objempleado.ListarEmpleados();
+                ReportViewer1.LocalReport.DataSources.Clear();
+                ReportDataSource rdc = new ReportDataSource("DataSet1", dt);
+                ReportViewer1.LocalReport.ReportPath = Server.MapPath("/reportes/Rempleados.rdlc");
+                ReportViewer1.LocalReport.DataSources.Add(rdc);
+                ReportViewer1.LocalReport.Refresh();
+            }
+            catch
+            {
+                string script = $@"<script type='text/javascript'>
+                            alert('Error');
+                       </script>";
+
+                ClientScript.RegisterStartupScript(this.GetType(), "AlertaError", script);
+            }
         }
 
         protected void Btnvehiculo_Click(object sender, EventArgs e)
         {
-            DataTable dt = new DataTable();
-            dt = objvehiculo.ListarVehiculo();
-            ReportViewer1.LocalReport.DataSources.Clear();
-            ReportDataSource rdc = new ReportDataSource("DataSet1", dt);
-            ReportViewer1.LocalReport.ReportPath = Server.MapPath("../../reportes/Rvehiculo.rdlc");
-            ReportViewer1.LocalReport.DataSources.Add(rdc);
-            ReportViewer1.LocalReport.Refresh();
+            try
+            {
+                DataTable dt = new DataTable();
+                dt = objvehiculo.ListarVehiculo();
+                ReportViewer1.LocalReport.DataSources.Clear();
+                ReportDataSource rdc = new ReportDataSource("DataSet1", dt);
+                ReportViewer1.LocalReport.ReportPath = Server.MapPath("/reportes/Rvehiculo.rdlc");
+                ReportViewer1.LocalReport.DataSources.Add(rdc);
+                ReportViewer1.LocalReport.Refresh();
+            }
+            catch
+            {
+                string script = $@"<script type='text/javascript'>
+                            alert('Error');
+                       </script>";
+
+                ClientScript.RegisterStartupScript(this.GetType(), "AlertaError", script);
+            }
         }
 
         protected void btnVentas_Click(object sender, EventArgs e)
         {
-            DataTable dt = new DataTable();
-            dt = objvehiculo.ListarVehiculo();
-            ReportViewer1.LocalReport.DataSources.Clear();
-            ReportDataSource rdc = new ReportDataSource("DataSet1", dt);
-            ReportViewer1.LocalReport.ReportPath = Server.MapPath("../../reportes/RVentas.rdlc");
-            ReportViewer1.LocalReport.DataSources.Add(rdc);
-            ReportViewer1.LocalReport.Refresh();
+            try
+            {
+                DataTable dt = new DataTable();
+                dt = objvehiculo.ListarVehiculo();
+                ReportViewer1.LocalReport.DataSources.Clear();
+                ReportDataSource rdc = new ReportDataSource("DataSet1", dt);
+                ReportViewer1.LocalReport.ReportPath = Server.MapPath("/reportes/RVentas.rdlc");
+                ReportViewer1.LocalReport.DataSources.Add(rdc);
+                ReportViewer1.LocalReport.Refresh();
+            }
+            catch
+            {
+                string script = $@"<script type='text/javascript'>
+                            alert('Error');
+                       </script>";
+
+                ClientScript.RegisterStartupScript(this.GetType(), "AlertaError", script);
+            }
         }
 
         protected void btnCita_Click(object sender, EventArgs e)
         {
-            DataTable dt = new DataTable();
-            dt = objvehiculo.ListarVehiculo();
-            ReportViewer1.LocalReport.DataSources.Clear();
-            ReportDataSource rdc = new ReportDataSource("DataSet1", dt);
-            ReportViewer1.LocalReport.ReportPath = Server.MapPath("../../reportes/RCita.rdlc");
-            ReportViewer1.LocalReport.DataSources.Add(rdc);
-            ReportViewer1.LocalReport.Refresh();
+            try
+            {
+                DataTable dt = new DataTable();
+                dt = objvehiculo.ListarVehiculo();
+                ReportViewer1.LocalReport.DataSources.Clear();
+                ReportDataSource rdc = new ReportDataSource("DataSet1", dt);
+                ReportViewer1.LocalReport.ReportPath = Server.MapPath("/reportes/RCita.rdlc");
+                ReportViewer1.LocalReport.DataSources.Add(rdc);
+                ReportViewer1.LocalReport.Refresh();
+            }
+            catch
+            {
+                string script = $@"<script type='text/javascript'>
+                            alert('Error');
+                       </script>";
+
+                ClientScript.RegisterStartupScript(this.GetType(), "AlertaError", script);
+            }
         }
 
         protected void Button1_Click(object sender, EventArgs e)
         {
-            SqlConnection cn = new SqlConnection("Data Source=SQL5101.site4now.net;Initial Catalog=db_aa12b2_mecwash;User Id=db_aa12b2_mecwash_admin;Password=mireyra123");
-            DataTable dt = new DataTable();
-            SqlDataAdapter da = new SqlDataAdapter("execute reporteCitasFechas " + TextBox1.Text + " " + TextBox2.Text, cn);
-            da.Fill(dt);
-            ReportViewer1.LocalReport.DataSources.Clear();
-            ReportDataSource rdc = new ReportDataSource("DataSet1", dt);
-            ReportViewer1.LocalReport.ReportPath = Server.MapPath("/reportes/RCita.rdlc");
-            ReportViewer1.LocalReport.DataSources.Add(rdc);
-            ReportViewer1.LocalReport.Refresh();
+
+            try
+            {
+                DataTable dt = new DataTable();
+                string fi = TextBox1.Text;
+                string ff = TextBox2.Text;
+
+                dt = objcita.ReporteFechas(fi, ff);
+                ReportViewer1.LocalReport.DataSources.Clear();
+                ReportDataSource rdc = new ReportDataSource("DataSet1", dt);
+                ReportViewer1.LocalReport.ReportPath = Server.MapPath("/reportes/RCita.rdlc");
+                ReportViewer1.LocalReport.DataSources.Add(rdc);
+                ReportViewer1.LocalReport.Refresh();
+            }
+            catch
+            {
+                string script = $@"<script type='text/javascript'>
+                            alert('Error');
+                       </script>";
+
+                ClientScript.RegisterStartupScript(this.GetType(), "AlertaError", script);
+            }
         }
     }
     }

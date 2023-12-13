@@ -151,5 +151,19 @@ namespace MecaWash.Libreria.Datos
                 return dt;
             }
         }
+        public DataTable BuscarPrecioServicio(int id)
+        {
+            using (SqlConnection cn = new SqlConnection(Conexion.cn))
+            {
+                DataTable dt = new DataTable();
+                SqlCommand cmd = new SqlCommand("BuscarPrecioServicio", cn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@id", id);
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(dt);
+                return dt;
+            }
+        }
+
     }
 }

@@ -13,6 +13,7 @@ namespace MecaWash.Libreria.Negocio
     {
         private DServicio datos = new DServicio();
 
+
         public DataTable ListarServicio()
         {
             return datos.ListarServicio();
@@ -77,6 +78,10 @@ namespace MecaWash.Libreria.Negocio
         public DataTable BuscarServicio(EServicios obj)
         {
             return datos.BuscarServicio(obj);
+        }
+        public DataTable BuscarPrecioServicio(int id)
+        {
+            return datos.BuscarPrecioServicio(id);
         }
     }
 }

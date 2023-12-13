@@ -185,5 +185,21 @@ namespace MecaWash.Libreria.Datos
             }
 
         }
+
+        public DataTable ReporteFechas(string fechI, string fechaF)
+        {
+            using (SqlConnection cn = new SqlConnection(Conexion.cn))
+            {
+                DataTable dt = new DataTable();
+                SqlCommand cmd = new SqlCommand("reporteCitasFechas", cn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@fechaI", fechI);
+                cmd.Parameters.AddWithValue("@fechaF", fechaF);
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(dt);
+                return dt;
+            }
+
+        }
     }
 }
