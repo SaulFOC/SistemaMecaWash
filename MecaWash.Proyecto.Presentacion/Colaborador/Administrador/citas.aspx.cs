@@ -9,6 +9,10 @@ using MecaWash.Libreria.Entidad;
 using System.Data;
 using System.Web.Services;
 using Newtonsoft.Json;
+using System.Net;
+using System.Net.Mail;
+using System.Security.Cryptography.X509Certificates;
+using System.Net.Security;
 
 namespace MecaWash.Proyecto.Presentacion.Colaborador.Administrador
 {
@@ -173,10 +177,13 @@ namespace MecaWash.Proyecto.Presentacion.Colaborador.Administrador
                     string id = argumentos[0];
                     string fecha = argumentos[1];
                     string hora = argumentos[2];
+                    string nomCliente = argumentos[3];
+
                     int idc = int.Parse(id);
                     DropDownList ddlEmpleados = (DropDownList)e.Item.FindControl("ddlEmpleados");
                     int ide = int.Parse(ddlEmpleados.SelectedValue);
 
+                    string nomEmpleado = ddlEmpleados.SelectedItem.Text;
 
                     //para comprobar
                     eC.Fecha = fecha;
@@ -193,16 +200,120 @@ namespace MecaWash.Proyecto.Presentacion.Colaborador.Administrador
                             LlenarCitasNuevas();
                             ScriptManager.RegisterStartupScript(this, GetType(), "insertAlert", "mostrarCalendario();", true);
                             ScriptManager.RegisterStartupScript(this, GetType(), "insertAlert", "notiExito('Cita aceptada','La cita se agrego con exito!');", true);
+                            //mandar correo
+                            enviarCorreo(idc, fecha, hora, nomEmpleado, nomCliente);
                         }
                         else
                         {
                             ScriptManager.RegisterStartupScript(this, GetType(), "insertAlert", "notiError('No hay personal disponible para la fecha!');", true);
                         }
                 }
+
+                if(e.CommandName == "RechazarCita")
+                {
+                    string[] argumentos = e.CommandArgument.ToString().Split('|');
+                    string id = argumentos[0];
+                    string noCliente = argumentos[1];
+                    int idc = int.Parse(id);
+
+                    eC.IDCita = idc;
+                    nC.RechazarCita(eC);
+
+                    LlenarCitasNuevas();
+                    ScriptManager.RegisterStartupScript(this, GetType(), "insertAlert", "notiExito('Cita rechazada','Se informo al cliente via correo!');", true);
+                    //correoRechazar(idc, noCliente);
+                }
             }
             catch
             {
                 ScriptManager.RegisterStartupScript(this, GetType(), "insertAlert", "notiError('Ah ocurrido un grave!');", true);
+            }
+        }
+        protected void enviarCorreo(int idc, string fecha, string hora, string nemple, string ncliente)
+        {
+            try
+            {
+                int id = idc;
+                string fe = fecha;
+                string h = hora;
+                string ne = nemple;
+                string nc = ncliente;
+
+                eC.IDCita = id;
+                DataTable dt = nC.ObtenerCorreo(eC);
+                String correo = dt.Rows[0]["correo"].ToString();
+
+                string cuerpo = "Hola <strong>" + nc + "</strong>" +
+                    "<br>" + "Tu cita en MecaWash ah sido aceptada: " +
+                    "<br>" + "Fecha: " + fecha +
+                    "<br>" + "Hora: " + hora +
+                    "<br>" + "Te atendera el empleado: " + nemple +
+                    "<br><br><hr>" + "<strong>Que tengas buen dia</strong>"+
+                    "<br>" + "<strong>Soporte MecaWash</strong>";
+                // Configuración del cliente SMTP
+                SmtpClient clienteSmtp = new SmtpClient("smtp.mecawash.tech");
+                clienteSmtp.Port = 587;
+                clienteSmtp.Credentials = new NetworkCredential("soporte@mecawash.tech", "NWWoK!q9");
+                clienteSmtp.EnableSsl = true;
+
+                // Crear el mensaje de correo
+                MailMessage mensaje = new MailMessage();
+                mensaje.From = new MailAddress("soporte@mecawash.tech");
+                mensaje.To.Add(correo);
+                mensaje.Subject = "Confirmacion de pedido";
+                mensaje.Body = cuerpo;
+
+                mensaje.IsBodyHtml = true;
+
+                ServicePointManager.ServerCertificateValidationCallback = delegate
+                    (object s, X509Certificate certificate, X509Chain chain, SslPolicyErrors sslPolicyErrors) { return true; };
+                clienteSmtp.Send(mensaje);
+                ScriptManager.RegisterStartupScript(this, GetType(), "insertAlert", "notiExito('Cita aceptada','La cita se agrego con exito!');", true);
+            }
+            catch
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "Error", "notiError('Error en el correo!');", true);
+            }
+        }
+
+        protected void correoRechazar(int idc, string cliente)
+        {
+            try
+            {
+                int id = idc;
+                string nc = cliente;
+
+                eC.IDCita = id;
+                DataTable dt = nC.ObtenerCorreo(eC);
+                String correo = dt.Rows[0]["correo"].ToString();
+
+                string cuerpo = "Hola <strong>" + nc + "</strong>" +
+                    "<br>" + "Tu cita en MecaWash ah sido Rechazada, por favor vuelve a agendar en otra fecha"+ 
+                    "<br><br><hr>" + "<strong>Que tengas buen dia</strong>" +
+                    "<br>" + "<strong>Soporte MecaWash</strong>";
+                // Configuración del cliente SMTP
+                SmtpClient clienteSmtp = new SmtpClient("smtp.mecawash.tech");
+                clienteSmtp.Port = 587;
+                clienteSmtp.Credentials = new NetworkCredential("soporte@mecawash.tech", "NWWoK!q9");
+                clienteSmtp.EnableSsl = true;
+
+                // Crear el mensaje de correo
+                MailMessage mensaje = new MailMessage();
+                mensaje.From = new MailAddress("soporte@mecawash.tech");
+                mensaje.To.Add(correo);
+                mensaje.Subject = "Confirmacion de pedido";
+                mensaje.Body = cuerpo;
+
+                mensaje.IsBodyHtml = true;
+
+                ServicePointManager.ServerCertificateValidationCallback = delegate
+                    (object s, X509Certificate certificate, X509Chain chain, SslPolicyErrors sslPolicyErrors) { return true; };
+                clienteSmtp.Send(mensaje);
+                ScriptManager.RegisterStartupScript(this, GetType(), "insertAlert", "notiExito('Cita aceptada','La cita se agrego con exito!');", true);
+            }
+            catch
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "Error", "notiError('Error en el correo!');", true);
             }
         }
     }

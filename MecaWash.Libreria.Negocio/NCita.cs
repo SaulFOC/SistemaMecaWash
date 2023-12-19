@@ -58,5 +58,15 @@ namespace MecaWash.Libreria.Negocio
         {
             return datos.ReporteFechas(fechI, fechaF);
         }
+
+        public DataTable ObtenerCorreo(ECita obj)
+        {
+            return datos.ObtenerCorreo(obj);
+        }
+
+        public void RechazarCita(ECita obj)
+        {
+            datos.RechazarCita(obj);
+        }
     }
 }

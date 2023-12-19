@@ -132,7 +132,7 @@
 
             Swal.fire({
                 title: "¿Desea aceptar la cita?",
-                text: "Rivice si hay disponibilidad para ese día.",
+                text: "Revice si hay disponibilidad para ese día.",
                 icon: "warning",
                 showCancelButton: true,
                 confirmButtonColor: "#3085d6",
@@ -169,6 +169,38 @@
                 text: mensaje,
                 icon: "success"
             });
+        }
+
+        var object1 = { status1: false, ele1: null };
+
+        function confirmaEliminar1(ev) {
+            if (object1.status1) {
+                return true;
+            }
+
+            Swal.fire({
+                title: "¿Desea rechazar la cita?",
+                text: "Se rechazara la cita.",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Sí, Rechazar",
+                cancelButtonText: "Cancelar",
+                closeOnConfirm: true
+            }).then((result) => {
+                if (result.isConfirmed) {
+
+
+                    // Establecer el estado a verdadero y hacer clic en el elemento
+                    object1.status1 = true;
+                    object1.ele1 = ev;
+                    object1.ele1.click();
+                    object1.status1 = false;
+                }
+            });
+
+            return false;
         }
     </script>
     <style>
@@ -306,10 +338,10 @@
                                                 </div>
                                                 <div class="row pb-2">
                                                     <div class="col-6">
-                                                        <asp:Button ID="btnAcepta" CommandName="AceptarCita" CommandArgument='<%# Eval("IDCita")+"|"+Eval("Fecha")+"|"+Eval("Hora") %>' OnClientClick="return confirmaEliminar(this);" CssClass="btn btn-success w-100" runat="server" Text="​✓" />
+                                                        <asp:Button ID="btnAcepta" CommandName="AceptarCita" CommandArgument='<%# Eval("IDCita")+"|"+Eval("Fecha")+"|"+Eval("Hora")+"|"+Eval("Nombre") %>' OnClientClick="return confirmaEliminar(this);" CssClass="btn btn-success w-100" runat="server" Text="​✓" />
                                                     </div>
                                                     <div class="col-6">
-                                                         <asp:Button ID="btnRechaza" CssClass="btn btn-danger w-100" runat="server" Text="X" />
+                                                         <asp:Button ID="btnRechaza" CssClass="btn btn-danger w-100" runat="server" CommandName="RechazarCita" CommandArgument='<%# Eval("IDCita")+"|"+Eval("Nombre") %>' OnClientClick="return confirmaEliminar1(this);" Text="X" />
                                                     </div>
                                                 </div>
                                             </div>

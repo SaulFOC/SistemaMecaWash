@@ -201,5 +201,37 @@ namespace MecaWash.Libreria.Datos
             }
 
         }
+
+        public void RechazarCita(ECita obj)
+        {
+            using (SqlConnection cn = new SqlConnection(Conexion.cn))
+            {
+                SqlCommand cmd = new SqlCommand("rechazarCita", cn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@idc", obj.IDCita);
+                cn.Open();
+
+                // Usa ExecuteNonQueryAsync en lugar de ExecuteNonQuery
+                cmd.ExecuteNonQuery();
+
+                cn.Close();
+            }
+
+        }
+
+        public DataTable ObtenerCorreo(ECita obj)
+        {
+            using (SqlConnection cn = new SqlConnection(Conexion.cn))
+            {
+                DataTable dt = new DataTable();
+                SqlCommand cmd = new SqlCommand("obtenerCorreo", cn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@idc", obj.IDCita);
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(dt);
+                return dt;
+            }
+
+        }
     }
 }

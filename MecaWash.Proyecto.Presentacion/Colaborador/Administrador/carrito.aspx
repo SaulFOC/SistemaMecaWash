@@ -3,7 +3,7 @@
         <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
         <div class="contedor1 pt-3 pb-3">
             <h4>Agregar Servicios</h4>
-             <asp:TextBox ID="txtIdCita" runat="server" Visible="false"></asp:TextBox>
+             <asp:TextBox ID="txtIdCita" CssClass="form-control" runat="server" Visible="false"></asp:TextBox>
             <div class="row">
                 <div class="col-3 me-lg-5">
                     <label class="form-label">Servicio</label>
@@ -11,11 +11,11 @@
                 </div>
                 <div class="col-2 me-lg-5">
                     <label class="form-label">Total</label>
-                    <asp:TextBox ID="txtTotal" runat="server" ReadOnly="true"></asp:TextBox>
+                    <asp:TextBox ID="txtTotal" CssClass="form-control"  runat="server" ReadOnly="true"></asp:TextBox>
                 </div>
                 <div class="col-2 me-lg-5">
                     <label class="form-label">Descuento</label>
-                    <asp:TextBox ID="txtDescuento" runat="server" Text="0"></asp:TextBox>
+                    <asp:TextBox ID="txtDescuento" CssClass="form-control" runat="server" Text="0"></asp:TextBox>
                 </div>
                 <div class="col-3 mt-4">
                 
