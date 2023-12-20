@@ -298,6 +298,8 @@
                 width:100%;
             }
         }
+
+        
     </style>
 </head>
 <body>
@@ -359,7 +361,7 @@
 
     <!-- Modal -->
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel"></h5>
@@ -370,11 +372,45 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-success" id="btnImprimir">Imprimir</button>
                 </div>
             </div>
         </div>
     </div>
         <script src="https://cdn.jsdelivr.net/npm/interactjs/dist/interact.min.js"></script>
+        <!-- Incluir jsPDF desde CDN -->
+
+        <script>
+            $("#btnImprimir").click(function () {
+                // Obtener el título y el contenido del cuerpo del modal
+                var modalBody = $("#exampleModal .modal-body").html();
+
+                // Crear un contenedor para el contenido del modal que incluye el título
+                var printableContent = "<div><h2>" + "RESUMEN FINAL DE CITA" + "</h2>" + modalBody + "</div>";
+
+                // Crear una nueva ventana emergente para imprimir
+                var printWindow = window.open('', '_blank');
+
+                // Establecer el contenido de la ventana emergente con el contenido del modal
+                printWindow.document.open();
+                printWindow.document.write('<html><head><title>' + "RESUMEN FINAL DE CITA" + '</title></head><body>');
+                printWindow.document.write(printableContent);
+                printWindow.document.write('</body></html>');
+                printWindow.document.close();
+
+                // Imprimir y cerrar la ventana emergente después de que se complete la impresión
+                printWindow.print();
+                printWindow.onafterprint = function () {
+                    printWindow.close();
+                };
+
+                // Restaurar el contenido original del body
+                setTimeout(function () {
+                    document.body.innerHTML = originalContents;
+                }, 100);
+            });
+
+        </script>
         <script>
             const position = { x: 0, y: 0 }
 

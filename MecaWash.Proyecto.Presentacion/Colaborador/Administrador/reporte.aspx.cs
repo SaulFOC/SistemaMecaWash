@@ -37,7 +37,7 @@ namespace MecaWash.Proyecto.Presentacion.Colaborador.Administrador
                 dt = objncliente.ListarClientes();
                 ReportViewer1.LocalReport.DataSources.Clear();
                 ReportDataSource rdc = new ReportDataSource("DataSet1", dt);
-                ReportViewer1.LocalReport.ReportPath = Server.MapPath("/reportes/Rclientes.rdlc");
+                ReportViewer1.LocalReport.ReportPath = Server.MapPath("~/reportes/Rclientes.rdlc");
                 ReportViewer1.LocalReport.DataSources.Add(rdc);
                 ReportViewer1.LocalReport.Refresh();
             }
@@ -59,7 +59,7 @@ namespace MecaWash.Proyecto.Presentacion.Colaborador.Administrador
                 dt = objempleado.ListarEmpleados();
                 ReportViewer1.LocalReport.DataSources.Clear();
                 ReportDataSource rdc = new ReportDataSource("DataSet1", dt);
-                ReportViewer1.LocalReport.ReportPath = Server.MapPath("/reportes/Rempleados.rdlc");
+                ReportViewer1.LocalReport.ReportPath = Server.MapPath("~/reportes/Rempleados.rdlc");
                 ReportViewer1.LocalReport.DataSources.Add(rdc);
                 ReportViewer1.LocalReport.Refresh();
             }
@@ -81,7 +81,7 @@ namespace MecaWash.Proyecto.Presentacion.Colaborador.Administrador
                 dt = objvehiculo.ListarVehiculo();
                 ReportViewer1.LocalReport.DataSources.Clear();
                 ReportDataSource rdc = new ReportDataSource("DataSet1", dt);
-                ReportViewer1.LocalReport.ReportPath = Server.MapPath("/reportes/Rvehiculo.rdlc");
+                ReportViewer1.LocalReport.ReportPath = Server.MapPath("~/reportes/Rvehiculo.rdlc");
                 ReportViewer1.LocalReport.DataSources.Add(rdc);
                 ReportViewer1.LocalReport.Refresh();
             }
@@ -103,7 +103,7 @@ namespace MecaWash.Proyecto.Presentacion.Colaborador.Administrador
                 dt = objvehiculo.ListarVehiculo();
                 ReportViewer1.LocalReport.DataSources.Clear();
                 ReportDataSource rdc = new ReportDataSource("DataSet1", dt);
-                ReportViewer1.LocalReport.ReportPath = Server.MapPath("/reportes/RVentas.rdlc");
+                ReportViewer1.LocalReport.ReportPath = Server.MapPath("~/reportes/RVentas.rdlc");
                 ReportViewer1.LocalReport.DataSources.Add(rdc);
                 ReportViewer1.LocalReport.Refresh();
             }
@@ -125,7 +125,7 @@ namespace MecaWash.Proyecto.Presentacion.Colaborador.Administrador
                 dt = objvehiculo.ListarVehiculo();
                 ReportViewer1.LocalReport.DataSources.Clear();
                 ReportDataSource rdc = new ReportDataSource("DataSet1", dt);
-                ReportViewer1.LocalReport.ReportPath = Server.MapPath("/reportes/RCita.rdlc");
+                ReportViewer1.LocalReport.ReportPath = Server.MapPath("~/reportes/RCita.rdlc");
                 ReportViewer1.LocalReport.DataSources.Add(rdc);
                 ReportViewer1.LocalReport.Refresh();
             }
@@ -151,7 +151,7 @@ namespace MecaWash.Proyecto.Presentacion.Colaborador.Administrador
                 dt = objcita.ReporteFechas(fi, ff);
                 ReportViewer1.LocalReport.DataSources.Clear();
                 ReportDataSource rdc = new ReportDataSource("DataSet1", dt);
-                ReportViewer1.LocalReport.ReportPath = Server.MapPath("/reportes/RCita.rdlc");
+                ReportViewer1.LocalReport.ReportPath = Server.MapPath("~/reportes/RCita.rdlc");
                 ReportViewer1.LocalReport.DataSources.Add(rdc);
                 ReportViewer1.LocalReport.Refresh();
             }
