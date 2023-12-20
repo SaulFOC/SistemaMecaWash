@@ -297,6 +297,12 @@
             #calendar-container{
                 width:100%;
             }
+
+            @media print {
+                .doNotPrint {
+                    display: none !important;
+                }
+            }
         }
     </style>
 </head>
@@ -307,7 +313,7 @@
             <div id='calendar'></div>
         </div>
 
-         <div class="container">
+         <div class="container doNotPrint">
         <div id="conP" class="container draggable h-80d pt-2 pb-2">
             
             <div class="container contenedor2">
@@ -368,13 +374,21 @@
                 <div class="modal-body">
                     ...
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <div class="modal-footer doNotPrint">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    <button type="button" class="btn btn-success" id="btnImprimir">Imprimir</button>
                 </div>
             </div>
         </div>
     </div>
         <script src="https://cdn.jsdelivr.net/npm/interactjs/dist/interact.min.js"></script>
+        <script>
+            $(document).ready(function () {
+                $("#btnImprimir").click(function () {
+                    window.print();
+                })
+            });
+        </script>
         <script>
             const position = { x: 0, y: 0 }
 
